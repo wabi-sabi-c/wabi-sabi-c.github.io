@@ -1,138 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Day04 Linux 网络基础与常见网络命令</title>
-    <url>/2026/04/23/Day04-Linux-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Day04｜Linux-网络基础与常用网络命令"><a href="#Day04｜Linux-网络基础与常用网络命令" class="headerlink" title="Day04｜Linux 网络基础与常用网络命令"></a>Day04｜Linux 网络基础与常用网络命令</h1><p>今天是 180 天运维自学计划第 4 天，我们学习 <strong>Linux 网络</strong>。<br>不管是搭环境、部署服务、排查问题，网络都是必须掌握的核心技能。</p>
-<span id="more"></span>
-<h2 id="一、查看-IP-地址"><a href="#一、查看-IP-地址" class="headerlink" title="一、查看 IP 地址"></a>一、查看 IP 地址</h2><h3 id="1-查看网卡与IP信息"><a href="#1-查看网卡与IP信息" class="headerlink" title="1. 查看网卡与IP信息"></a>1. 查看网卡与IP信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 大部分输出的内容再Day01 中已经见过了，这里不再赘述</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 IP 地址</span></span><br><span class="line">hostname -i         <span class="comment"># 获取本机 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网关与路由</span></span><br><span class="line">ip route            <span class="comment"># 获取路由信息   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-<h3 id="2-测试网络连通性"><a href="#2-测试网络连通性" class="headerlink" title="2. 测试网络连通性"></a>2. 测试网络连通性</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br><span class="line">ping -c 4 www.baidu.com            <span class="comment"># 测试 4 次</span></span><br><span class="line">ping -c 4 -w 2 www.baidu.com       <span class="comment"># 测试 4 次，每次等待 2 秒</span></span><br><span class="line">ping -c 4 -i 2 www.baidu.com       <span class="comment"># 测试 4 次，每次间隔 2 秒</span></span><br><span class="line">ping -s 1000 www.baidu.com         <span class="comment"># 测试 1000 字节</span></span><br><span class="line">&gt; -c ：指定测试次数  -w ：指定测试时间  -i ：指定测试间隔   -s ：指定测试数据包大小</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、查看端口情况"><a href="#二、查看端口情况" class="headerlink" title="二、查看端口情况"></a>二、查看端口情况</h2><h3 id="1-查看连通情况"><a href="#1-查看连通情况" class="headerlink" title="1.查看连通情况"></a>1.查看连通情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet www.baidu.com 80         <span class="comment"># 测试端口是否连通</span></span><br><span class="line">curl www.baidu.com              <span class="comment"># 测试端口是否连通</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-查看端口占用情况"><a href="#2-查看端口占用情况" class="headerlink" title="2.查看端口占用情况"></a>2.查看端口占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 net-tools（没有就装一下）</span></span><br><span class="line">yum install -y net-tools</span><br><span class="line"><span class="comment"># 2. 查看所有端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line">&gt; -n: 以数字显示 IP 和端口  -t: 显示 TCP 端口  -l: 显示正在监听的端口  -p: 显示进程名</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、防火墙基础操作"><a href="#三、防火墙基础操作" class="headerlink" title="三、防火墙基础操作"></a>三、防火墙基础操作</h2><ol>
-<li>查看防火墙状态 <code>systemctl status firewalld</code></li>
-<li>临时关闭防火墙（测试环境用） <code>systemctl stop firewalld</code></li>
-<li>禁止开机自启 <code>systemctl disable firewalld</code></li>
-</ol>
-<h2 id="实战训练"><a href="#实战训练" class="headerlink" title="实战训练"></a>实战训练</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看自己的IP</span></span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 测试网络</span></span><br><span class="line">ping -c 4 www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 查看网关</span></span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口占用</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 查看DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-
-<h2 id="Day04-合格标准"><a href="#Day04-合格标准" class="headerlink" title="Day04 合格标准"></a>Day04 合格标准</h2><ul>
-<li>会用 ip addr 查看自己的 IP</li>
-<li>会用 ping 测试网络</li>
-<li>会用 netstat -ntlp 查看端口</li>
-<li>知道如何关闭防火墙</li>
-<li>能判断自己的虚拟机是否能正常上网</li>
-</ul>
-<h1 id="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"><a href="#以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！" class="headerlink" title="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"></a>以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day03 Vim编辑器零基础学习</title>
-    <url>/2026/04/23/Day03-Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="Day03｜Vim-编辑器零基础"><a href="#Day03｜Vim-编辑器零基础" class="headerlink" title="Day03｜Vim 编辑器零基础"></a>Day03｜Vim 编辑器零基础</h1><p>今天是 180 天运维自学计划第 3 天，学习 Linux 必备工具：<strong>Vim 编辑器</strong>。<br>新手最容易卡在“进得去、出不来”，这篇只教最实用的，保证你学得会、用得顺。</p>
-<h2 id="一、Vim-三种模式（必懂）"><a href="#一、Vim-三种模式（必懂）" class="headerlink" title="一、Vim 三种模式（必懂）"></a>一、Vim 三种模式（必懂）</h2><ul>
-<li><strong>命令模式</strong>：刚打开文件时的状态，可移动光标、复制、删除</li>
-<li><strong>编辑模式</strong>：按 <code>i</code> 进入，可输入文字</li>
-<li><strong>末行模式</strong>：按 <code>:</code> 进入，可保存、退出<span id="more"></span></li>
-</ul>
-<h2 id="二、最核心-6-个操作（背会就能用）"><a href="#二、最核心-6-个操作（背会就能用）" class="headerlink" title="二、最核心 6 个操作（背会就能用）"></a>二、最核心 6 个操作（背会就能用）</h2><ol>
-<li>打开文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim test.txt</span><br></pre></td></tr></table></figure></li>
-<li>进入编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">i  <span class="comment"># 在光标前插入</span></span><br></pre></td></tr></table></figure></li>
-<li>保存并退出编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">：wq</span><br></pre></td></tr></table></figure></li>
-<li>不保存强制退出编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">：q!</span><br></pre></td></tr></table></figure></li>
-<li>放弃修改回到命令模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Esc</span><br></pre></td></tr></table></figure></li>
-<li>显示行号（运维常用）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">:<span class="built_in">set</span> number     <span class="comment"># 显示行号(简写nu)      </span></span><br><span class="line">:<span class="built_in">set</span> nonumber   <span class="comment"># 取消行号(简写nonu)      </span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="三、高频实用命令"><a href="#三、高频实用命令" class="headerlink" title="三、高频实用命令"></a>三、高频实用命令</h2><ul>
-<li>复制当前行：<code>yy</code></li>
-<li>删除当前行：<code>dd</code></li>
-<li>粘贴当前行：<code>p</code></li>
-<li>撤销：<code>u</code></li>
-<li>光标跳到文件首行：<code>gg</code></li>
-<li>光标跳到文件尾行：<code>G</code></li>
-</ul>
-<h2 id="四、新手实战"><a href="#四、新手实战" class="headerlink" title="四、新手实战"></a>四、新手实战</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 创建并打开文件</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="comment"># 2. 进入编辑模式按键 i 输入：</span></span><br><span class="line">Hello World</span><br><span class="line">Hello Vim</span><br><span class="line">12345</span><br><span class="line"><span class="comment"># 3. 按下 Esc 键回到命令模式</span></span><br><span class="line"><span class="comment"># 4. 输入命令 `:wq` 保存并退出</span></span><br><span class="line"><span class="comment"># 5.查看文件</span></span><br><span class="line"><span class="built_in">cat</span> test.txt</span><br><span class="line"><span class="comment"># 6. 输入命令 `:set number` 显示行号</span></span><br><span class="line"><span class="comment"># 7. 打开文件</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="comment"># 8. 随便乱按，然后Esc 输入命令 `:q!` 强制退出</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="五、Day03-合格标准"><a href="#五、Day03-合格标准" class="headerlink" title="五、Day03 合格标准"></a>五、Day03 合格标准</h2><ol>
-<li>会用vim打开文件、输入文字、保存并退出</li>
-<li>会用vim复制、删除、粘贴、撤销、跳转到首行、跳转到尾行</li>
-<li>遇到卡死的情况，会用vim放弃修改回到命令模式强制退出</li>
-<li>掌握：i进入编辑esc退回命令模式<code>:wq</code>保存退出&#x2F;<code>:q!</code>强制退出</li>
-<li>能完成新手实战<strong>熟能生巧</strong></li>
-</ol>
-<h1 id="以上就是Vim编辑器的零基础，熟练使用即可。"><a href="#以上就是Vim编辑器的零基础，熟练使用即可。" class="headerlink" title="以上就是Vim编辑器的零基础，熟练使用即可。"></a>以上就是Vim编辑器的零基础，熟练使用即可。</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的运维自学开篇：开篇规划+AI辅助+合格标准</title>
-    <url>/2026/04/22/%E6%88%91%E7%9A%84%E8%BF%90%E7%BB%B4%E8%87%AA%E5%AD%A6%E5%BC%80%E7%AF%87%EF%BC%9A%E5%BC%80%E7%AF%87%E8%A7%84%E5%88%92-AI%E8%BE%85%E5%8A%A9-%E5%90%88%E6%A0%BC%E6%A0%87%E5%87%86/</url>
-    <content><![CDATA[<p>今天正式在 GitHub Pages 上开启我的 <strong>Linux+Python+阿里云ACP+Docker</strong> 180天自学之路！之前找了很多教程，要么太散、要么不知道学到什么程度才算会，直到整理出这套<strong>带每日合格标准+AI辅助</strong>的完整路线，每天学完就能自测，不迷茫、不内耗。</p>
-<p>这篇是我的学习博客开篇，后面会按天更新打卡、踩坑、成果，新手可以直接跟着学！</p>
-<h2 id="一、为什么选运维-云计算方向"><a href="#一、为什么选运维-云计算方向" class="headerlink" title="一、为什么选运维&#x2F;云计算方向"></a>一、为什么选运维&#x2F;云计算方向</h2><ul>
-<li>岗位需求大，适合零基础转行</li>
-<li>越练越熟，靠实操技能拿Offer</li>
-<li>配合AI辅助学习，效率直接翻倍</li>
-<li>我认为未来是智能的—–服务器是基石—–管理它们的人就是中流砥柱<span id="more"></span></li>
-</ul>
-<h2 id="二、我的180天总路线（含合格标准）"><a href="#二、我的180天总路线（含合格标准）" class="headerlink" title="二、我的180天总路线（含合格标准）"></a>二、我的180天总路线（含合格标准）</h2><h3 id="阶段1：Linux基础（Day1-30）"><a href="#阶段1：Linux基础（Day1-30）" class="headerlink" title="阶段1：Linux基础（Day1-30）"></a>阶段1：Linux基础（Day1-30）</h3><ul>
-<li>会装系统、配网、用户&#x2F;权限&#x2F;进程管理</li>
-<li>部署Nginx网页服务</li>
-<li>最终考核：2小时内重装系统+配置网络+跑通网页</li>
-</ul>
-<h3 id="阶段2：Python运维脚本（Day31-60）"><a href="#阶段2：Python运维脚本（Day31-60）" class="headerlink" title="阶段2：Python运维脚本（Day31-60）"></a>阶段2：Python运维脚本（Day31-60）</h3><ul>
-<li>掌握变量、判断、循环、函数基础语法</li>
-<li>实战文件操作、os模块</li>
-<li>开发3个核心脚本：批量文件整理、磁盘监控、网络请求自动化</li>
-</ul>
-<h3 id="阶段3：阿里云-ACP认证（Day61-120）"><a href="#阶段3：阿里云-ACP认证（Day61-120）" class="headerlink" title="阶段3：阿里云+ACP认证（Day61-120）"></a>阶段3：阿里云+ACP认证（Day61-120）</h3><ul>
-<li>熟练操作ECS、安全组、OSS、RDS</li>
-<li>外网部署个人网站</li>
-<li>ACP模拟考试成绩≥85分</li>
-</ul>
-<h3 id="阶段4：Docker-就业冲刺（Day121-180）"><a href="#阶段4：Docker-就业冲刺（Day121-180）" class="headerlink" title="阶段4：Docker+就业冲刺（Day121-180）"></a>阶段4：Docker+就业冲刺（Day121-180）</h3><ul>
-<li>掌握Docker容器核心原理与使用</li>
-<li>编写自动化运维脚本</li>
-<li>完成简历打磨+项目实战+面试准备</li>
-</ul>
-<h2 id="三、AI怎么帮我提速40-（复制就能用）"><a href="#三、AI怎么帮我提速40-（复制就能用）" class="headerlink" title="三、AI怎么帮我提速40%（复制就能用）"></a>三、AI怎么帮我提速40%（复制就能用）</h2><p>向AI（豆包&#x2F;文心&#x2F;通义）发送以下指令：</p>
-<blockquote>
-<p>我今天学习__________，用最简单的话讲原理，给我3个必背命令，出5道实操题，批改并判断是否合格。</p>
-</blockquote>
-<h2 id="四、Day1任务-合格标准"><a href="#四、Day1任务-合格标准" class="headerlink" title="四、Day1任务+合格标准"></a>四、Day1任务+合格标准</h2><ul>
-<li><strong>任务</strong>：安装VMware Workstation + 新建CentOS7虚拟机</li>
-<li><strong>配置建议</strong>：CPU 2核 &#x2F; 内存 4G &#x2F; 硬盘 40G</li>
-<li><strong>合格标准</strong>：<ol>
-<li>虚拟机创建成功并正常启动</li>
-<li>能远程连接（如使用FinalShell）</li>
-<li>能向我完整复述创建步骤与核心配置逻辑</li>
-</ol>
-</li>
-</ul>
-<h2 id="五、我的学习承诺"><a href="#五、我的学习承诺" class="headerlink" title="五、我的学习承诺"></a>五、我的学习承诺</h2><p>每天按<strong>合格标准</strong>严格执行，不拖延、不跳步！</p>
-]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>运维自学</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day01 从零开始搭建CentOS7虚拟机 + FinalShell远程连接</title>
     <url>/2026/04/22/Day01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BACentOS7%E8%99%9A%E6%8B%9F%E6%9C%BA-FinalShell%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
     <content><![CDATA[<h1 id="Day01｜从零搭建CentOS7虚拟机-FinalShell远程连接"><a href="#Day01｜从零搭建CentOS7虚拟机-FinalShell远程连接" class="headerlink" title="Day01｜从零搭建CentOS7虚拟机 + FinalShell远程连接"></a>Day01｜从零搭建CentOS7虚拟机 + FinalShell远程连接</h1><p>今天是运维自学 180 天计划的第一天，任务非常明确：<br>搭建好我们后续学习要用的 Linux 实验环境。<br>全程跟着做，零基础也能一次成功。</p>
@@ -198,6 +66,48 @@
         <tag>CentOS7</tag>
         <tag>VMware</tag>
         <tag>FinalShell</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day03 Vim编辑器零基础学习</title>
+    <url>/2026/04/23/Day03-Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="Day03｜Vim-编辑器零基础"><a href="#Day03｜Vim-编辑器零基础" class="headerlink" title="Day03｜Vim 编辑器零基础"></a>Day03｜Vim 编辑器零基础</h1><p>今天是 180 天运维自学计划第 3 天，学习 Linux 必备工具：<strong>Vim 编辑器</strong>。<br>新手最容易卡在“进得去、出不来”，这篇只教最实用的，保证你学得会、用得顺。</p>
+<h2 id="一、Vim-三种模式（必懂）"><a href="#一、Vim-三种模式（必懂）" class="headerlink" title="一、Vim 三种模式（必懂）"></a>一、Vim 三种模式（必懂）</h2><ul>
+<li><strong>命令模式</strong>：刚打开文件时的状态，可移动光标、复制、删除</li>
+<li><strong>编辑模式</strong>：按 <code>i</code> 进入，可输入文字</li>
+<li><strong>末行模式</strong>：按 <code>:</code> 进入，可保存、退出<span id="more"></span></li>
+</ul>
+<h2 id="二、最核心-6-个操作（背会就能用）"><a href="#二、最核心-6-个操作（背会就能用）" class="headerlink" title="二、最核心 6 个操作（背会就能用）"></a>二、最核心 6 个操作（背会就能用）</h2><ol>
+<li>打开文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim test.txt</span><br></pre></td></tr></table></figure></li>
+<li>进入编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">i  <span class="comment"># 在光标前插入</span></span><br></pre></td></tr></table></figure></li>
+<li>保存并退出编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">：wq</span><br></pre></td></tr></table></figure></li>
+<li>不保存强制退出编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">：q!</span><br></pre></td></tr></table></figure></li>
+<li>放弃修改回到命令模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Esc</span><br></pre></td></tr></table></figure></li>
+<li>显示行号（运维常用）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">:<span class="built_in">set</span> number     <span class="comment"># 显示行号(简写nu)      </span></span><br><span class="line">:<span class="built_in">set</span> nonumber   <span class="comment"># 取消行号(简写nonu)      </span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="三、高频实用命令"><a href="#三、高频实用命令" class="headerlink" title="三、高频实用命令"></a>三、高频实用命令</h2><ul>
+<li>复制当前行：<code>yy</code></li>
+<li>删除当前行：<code>dd</code></li>
+<li>粘贴当前行：<code>p</code></li>
+<li>撤销：<code>u</code></li>
+<li>光标跳到文件首行：<code>gg</code></li>
+<li>光标跳到文件尾行：<code>G</code></li>
+</ul>
+<h2 id="四、新手实战"><a href="#四、新手实战" class="headerlink" title="四、新手实战"></a>四、新手实战</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 创建并打开文件</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="comment"># 2. 进入编辑模式按键 i 输入：</span></span><br><span class="line">Hello World</span><br><span class="line">Hello Vim</span><br><span class="line">12345</span><br><span class="line"><span class="comment"># 3. 按下 Esc 键回到命令模式</span></span><br><span class="line"><span class="comment"># 4. 输入命令 `:wq` 保存并退出</span></span><br><span class="line"><span class="comment"># 5.查看文件</span></span><br><span class="line"><span class="built_in">cat</span> test.txt</span><br><span class="line"><span class="comment"># 6. 输入命令 `:set number` 显示行号</span></span><br><span class="line"><span class="comment"># 7. 打开文件</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="comment"># 8. 随便乱按，然后Esc 输入命令 `:q!` 强制退出</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、Day03-合格标准"><a href="#五、Day03-合格标准" class="headerlink" title="五、Day03 合格标准"></a>五、Day03 合格标准</h2><ol>
+<li>会用vim打开文件、输入文字、保存并退出</li>
+<li>会用vim复制、删除、粘贴、撤销、跳转到首行、跳转到尾行</li>
+<li>遇到卡死的情况，会用vim放弃修改回到命令模式强制退出</li>
+<li>掌握：i进入编辑esc退回命令模式<code>:wq</code>保存退出&#x2F;<code>:q!</code>强制退出</li>
+<li>能完成新手实战<strong>熟能生巧</strong></li>
+</ol>
+<h1 id="以上就是Vim编辑器的零基础，熟练使用即可。"><a href="#以上就是Vim编辑器的零基础，熟练使用即可。" class="headerlink" title="以上就是Vim编辑器的零基础，熟练使用即可。"></a>以上就是Vim编辑器的零基础，熟练使用即可。</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -303,6 +213,96 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的运维自学开篇：开篇规划+AI辅助+合格标准</title>
+    <url>/2026/04/22/%E6%88%91%E7%9A%84%E8%BF%90%E7%BB%B4%E8%87%AA%E5%AD%A6%E5%BC%80%E7%AF%87%EF%BC%9A%E5%BC%80%E7%AF%87%E8%A7%84%E5%88%92-AI%E8%BE%85%E5%8A%A9-%E5%90%88%E6%A0%BC%E6%A0%87%E5%87%86/</url>
+    <content><![CDATA[<p>今天正式在 GitHub Pages 上开启我的 <strong>Linux+Python+阿里云ACP+Docker</strong> 180天自学之路！之前找了很多教程，要么太散、要么不知道学到什么程度才算会，直到整理出这套<strong>带每日合格标准+AI辅助</strong>的完整路线，每天学完就能自测，不迷茫、不内耗。</p>
+<p>这篇是我的学习博客开篇，后面会按天更新打卡、踩坑、成果，新手可以直接跟着学！</p>
+<h2 id="一、为什么选运维-云计算方向"><a href="#一、为什么选运维-云计算方向" class="headerlink" title="一、为什么选运维&#x2F;云计算方向"></a>一、为什么选运维&#x2F;云计算方向</h2><ul>
+<li>岗位需求大，适合零基础转行</li>
+<li>越练越熟，靠实操技能拿Offer</li>
+<li>配合AI辅助学习，效率直接翻倍</li>
+<li>我认为未来是智能的—–服务器是基石—–管理它们的人就是中流砥柱<span id="more"></span></li>
+</ul>
+<h2 id="二、我的180天总路线（含合格标准）"><a href="#二、我的180天总路线（含合格标准）" class="headerlink" title="二、我的180天总路线（含合格标准）"></a>二、我的180天总路线（含合格标准）</h2><h3 id="阶段1：Linux基础（Day1-30）"><a href="#阶段1：Linux基础（Day1-30）" class="headerlink" title="阶段1：Linux基础（Day1-30）"></a>阶段1：Linux基础（Day1-30）</h3><ul>
+<li>会装系统、配网、用户&#x2F;权限&#x2F;进程管理</li>
+<li>部署Nginx网页服务</li>
+<li>最终考核：2小时内重装系统+配置网络+跑通网页</li>
+</ul>
+<h3 id="阶段2：Python运维脚本（Day31-60）"><a href="#阶段2：Python运维脚本（Day31-60）" class="headerlink" title="阶段2：Python运维脚本（Day31-60）"></a>阶段2：Python运维脚本（Day31-60）</h3><ul>
+<li>掌握变量、判断、循环、函数基础语法</li>
+<li>实战文件操作、os模块</li>
+<li>开发3个核心脚本：批量文件整理、磁盘监控、网络请求自动化</li>
+</ul>
+<h3 id="阶段3：阿里云-ACP认证（Day61-120）"><a href="#阶段3：阿里云-ACP认证（Day61-120）" class="headerlink" title="阶段3：阿里云+ACP认证（Day61-120）"></a>阶段3：阿里云+ACP认证（Day61-120）</h3><ul>
+<li>熟练操作ECS、安全组、OSS、RDS</li>
+<li>外网部署个人网站</li>
+<li>ACP模拟考试成绩≥85分</li>
+</ul>
+<h3 id="阶段4：Docker-就业冲刺（Day121-180）"><a href="#阶段4：Docker-就业冲刺（Day121-180）" class="headerlink" title="阶段4：Docker+就业冲刺（Day121-180）"></a>阶段4：Docker+就业冲刺（Day121-180）</h3><ul>
+<li>掌握Docker容器核心原理与使用</li>
+<li>编写自动化运维脚本</li>
+<li>完成简历打磨+项目实战+面试准备</li>
+</ul>
+<h2 id="三、AI怎么帮我提速40-（复制就能用）"><a href="#三、AI怎么帮我提速40-（复制就能用）" class="headerlink" title="三、AI怎么帮我提速40%（复制就能用）"></a>三、AI怎么帮我提速40%（复制就能用）</h2><p>向AI（豆包&#x2F;文心&#x2F;通义）发送以下指令：</p>
+<blockquote>
+<p>我今天学习__________，用最简单的话讲原理，给我3个必背命令，出5道实操题，批改并判断是否合格。</p>
+</blockquote>
+<h2 id="四、Day1任务-合格标准"><a href="#四、Day1任务-合格标准" class="headerlink" title="四、Day1任务+合格标准"></a>四、Day1任务+合格标准</h2><ul>
+<li><strong>任务</strong>：安装VMware Workstation + 新建CentOS7虚拟机</li>
+<li><strong>配置建议</strong>：CPU 2核 &#x2F; 内存 4G &#x2F; 硬盘 40G</li>
+<li><strong>合格标准</strong>：<ol>
+<li>虚拟机创建成功并正常启动</li>
+<li>能远程连接（如使用FinalShell）</li>
+<li>能向我完整复述创建步骤与核心配置逻辑</li>
+</ol>
+</li>
+</ul>
+<h2 id="五、我的学习承诺"><a href="#五、我的学习承诺" class="headerlink" title="五、我的学习承诺"></a>五、我的学习承诺</h2><p>每天按<strong>合格标准</strong>严格执行，不拖延、不跳步！</p>
+]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>运维自学</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day04 Linux 网络基础与常见网络命令</title>
+    <url>/2026/04/23/Day04-Linux-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Day04｜Linux-网络基础与常用网络命令"><a href="#Day04｜Linux-网络基础与常用网络命令" class="headerlink" title="Day04｜Linux 网络基础与常用网络命令"></a>Day04｜Linux 网络基础与常用网络命令</h1><p>今天是 180 天运维自学计划第 4 天，我们学习 <strong>Linux 网络</strong>。<br>不管是搭环境、部署服务、排查问题，网络都是必须掌握的核心技能。</p>
+<span id="more"></span>
+<h2 id="一、查看-IP-地址"><a href="#一、查看-IP-地址" class="headerlink" title="一、查看 IP 地址"></a>一、查看 IP 地址</h2><h3 id="1-查看网卡与IP信息"><a href="#1-查看网卡与IP信息" class="headerlink" title="1. 查看网卡与IP信息"></a>1. 查看网卡与IP信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 大部分输出的内容再Day01 中已经见过了，这里不再赘述</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 IP 地址</span></span><br><span class="line">hostname -i         <span class="comment"># 获取本机 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网关与路由</span></span><br><span class="line">ip route            <span class="comment"># 获取路由信息   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<h3 id="2-测试网络连通性"><a href="#2-测试网络连通性" class="headerlink" title="2. 测试网络连通性"></a>2. 测试网络连通性</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br><span class="line">ping -c 4 www.baidu.com            <span class="comment"># 测试 4 次</span></span><br><span class="line">ping -c 4 -w 2 www.baidu.com       <span class="comment"># 测试 4 次，每次等待 2 秒</span></span><br><span class="line">ping -c 4 -i 2 www.baidu.com       <span class="comment"># 测试 4 次，每次间隔 2 秒</span></span><br><span class="line">ping -s 1000 www.baidu.com         <span class="comment"># 测试 1000 字节</span></span><br><span class="line">&gt; -c ：指定测试次数  -w ：指定测试时间  -i ：指定测试间隔   -s ：指定测试数据包大小</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、查看端口情况"><a href="#二、查看端口情况" class="headerlink" title="二、查看端口情况"></a>二、查看端口情况</h2><h3 id="1-查看连通情况"><a href="#1-查看连通情况" class="headerlink" title="1.查看连通情况"></a>1.查看连通情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet www.baidu.com 80         <span class="comment"># 测试端口是否连通</span></span><br><span class="line">curl www.baidu.com              <span class="comment"># 测试端口是否连通</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-查看端口占用情况"><a href="#2-查看端口占用情况" class="headerlink" title="2.查看端口占用情况"></a>2.查看端口占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 net-tools（没有就装一下）</span></span><br><span class="line">yum install -y net-tools</span><br><span class="line"><span class="comment"># 2. 查看所有端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line">&gt; -n: 以数字显示 IP 和端口  -t: 显示 TCP 端口  -l: 显示正在监听的端口  -p: 显示进程名</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、防火墙基础操作"><a href="#三、防火墙基础操作" class="headerlink" title="三、防火墙基础操作"></a>三、防火墙基础操作</h2><ol>
+<li>查看防火墙状态 <code>systemctl status firewalld</code></li>
+<li>临时关闭防火墙（测试环境用） <code>systemctl stop firewalld</code></li>
+<li>禁止开机自启 <code>systemctl disable firewalld</code></li>
+</ol>
+<h2 id="实战训练"><a href="#实战训练" class="headerlink" title="实战训练"></a>实战训练</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看自己的IP</span></span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 测试网络</span></span><br><span class="line">ping -c 4 www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 查看网关</span></span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口占用</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 查看DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="Day04-合格标准"><a href="#Day04-合格标准" class="headerlink" title="Day04 合格标准"></a>Day04 合格标准</h2><ul>
+<li>会用 ip addr 查看自己的 IP</li>
+<li>会用 ping 测试网络</li>
+<li>会用 netstat -ntlp 查看端口</li>
+<li>知道如何关闭防火墙</li>
+<li>能判断自己的虚拟机是否能正常上网</li>
+</ul>
+<h1 id="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"><a href="#以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！" class="headerlink" title="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"></a>以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
