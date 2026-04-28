@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Day01 从零开始搭建CentOS7虚拟机 + FinalShell远程连接</title>
+    <url>/2026/04/22/Day01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BACentOS7%E8%99%9A%E6%8B%9F%E6%9C%BA-FinalShell%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
+    <content><![CDATA[<h1 id="Day01｜从零搭建CentOS7虚拟机-FinalShell远程连接"><a href="#Day01｜从零搭建CentOS7虚拟机-FinalShell远程连接" class="headerlink" title="Day01｜从零搭建CentOS7虚拟机 + FinalShell远程连接"></a>Day01｜从零搭建CentOS7虚拟机 + FinalShell远程连接</h1><p>今天是运维自学 180 天计划的第一天，任务非常明确：<br>搭建好我们后续学习要用的 Linux 实验环境。<br>全程跟着做，零基础也能一次成功。</p>
+<span id="more"></span>
+<h2 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h2><ul>
+<li>虚拟机软件：VMware Workstation</li>
+<li>系统镜像：CentOS-7-x86_64-Minimal.iso（最小化安装版足够）</li>
+<li>远程工具：FinalShell</li>
+</ul>
+<h2 id="二、新建虚拟机关键配置（照着填不出错）"><a href="#二、新建虚拟机关键配置（照着填不出错）" class="headerlink" title="二、新建虚拟机关键配置（照着填不出错）"></a>二、新建虚拟机关键配置（照着填不出错）</h2><ol>
+<li>安装 → 稍后安装操作系统</li>
+<li>选择 Linux → CentOS 64 位</li>
+<li>虚拟机名称自定义，位置放非 C 盘</li>
+<li>磁盘大小 20G～40G 均可，单文件存储</li>
+<li>自定义硬件：<ul>
+<li>内存：2GB 及以上</li>
+<li>CPU：2 核</li>
+<li>网络适配器：NAT 模式</li>
+</ul>
+</li>
+<li>加载 ISO 镜像文件</li>
+</ol>
+<h2 id="三、CentOS7-安装要点"><a href="#三、CentOS7-安装要点" class="headerlink" title="三、CentOS7 安装要点"></a>三、CentOS7 安装要点</h2><ul>
+<li>语言选择：英文（避免后续字符问题）</li>
+<li>时区：上海</li>
+<li>磁盘分区：自动分区即可</li>
+<li>网络一定要打开！否则装好没 IP</li>
+<li>设置 root 密码，创建普通用户</li>
+<li>等待安装完成重启</li>
+</ul>
+<h2 id="四、开机后基础检查"><a href="#四、开机后基础检查" class="headerlink" title="四、开机后基础检查"></a>四、开机后基础检查</h2><p>登录 root 用户，执行两条命令：</p>
+<p>查看 IP：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ping www.baidu.com <span class="comment"># 能连通说明正常</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>ip addr</code>命令查看 IP 地址，使用<code>ping</code>命令测试百度是否正常。</p>
+<h3 id="4-1-ip-addr使用后内容解释"><a href="#4-1-ip-addr使用后内容解释" class="headerlink" title="4.1 ip addr使用后内容解释"></a>4.1 <code>ip addr</code>使用后内容解释</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ens33: 大多数CentOS7虚拟机默认网卡名称</span><br><span class="line">一、 inet xxx.xxx.xxx.xxx/24 brd xxx.xxx.xxx.xxx scope global noprefixroute dynamic</span><br><span class="line">  inet：表示一个IP4地址</span><br><span class="line">  xxx.xxx.xxx.xxx：表示 IP 地址</span><br><span class="line">  24：表示子网掩码（及255.255·255.0）</span><br><span class="line">  brd：表示广播地址</span><br><span class="line">  scope：表示地址的作用范围</span><br><span class="line">  global：表示全局地址（可以访问外网/其他网段）</span><br><span class="line">  dynamic：表示IP地址是DHCP动态获取的</span><br><span class="line">二、valid_lft 1762sec preferred_lft 1762sec</span><br><span class="line">  valid_lft：表示地址有效时间，单位为秒</span><br><span class="line">  preferred_lft：表示地址的优先使用剩余时间，单位为秒</span><br><span class="line">三、inet6 xxx:xxx:xxx:xxx:xxx:xxx:xxx:xxx/64 scope <span class="built_in">link</span> noprefixroute</span><br><span class="line">  inet6：表示一个IP6地址</span><br><span class="line">  xxx:xxx:xxx:xxx:xxx:xxx:xxx:xxx：表示 IP 地址</span><br><span class="line">  64：表示子网掩码（及ffff:ffff:ffff:ffff:ffff:ffff:ffff:0）</span><br><span class="line">  scope：表示地址的作用范围</span><br><span class="line">  <span class="built_in">link</span>：表示地址是链接地址（即本机地址）（当前链路（同一局域网段内）有效，不能跨网段路由）</span><br><span class="line">  noprefixroute：表示不会为这个网段自动生成路由，默认路由规则</span><br></pre></td></tr></table></figure>
+<h2 id="五、FinalShell-远程连接"><a href="#五、FinalShell-远程连接" class="headerlink" title="五、FinalShell 远程连接"></a>五、FinalShell 远程连接</h2><ol>
+<li>新建 SSH 连接</li>
+<li>名称随便填</li>
+<li>主机填虚拟机里查到的 IP</li>
+<li>端口 22</li>
+<li>用户 root，密码是你设置的</li>
+<li>连接成功，后续操作全部在这里进行</li>
+</ol>
+<h2 id="六、Day01-必学-6-条Linux基础命令"><a href="#六、Day01-必学-6-条Linux基础命令" class="headerlink" title="六、Day01 必学 6 条Linux基础命令"></a>六、Day01 必学 6 条Linux基础命令</h2><ol>
+<li><code>pwd</code>：查看当前目录 （print working directory）</li>
+<li><code>ls</code>：查看当前目录下的文件 （list）</li>
+<li><code>cd</code>：进入指定目录 （change directory）</li>
+<li><code>mkdir test</code>：创建test文件夹 （make directory）</li>
+<li><code>rm -rf test</code>：强制删除test文件夹及以内的所有文件（很危险删除就无法恢复）（remove directory）</li>
+<li><code>man 命令</code>：获取命令的使用说明</li>
+</ol>
+<h2 id="七、今日合格标准（自测）"><a href="#七、今日合格标准（自测）" class="headerlink" title="七、今日合格标准（自测）"></a>七、今日合格标准（自测）</h2><ol>
+<li>虚拟机成功安装 CentOS7</li>
+<li>能获取 IP 并 ping 通外网</li>
+<li>FinalShell 能正常连接</li>
+<li>会使用上面 5 条基础命令</li>
+</ol>
+<h1 id="满足以上就算-Day01-圆满完成！"><a href="#满足以上就算-Day01-圆满完成！" class="headerlink" title="满足以上就算 Day01 圆满完成！"></a>满足以上就算 Day01 圆满完成！</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>CentOS7</tag>
+        <tag>VMware</tag>
+        <tag>FinalShell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Day03 Vim编辑器零基础学习</title>
     <url>/2026/04/23/Day03-Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="Day03｜Vim-编辑器零基础"><a href="#Day03｜Vim-编辑器零基础" class="headerlink" title="Day03｜Vim 编辑器零基础"></a>Day03｜Vim 编辑器零基础</h1><p>今天是 180 天运维自学计划第 3 天，学习 Linux 必备工具：<strong>Vim 编辑器</strong>。<br>新手最容易卡在“进得去、出不来”，这篇只教最实用的，保证你学得会、用得顺。</p>
@@ -36,173 +105,6 @@
 <li>能完成新手实战<strong>熟能生巧</strong></li>
 </ol>
 <h1 id="以上就是Vim编辑器的零基础，熟练使用即可。"><a href="#以上就是Vim编辑器的零基础，熟练使用即可。" class="headerlink" title="以上就是Vim编辑器的零基础，熟练使用即可。"></a>以上就是Vim编辑器的零基础，熟练使用即可。</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day06 Linux 进程管理(ps/top/kill)</title>
-    <url>/2026/04/23/Day06-Linux-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-ps-top-kill/</url>
-    <content><![CDATA[<h1 id="Day06｜Linux-进程管理（ps-top-kill-必学）"><a href="#Day06｜Linux-进程管理（ps-top-kill-必学）" class="headerlink" title="Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）"></a>Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）</h1><p>今天是 180 天运维自学计划第 6 天，学习 <strong>Linux 进程管理</strong>。<br>以后排查卡慢、杀服务、看负载，全靠这几个命令。</p>
-<h2 id="一、什么是进程？"><a href="#一、什么是进程？" class="headerlink" title="一、什么是进程？"></a>一、什么是进程？</h2><p>简单说：<br><strong>正在运行的程序 &#x3D; 进程</strong><br>每个进程都有一个唯一编号：<strong>PID</strong></p>
-<span id="more"></span>
-<h2 id="二、查看进程-ps（最常用）"><a href="#二、查看进程-ps（最常用）" class="headerlink" title="二、查看进程 ps（最常用）"></a>二、查看进程 ps（最常用）</h2><h3 id="1-查看当前用户进程"><a href="#1-查看当前用户进程" class="headerlink" title="1. 查看当前用户进程"></a>1. 查看当前用户进程</h3><p><code>ps</code></p>
-<h3 id="2-查看所有进程"><a href="#2-查看所有进程" class="headerlink" title="2. 查看所有进程"></a>2. 查看所有进程</h3><p><code>ps -ef</code></p>
-<h3 id="3-带详细资源显示"><a href="#3-带详细资源显示" class="headerlink" title="3. 带详细资源显示"></a>3. 带详细资源显示</h3><p><code>ps aux</code></p>
-<h3 id="4-过滤某个进程（实战常用）"><a href="#4-过滤某个进程（实战常用）" class="headerlink" title="4. 过滤某个进程（实战常用）"></a>4. 过滤某个进程（实战常用）</h3><p><code>ps -ef | grep mysql</code></p>
-<blockquote>
-<p>PID：进程 ID  UID：进程用户 ID  PPID：父进程 ID  CMD：进程名字</p>
-</blockquote>
-<h2 id="三、实时监控进程-top"><a href="#三、实时监控进程-top" class="headerlink" title="三、实时监控进程 top"></a>三、实时监控进程 top</h2><p><code>top</code>  退出按：<code>q</code></p>
-<blockquote>
-<p>PID 进程 ID  %CPU CPU 占用  %MEM 内存占用  COMMAND 命令  用来判断：谁把系统搞卡了。</p>
-</blockquote>
-<h2 id="四、结束进程-kill"><a href="#四、结束进程-kill" class="headerlink" title="四、结束进程 kill"></a>四、结束进程 kill</h2><ol>
-<li>正常杀死（推荐）<code>kill PID</code></li>
-<li>强制杀死（杀不死用这个）<code>kill -9 PID</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br><span class="line"><span class="built_in">kill</span> -9 12345</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="五、查看端口对应的进程"><a href="#五、查看端口对应的进程" class="headerlink" title="五、查看端口对应的进程"></a>五、查看端口对应的进程</h2><p><code>netstat -ntlp</code>&#x2F; <code>ss -ntlp</code></p>
-<blockquote>
-<p>端口号  进程ID  用 kill 干掉</p>
-</blockquote>
-<h2 id="六、查看后台程序-jobs"><a href="#六、查看后台程序-jobs" class="headerlink" title="六、查看后台程序 jobs"></a>六、查看后台程序 jobs</h2><p><code>jobs</code><br>把程序放到后台：命令后加<code>&amp;</code><br><code>sleep 100 &amp;</code></p>
-<h2 id="七、今日实战"><a href="#七、今日实战" class="headerlink" title="七、今日实战"></a>七、今日实战</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看所有进程</span></span><br><span class="line">ps -ef</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 实时监控</span></span><br><span class="line">top</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 找某个进程</span></span><br><span class="line">ps -ef | grep ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 测试杀进程</span></span><br><span class="line"><span class="built_in">sleep</span> 200 &amp;</span><br><span class="line">ps -ef | grep <span class="built_in">sleep</span></span><br><span class="line"><span class="built_in">kill</span> -9 进程号</span><br></pre></td></tr></table></figure>
-
-<h2 id="八、Day06-合格标准"><a href="#八、Day06-合格标准" class="headerlink" title="八、Day06 合格标准"></a>八、Day06 合格标准</h2><ol>
-<li>会用 <code>ps -ef</code>查看进程</li>
-<li>会用 <code>grep</code> 过滤进程</li>
-<li>会用 <code>top</code> 看系统负载</li>
-<li>会用 <code>kill</code> 和 <code>kill -9</code></li>
-<li>知道 PID 是什么</li>
-</ol>
-<h1 id="今天看进程、kill、端口，具备基础运维排查能力-后面部署服务、处理报错都会顺畅很多"><a href="#今天看进程、kill、端口，具备基础运维排查能力-后面部署服务、处理报错都会顺畅很多" class="headerlink" title="今天看进程、kill、端口，具备基础运维排查能力,后面部署服务、处理报错都会顺畅很多"></a>今天看进程、kill、端口，具备基础运维排查能力,后面部署服务、处理报错都会顺畅很多</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day07 Linux一周总结</title>
-    <url>/2026/04/27/Day07-Linux%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<ul>
-<li>今天是第7天，总结回顾一下学了什么，还记得多少</li>
-<li><span id="more"></span></li>
-</ul>
-<h2 id="1-今日实操："><a href="#1-今日实操：" class="headerlink" title="1. 今日实操："></a>1. 今日实操：</h2><p>今天是第7天，关于Linux前六天的学习，今天的我所能记住的内容回顾：</p>
-<ol>
-<li>第一天初入Linux，下载了centos7_mini镜像，下载Finalshell，下载vmware，安装VMware虚拟机，配置安装centos7_mini镜像，使用<code>ip addir&#39;查看ip</code>，安装Finalshell，使用ssh连接centos7操作系统</li>
-<li>第二天, 使用Linux的命令，在Linux系统里操作，<code>pwd</code>查看当前所在目录，<code>ls</code>查看当前目录，<code>cd</code>移动到指定目录， <code>makdir</code>创建目录， <code>rmdir</code>删除目录 <code>chomd</code>修改文件权限,<code>chown</code> 修改文件所有者，<code>touch</code>创建文件， <code>cp</code>复制文件， <code>rm</code>删除文件， <code>mv</code>重命名&#x2F;移动文件， <code>stat</code>查看文件权限， <code>\</code>所有文件的根目录 ，<code>/root</code>root用户目录  </li>
-<li>第三天，Linux的网络配置记得不多，<code>ip addir</code>输出的内容可以看懂，然后就是一些权限的东西，读取权限为4，写入权限为2，执行权限为1，r可读，w可写，x可执行，u所有者，g用户组，- 取消权限，+ 添加权限，<code>ping</code> 测试连通</li>
-<li>第四天，vim编辑器大脑基本没什么记忆，就剩下命令模式有什么强制退出什么的</li>
-<li>第五天，忘了第五天学了什么</li>
-<li>第六天，只记得<code>kill</code>杀死进程，然后有个改进程权限，查找进程，<code>ps</code>是什么来着</li>
-</ol>
-<h2 id="2-我理解："><a href="#2-我理解：" class="headerlink" title="2. 我理解："></a>2. 我理解：</h2><p>linux是一个文件系统，基本上都需要命令来操作，而本人六天的学习记忆的不多，但自我认为基础的应该还是可以的</p>
-<h2 id="3-踩坑："><a href="#3-踩坑：" class="headerlink" title="3. 踩坑："></a>3. 踩坑：</h2><p>应该就是注意<code>rm -rf</code>强制删除的使用，加个<code>-i</code>提示一下</p>
-<h2 id="4-总结："><a href="#4-总结：" class="headerlink" title="4. 总结："></a>4. 总结：</h2><ul>
-<li>革命尚未成功，同志仍需努力</li>
-<li>还是记忆的不多，需要多进行实际操作，加深印象</li>
-<li>博客的书写还是磨磨唧唧的，流失大量时间</li>
-</ul>
-]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo的使用技巧（AI生成）</title>
-    <url>/2026/04/22/Hexo%20%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%20Markdown%20%E6%A8%A1%E6%9D%BF%EF%BC%88%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E4%BD%BF%E7%94%A8%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="Hexo-博客文章-Markdown-模板（可直接复制使用）"><a href="#Hexo-博客文章-Markdown-模板（可直接复制使用）" class="headerlink" title="Hexo 博客文章 Markdown 模板（可直接复制使用）"></a>Hexo 博客文章 Markdown 模板（可直接复制使用）</h1><span id="more"></span>
-<p>说明：复制全文到 Hexo 生成的 .md 文章文件中，替换【】内的内容即可，格式已适配 Hexo，无需额外调整，包含常用的文章配置和正文格式。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section"># 文章核心配置（必改，Hexo 识别用）</span></span><br><span class="line">title: 【你的文章标题】  # 例：Hexo 博客新手入门：从写第一篇文章开始</span><br><span class="line">date: 【自动生成，无需修改】  # Hexo new 命令会自动生成，格式：2026-04-21 19:30:00</span><br><span class="line">categories: [【一级分类】, 【二级分类】]  # 例：[技术, Hexo]，支持多级，无二级分类可写 [技术]</span><br><span class="line">tags: [【标签1】, 【标签2】, 【标签3】]  # 例：[Hexo, GitHub, 博客技巧]，可多可少，用英文逗号分隔</span><br><span class="line">cover: 【封面图路径，可选】  # 例：/img/cover/hexo-article.jpg（图片放 source/img/cover/ 下）</span><br><span class="line"><span class="section">description: 【文章简介，可选】  # 用于博客首页展示，100字内最佳，例：记录 Hexo 博客写文章的完整流程，新手可直接照搬操作。</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line"><span class="section"># 正文标题（一级标题，对应文章核心主题）</span></span><br><span class="line">这里写文章开头，可简单介绍本文核心内容，引导读者阅读。比如：本文将详细介绍 Hexo 博客文章的撰写技巧，包含 Markdown 常用格式、图片插入、代码块使用等，新手跟着操作就能快速上手。</span><br><span class="line"></span><br><span class="line"><span class="section">## 一、二级标题（分章节，清晰排版）</span></span><br><span class="line"><span class="section">### 1.1 三级标题（子章节，细化内容）</span></span><br><span class="line">正文内容可自由发挥，以下是 Hexo 博客常用的 Markdown 格式，直接复制替换即可使用。</span><br><span class="line"></span><br><span class="line"><span class="section">### 1.2 常用文本格式示例</span></span><br><span class="line"><span class="bullet">-</span> 加粗：<span class="strong">**这是加粗文本**</span>（适合强调重点，比如核心步骤、关键结论）</span><br><span class="line"><span class="bullet">-</span> 斜体：<span class="emphasis">*这是斜体文本*</span>（适合补充说明、引用）</span><br><span class="line"><span class="bullet">-</span> 删除线：~~这是删除线文本~~（适合修改说明、废弃内容）</span><br><span class="line"><span class="bullet">-</span> 引用：</span><br><span class="line"><span class="quote">&gt; 这是引用块，适合引用名言、他人观点，或者重点提示内容，比如：Hexo 的核心优势是轻量化、易部署，非常适合新手搭建个人博客。</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 二、列表格式（适合步骤、要点）</span></span><br><span class="line"><span class="section">### 2.1 无序列表（用于并列要点）</span></span><br><span class="line"><span class="bullet">-</span> 要点1：无需按顺序的内容，比如文章核心亮点</span><br><span class="line"><span class="bullet">-</span> 要点2：Hexo 文章支持所有标准 Markdown 格式</span><br><span class="line"><span class="bullet">-</span> 要点3：部署前记得本地预览，避免格式错乱</span><br><span class="line"></span><br><span class="line"><span class="section">### 2.2 有序列表（用于步骤类内容，比如操作流程）</span></span><br><span class="line"><span class="bullet">1.</span> 第一步：打开终端，进入 Hexo 博客根目录</span><br><span class="line"><span class="bullet">2.</span> 第二步：执行 hexo new &quot;文章标题&quot; 生成文章文件</span><br><span class="line"><span class="bullet">3.</span> 第三步：用编辑器编辑文章，替换模板内容</span><br><span class="line"><span class="bullet">4.</span> 第四步：本地预览无误后，部署到 GitHub</span><br><span class="line"></span><br><span class="line"><span class="section">## 三、代码块（重点！技术博客常用）</span></span><br><span class="line"><span class="section">### 3.1 行内代码</span></span><br><span class="line">行内代码用 <span class="code">`包裹`</span>，比如：执行 <span class="code">`hexo clean &amp;&amp; hexo g &amp;&amp; hexo s`</span> 可本地预览博客。</span><br><span class="line"></span><br><span class="line"><span class="section">### 3.2 代码块（指定语言，高亮显示）</span></span><br><span class="line"><span class="code">```bash</span></span><br><span class="line"><span class="code"># Hexo 常用命令（bash 语言，自动高亮）</span></span><br><span class="line"><span class="code">hexo new &quot;文章标题&quot;  # 新建文章</span></span><br><span class="line"><span class="code">hexo clean  # 清理缓存</span></span><br><span class="line"><span class="code">hexo g  # 生成静态文件</span></span><br><span class="line"><span class="code">hexo s  # 启动本地服务器</span></span><br><span class="line"><span class="code">hexo d -g  # 生成并部署到 GitHub</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：Python 代码块（其他语言同理，替换 lang 即可）</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello_hexo</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello Hexo! 我的第一篇博客文章&quot;</span>)</span><br><span class="line">hello_hexo()</span><br></pre></td></tr></table></figure>
-
-<h2 id="四、图片插入（本地图片-格式适配）"><a href="#四、图片插入（本地图片-格式适配）" class="headerlink" title="四、图片插入（本地图片+格式适配）"></a>四、图片插入（本地图片+格式适配）</h2><h3 id="4-1-本地图片（推荐，加载更快）"><a href="#4-1-本地图片（推荐，加载更快）" class="headerlink" title="4.1 本地图片（推荐，加载更快）"></a>4.1 本地图片（推荐，加载更快）</h3><ol>
-<li>先将图片放入 Hexo 博客的 <code>source/img/</code> 文件夹（可新建子文件夹，比如 img&#x2F;hexo&#x2F;）</li>
-<li>文章内插入格式：</li>
-</ol>
-<p><code>![图片描述（可选，利于SEO）](/img/【图片文件名】.jpg)</code></p>
-<p>示例（假设图片放 source&#x2F;img&#x2F;hexo&#x2F; 下）：</p>
-<p><code>![Hexo 本地预览界面](/img/hexo/preview.jpg)</code></p>
-<h3 id="4-2-网络图片（可选）"><a href="#4-2-网络图片（可选）" class="headerlink" title="4.2 网络图片（可选）"></a>4.2 网络图片（可选）</h3><p><code>![网络图片示例](https://cdn.jsdelivr.net/npm/hexo-theme-next@8.11.0/source/images/hexo.svg)</code></p>
-<h2 id="五、超链接（跳转链接、友链等）"><a href="#五、超链接（跳转链接、友链等）" class="headerlink" title="五、超链接（跳转链接、友链等）"></a>五、超链接（跳转链接、友链等）</h2><p><code>普通超链接：[链接文本](链接地址)，例：[GitHub 官网](https://github.com)  锚点链接（跳转到本文某章节）：[跳转到代码块章节](#三、代码块（重点！技术博客常用）)</code></p>
-<h2 id="六、结尾总结（可选）"><a href="#六、结尾总结（可选）" class="headerlink" title="六、结尾总结（可选）"></a>六、结尾总结（可选）</h2><p>可在文章结尾总结核心内容，或者引导互动，比如：以上就是 Hexo 博客文章的完整模板使用方法，按照模板填空，就能快速写出格式规范的博客文章。如果遇到问题，可在评论区留言交流～</p>
-<h1 id="补充说明（必看）"><a href="#补充说明（必看）" class="headerlink" title="补充说明（必看）"></a>补充说明（必看）</h1><ol>
-<li>所有【】内的内容必须替换，否则会显示异常；</li>
-<li>封面图可选，没有可直接删除 cover: 这一行；</li>
-<li>分类和标签不要有特殊符号，中文、英文均可；</li>
-<li>文章内不要使用绝对本地路径（如 D:&#x2F;img&#x2F;xxx.jpg），否则部署后不显示；</li>
-<li>写完后执行 hexo clean &amp;&amp; hexo g &amp;&amp; hexo s 本地预览，确认格式无误再部署。</li>
-</ol>
-<pre><code>
-使用提示：复制上述代码块内的所有内容，粘贴到你用 `hexo new \&amp;\#34;标题\&amp;\#34;` 生成的 \.md 文件中，替换掉默认生成的内容，再修改【】内的信息、补充正文即可，无需额外调整格式。
-
-&gt; （注：文档部分内容可能由 AI 生成）
-</code></pre>
-]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python实战: 台账--时间的创建与格式</title>
-    <url>/2026/04/24/python%E5%AE%9E%E6%88%98-%E5%8F%B0%E8%B4%A6-2.%20%E6%97%B6%E9%97%B4%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%A0%BC%E5%BC%8F/</url>
-    <content><![CDATA[<ul>
-<li>今天学习了如何获取今天的时间, 时间的格式化输出</li>
-<li><code>today_md = datetime.date.today().strftime(&quot;%m月%d日&quot;).lstrip(&quot;0&quot;).replace(&quot;月0&quot;, &quot;月&quot;)</code> <span id="more"></span></li>
-</ul>
-<h2 id="原版代码"><a href="#原版代码" class="headerlink" title="原版代码"></a>原版代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">today_md = datetime.date.today().strftime(<span class="string">&quot;%m月%d日&quot;</span>).lstrip(<span class="string">&quot;0&quot;</span>).replace(<span class="string">&quot;月0&quot;</span>, <span class="string">&quot;月&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 功能: 获取今天的日期, 格式化为月-日,自动去掉0, 如01月02日, 变为1月2日</span></span><br><span class="line"><span class="comment"># 逻辑: 先获取今天的日期 格式化成想要的样式</span></span><br><span class="line"><span class="comment"># 易错点: 对lstrip()和replace()的使用</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">datetime.date.today()  <span class="comment"># 获取今天的日期 如2025-04-05</span></span><br><span class="line">date.strftime(<span class="built_in">format</span>)  <span class="comment"># 返回一个由显式格式字符串所控制的，代表日期的字符串</span></span><br><span class="line"><span class="built_in">str</span>.lstrip([chars])    <span class="comment"># 返回原字符串的副本，移除其中的前导字符 strip:除去、剥去</span></span><br><span class="line"><span class="built_in">str</span>.replace(old, new[, count])</span><br><span class="line"><span class="comment"># 用 new 替换子字符串 old 的所有出现次数，并返回该字符串的副本。如果给定了可选参数 count，则只替换前 count 次出现的字符串。</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>python实战--台账</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>python实战</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day04 Linux 网络基础与常见网络命令</title>
-    <url>/2026/04/23/Day04-Linux-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Day04｜Linux-网络基础与常用网络命令"><a href="#Day04｜Linux-网络基础与常用网络命令" class="headerlink" title="Day04｜Linux 网络基础与常用网络命令"></a>Day04｜Linux 网络基础与常用网络命令</h1><p>今天是 180 天运维自学计划第 4 天，我们学习 <strong>Linux 网络</strong>。<br>不管是搭环境、部署服务、排查问题，网络都是必须掌握的核心技能。</p>
-<span id="more"></span>
-<h2 id="一、查看-IP-地址"><a href="#一、查看-IP-地址" class="headerlink" title="一、查看 IP 地址"></a>一、查看 IP 地址</h2><h3 id="1-查看网卡与IP信息"><a href="#1-查看网卡与IP信息" class="headerlink" title="1. 查看网卡与IP信息"></a>1. 查看网卡与IP信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 大部分输出的内容再Day01 中已经见过了，这里不再赘述</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 IP 地址</span></span><br><span class="line">hostname -i         <span class="comment"># 获取本机 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网关与路由</span></span><br><span class="line">ip route            <span class="comment"># 获取路由信息   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-<h3 id="2-测试网络连通性"><a href="#2-测试网络连通性" class="headerlink" title="2. 测试网络连通性"></a>2. 测试网络连通性</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br><span class="line">ping -c 4 www.baidu.com            <span class="comment"># 测试 4 次</span></span><br><span class="line">ping -c 4 -w 2 www.baidu.com       <span class="comment"># 测试 4 次，每次等待 2 秒</span></span><br><span class="line">ping -c 4 -i 2 www.baidu.com       <span class="comment"># 测试 4 次，每次间隔 2 秒</span></span><br><span class="line">ping -s 1000 www.baidu.com         <span class="comment"># 测试 1000 字节</span></span><br><span class="line">&gt; -c ：指定测试次数  -w ：指定测试时间  -i ：指定测试间隔   -s ：指定测试数据包大小</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、查看端口情况"><a href="#二、查看端口情况" class="headerlink" title="二、查看端口情况"></a>二、查看端口情况</h2><h3 id="1-查看连通情况"><a href="#1-查看连通情况" class="headerlink" title="1.查看连通情况"></a>1.查看连通情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet www.baidu.com 80         <span class="comment"># 测试端口是否连通</span></span><br><span class="line">curl www.baidu.com              <span class="comment"># 测试端口是否连通</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-查看端口占用情况"><a href="#2-查看端口占用情况" class="headerlink" title="2.查看端口占用情况"></a>2.查看端口占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 net-tools（没有就装一下）</span></span><br><span class="line">yum install -y net-tools</span><br><span class="line"><span class="comment"># 2. 查看所有端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line">&gt; -n: 以数字显示 IP 和端口  -t: 显示 TCP 端口  -l: 显示正在监听的端口  -p: 显示进程名</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、防火墙基础操作"><a href="#三、防火墙基础操作" class="headerlink" title="三、防火墙基础操作"></a>三、防火墙基础操作</h2><ol>
-<li>查看防火墙状态 <code>systemctl status firewalld</code></li>
-<li>临时关闭防火墙（测试环境用） <code>systemctl stop firewalld</code></li>
-<li>禁止开机自启 <code>systemctl disable firewalld</code></li>
-</ol>
-<h2 id="实战训练"><a href="#实战训练" class="headerlink" title="实战训练"></a>实战训练</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看自己的IP</span></span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 测试网络</span></span><br><span class="line">ping -c 4 www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 查看网关</span></span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口占用</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 查看DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-
-<h2 id="Day04-合格标准"><a href="#Day04-合格标准" class="headerlink" title="Day04 合格标准"></a>Day04 合格标准</h2><ul>
-<li>会用 ip addr 查看自己的 IP</li>
-<li>会用 ping 测试网络</li>
-<li>会用 netstat -ntlp 查看端口</li>
-<li>知道如何关闭防火墙</li>
-<li>能判断自己的虚拟机是否能正常上网</li>
-</ul>
-<h1 id="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"><a href="#以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！" class="headerlink" title="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"></a>以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！</h1>]]></content>
       <categories>
         <category>自学记录</category>
       </categories>
@@ -277,75 +179,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Day01 从零开始搭建CentOS7虚拟机 + FinalShell远程连接</title>
-    <url>/2026/04/22/Day01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BACentOS7%E8%99%9A%E6%8B%9F%E6%9C%BA-FinalShell%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
-    <content><![CDATA[<h1 id="Day01｜从零搭建CentOS7虚拟机-FinalShell远程连接"><a href="#Day01｜从零搭建CentOS7虚拟机-FinalShell远程连接" class="headerlink" title="Day01｜从零搭建CentOS7虚拟机 + FinalShell远程连接"></a>Day01｜从零搭建CentOS7虚拟机 + FinalShell远程连接</h1><p>今天是运维自学 180 天计划的第一天，任务非常明确：<br>搭建好我们后续学习要用的 Linux 实验环境。<br>全程跟着做，零基础也能一次成功。</p>
-<span id="more"></span>
-<h2 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h2><ul>
-<li>虚拟机软件：VMware Workstation</li>
-<li>系统镜像：CentOS-7-x86_64-Minimal.iso（最小化安装版足够）</li>
-<li>远程工具：FinalShell</li>
-</ul>
-<h2 id="二、新建虚拟机关键配置（照着填不出错）"><a href="#二、新建虚拟机关键配置（照着填不出错）" class="headerlink" title="二、新建虚拟机关键配置（照着填不出错）"></a>二、新建虚拟机关键配置（照着填不出错）</h2><ol>
-<li>安装 → 稍后安装操作系统</li>
-<li>选择 Linux → CentOS 64 位</li>
-<li>虚拟机名称自定义，位置放非 C 盘</li>
-<li>磁盘大小 20G～40G 均可，单文件存储</li>
-<li>自定义硬件：<ul>
-<li>内存：2GB 及以上</li>
-<li>CPU：2 核</li>
-<li>网络适配器：NAT 模式</li>
-</ul>
-</li>
-<li>加载 ISO 镜像文件</li>
-</ol>
-<h2 id="三、CentOS7-安装要点"><a href="#三、CentOS7-安装要点" class="headerlink" title="三、CentOS7 安装要点"></a>三、CentOS7 安装要点</h2><ul>
-<li>语言选择：英文（避免后续字符问题）</li>
-<li>时区：上海</li>
-<li>磁盘分区：自动分区即可</li>
-<li>网络一定要打开！否则装好没 IP</li>
-<li>设置 root 密码，创建普通用户</li>
-<li>等待安装完成重启</li>
-</ul>
-<h2 id="四、开机后基础检查"><a href="#四、开机后基础检查" class="headerlink" title="四、开机后基础检查"></a>四、开机后基础检查</h2><p>登录 root 用户，执行两条命令：</p>
-<p>查看 IP：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ping www.baidu.com <span class="comment"># 能连通说明正常</span></span><br></pre></td></tr></table></figure>
-<p>使用<code>ip addr</code>命令查看 IP 地址，使用<code>ping</code>命令测试百度是否正常。</p>
-<h3 id="4-1-ip-addr使用后内容解释"><a href="#4-1-ip-addr使用后内容解释" class="headerlink" title="4.1 ip addr使用后内容解释"></a>4.1 <code>ip addr</code>使用后内容解释</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ens33: 大多数CentOS7虚拟机默认网卡名称</span><br><span class="line">一、 inet xxx.xxx.xxx.xxx/24 brd xxx.xxx.xxx.xxx scope global noprefixroute dynamic</span><br><span class="line">  inet：表示一个IP4地址</span><br><span class="line">  xxx.xxx.xxx.xxx：表示 IP 地址</span><br><span class="line">  24：表示子网掩码（及255.255·255.0）</span><br><span class="line">  brd：表示广播地址</span><br><span class="line">  scope：表示地址的作用范围</span><br><span class="line">  global：表示全局地址（可以访问外网/其他网段）</span><br><span class="line">  dynamic：表示IP地址是DHCP动态获取的</span><br><span class="line">二、valid_lft 1762sec preferred_lft 1762sec</span><br><span class="line">  valid_lft：表示地址有效时间，单位为秒</span><br><span class="line">  preferred_lft：表示地址的优先使用剩余时间，单位为秒</span><br><span class="line">三、inet6 xxx:xxx:xxx:xxx:xxx:xxx:xxx:xxx/64 scope <span class="built_in">link</span> noprefixroute</span><br><span class="line">  inet6：表示一个IP6地址</span><br><span class="line">  xxx:xxx:xxx:xxx:xxx:xxx:xxx:xxx：表示 IP 地址</span><br><span class="line">  64：表示子网掩码（及ffff:ffff:ffff:ffff:ffff:ffff:ffff:0）</span><br><span class="line">  scope：表示地址的作用范围</span><br><span class="line">  <span class="built_in">link</span>：表示地址是链接地址（即本机地址）（当前链路（同一局域网段内）有效，不能跨网段路由）</span><br><span class="line">  noprefixroute：表示不会为这个网段自动生成路由，默认路由规则</span><br></pre></td></tr></table></figure>
-<h2 id="五、FinalShell-远程连接"><a href="#五、FinalShell-远程连接" class="headerlink" title="五、FinalShell 远程连接"></a>五、FinalShell 远程连接</h2><ol>
-<li>新建 SSH 连接</li>
-<li>名称随便填</li>
-<li>主机填虚拟机里查到的 IP</li>
-<li>端口 22</li>
-<li>用户 root，密码是你设置的</li>
-<li>连接成功，后续操作全部在这里进行</li>
-</ol>
-<h2 id="六、Day01-必学-6-条Linux基础命令"><a href="#六、Day01-必学-6-条Linux基础命令" class="headerlink" title="六、Day01 必学 6 条Linux基础命令"></a>六、Day01 必学 6 条Linux基础命令</h2><ol>
-<li><code>pwd</code>：查看当前目录 （print working directory）</li>
-<li><code>ls</code>：查看当前目录下的文件 （list）</li>
-<li><code>cd</code>：进入指定目录 （change directory）</li>
-<li><code>mkdir test</code>：创建test文件夹 （make directory）</li>
-<li><code>rm -rf test</code>：强制删除test文件夹及以内的所有文件（很危险删除就无法恢复）（remove directory）</li>
-<li><code>man 命令</code>：获取命令的使用说明</li>
-</ol>
-<h2 id="七、今日合格标准（自测）"><a href="#七、今日合格标准（自测）" class="headerlink" title="七、今日合格标准（自测）"></a>七、今日合格标准（自测）</h2><ol>
-<li>虚拟机成功安装 CentOS7</li>
-<li>能获取 IP 并 ping 通外网</li>
-<li>FinalShell 能正常连接</li>
-<li>会使用上面 5 条基础命令</li>
-</ol>
-<h1 id="满足以上就算-Day01-圆满完成！"><a href="#满足以上就算-Day01-圆满完成！" class="headerlink" title="满足以上就算 Day01 圆满完成！"></a>满足以上就算 Day01 圆满完成！</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>CentOS7</tag>
-        <tag>VMware</tag>
-        <tag>FinalShell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day05 Linux权限管理</title>
     <url>/2026/04/23/Day05-Linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="Day05｜Linux-用户、组与权限管理（核心必学）"><a href="#Day05｜Linux-用户、组与权限管理（核心必学）" class="headerlink" title="Day05｜Linux 用户、组与权限管理（核心必学）"></a>Day05｜Linux 用户、组与权限管理（核心必学）</h1><p>今天是 180 天运维自学计划第 5 天，学习 Linux <strong>安全核心：用户、组、权限</strong>。<br>这是面试高频、实操必用、必须吃透的知识点。</p>
@@ -416,27 +249,170 @@
       </tags>
   </entry>
   <entry>
-    <title>python实战--台账6.感觉很虚，所以改变策略仿写之前的内容</title>
-    <url>/2026/04/28/python%E5%AE%9E%E6%88%98-%E5%8F%B0%E8%B4%A66-%E6%84%9F%E8%A7%89%E5%BE%88%E8%99%9A%EF%BC%8C%E6%89%80%E4%BB%A5%E6%94%B9%E5%8F%98%E7%AD%96%E7%95%A5%E4%BB%BF%E5%86%99%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E5%AE%B9/</url>
-    <content><![CDATA[<ul>
-<li>今天的主要内容是仿写之前内容，要求达到独自书写下来的效果</li>
-<li>已经对之前的内容进行查漏补缺</li>
-</ul>
+    <title>Day06 Linux 进程管理(ps/top/kill)</title>
+    <url>/2026/04/23/Day06-Linux-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-ps-top-kill/</url>
+    <content><![CDATA[<h1 id="Day06｜Linux-进程管理（ps-top-kill-必学）"><a href="#Day06｜Linux-进程管理（ps-top-kill-必学）" class="headerlink" title="Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）"></a>Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）</h1><p>今天是 180 天运维自学计划第 6 天，学习 <strong>Linux 进程管理</strong>。<br>以后排查卡慢、杀服务、看负载，全靠这几个命令。</p>
+<h2 id="一、什么是进程？"><a href="#一、什么是进程？" class="headerlink" title="一、什么是进程？"></a>一、什么是进程？</h2><p>简单说：<br><strong>正在运行的程序 &#x3D; 进程</strong><br>每个进程都有一个唯一编号：<strong>PID</strong></p>
 <span id="more"></span>
+<h2 id="二、查看进程-ps（最常用）"><a href="#二、查看进程-ps（最常用）" class="headerlink" title="二、查看进程 ps（最常用）"></a>二、查看进程 ps（最常用）</h2><h3 id="1-查看当前用户进程"><a href="#1-查看当前用户进程" class="headerlink" title="1. 查看当前用户进程"></a>1. 查看当前用户进程</h3><p><code>ps</code></p>
+<h3 id="2-查看所有进程"><a href="#2-查看所有进程" class="headerlink" title="2. 查看所有进程"></a>2. 查看所有进程</h3><p><code>ps -ef</code></p>
+<h3 id="3-带详细资源显示"><a href="#3-带详细资源显示" class="headerlink" title="3. 带详细资源显示"></a>3. 带详细资源显示</h3><p><code>ps aux</code></p>
+<h3 id="4-过滤某个进程（实战常用）"><a href="#4-过滤某个进程（实战常用）" class="headerlink" title="4. 过滤某个进程（实战常用）"></a>4. 过滤某个进程（实战常用）</h3><p><code>ps -ef | grep mysql</code></p>
+<blockquote>
+<p>PID：进程 ID  UID：进程用户 ID  PPID：父进程 ID  CMD：进程名字</p>
+</blockquote>
+<h2 id="三、实时监控进程-top"><a href="#三、实时监控进程-top" class="headerlink" title="三、实时监控进程 top"></a>三、实时监控进程 top</h2><p><code>top</code>  退出按：<code>q</code></p>
+<blockquote>
+<p>PID 进程 ID  %CPU CPU 占用  %MEM 内存占用  COMMAND 命令  用来判断：谁把系统搞卡了。</p>
+</blockquote>
+<h2 id="四、结束进程-kill"><a href="#四、结束进程-kill" class="headerlink" title="四、结束进程 kill"></a>四、结束进程 kill</h2><ol>
+<li>正常杀死（推荐）<code>kill PID</code></li>
+<li>强制杀死（杀不死用这个）<code>kill -9 PID</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br><span class="line"><span class="built_in">kill</span> -9 12345</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="五、查看端口对应的进程"><a href="#五、查看端口对应的进程" class="headerlink" title="五、查看端口对应的进程"></a>五、查看端口对应的进程</h2><p><code>netstat -ntlp</code>&#x2F; <code>ss -ntlp</code></p>
+<blockquote>
+<p>端口号  进程ID  用 kill 干掉</p>
+</blockquote>
+<h2 id="六、查看后台程序-jobs"><a href="#六、查看后台程序-jobs" class="headerlink" title="六、查看后台程序 jobs"></a>六、查看后台程序 jobs</h2><p><code>jobs</code><br>把程序放到后台：命令后加<code>&amp;</code><br><code>sleep 100 &amp;</code></p>
+<h2 id="七、今日实战"><a href="#七、今日实战" class="headerlink" title="七、今日实战"></a>七、今日实战</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看所有进程</span></span><br><span class="line">ps -ef</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 实时监控</span></span><br><span class="line">top</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 找某个进程</span></span><br><span class="line">ps -ef | grep ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 测试杀进程</span></span><br><span class="line"><span class="built_in">sleep</span> 200 &amp;</span><br><span class="line">ps -ef | grep <span class="built_in">sleep</span></span><br><span class="line"><span class="built_in">kill</span> -9 进程号</span><br></pre></td></tr></table></figure>
 
-<h2 id="第一天是创建文件并判断是否存在内容"><a href="#第一天是创建文件并判断是否存在内容" class="headerlink" title="第一天是创建文件并判断是否存在内容"></a>第一天是创建文件并判断是否存在内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写不出来</span></span><br></pre></td></tr></table></figure>
-<h2 id="第二天是时间的创建与格式化"><a href="#第二天是时间的创建与格式化" class="headerlink" title="第二天是时间的创建与格式化"></a>第二天是时间的创建与格式化</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">today = datetime.date.today()</span><br><span class="line"><span class="comment"># 实时证明函数不记得，无法独自仿写出来</span></span><br></pre></td></tr></table></figure>
-<h2 id="第三天是创建一个以时间为文件名的文件路径"><a href="#第三天是创建一个以时间为文件名的文件路径" class="headerlink" title="第三天是创建一个以时间为文件名的文件路径"></a>第三天是创建一个以时间为文件名的文件路径</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="第四天是初始化Excel表格"><a href="#第四天是初始化Excel表格" class="headerlink" title="第四天是初始化Excel表格"></a>第四天是初始化Excel表格</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="第五天是给excel表格添加内容"><a href="#第五天是给excel表格添加内容" class="headerlink" title="第五天是给excel表格添加内容"></a>第五天是给excel表格添加内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="八、Day06-合格标准"><a href="#八、Day06-合格标准" class="headerlink" title="八、Day06 合格标准"></a>八、Day06 合格标准</h2><ol>
+<li>会用 <code>ps -ef</code>查看进程</li>
+<li>会用 <code>grep</code> 过滤进程</li>
+<li>会用 <code>top</code> 看系统负载</li>
+<li>会用 <code>kill</code> 和 <code>kill -9</code></li>
+<li>知道 PID 是什么</li>
+</ol>
+<h1 id="今天看进程、kill、端口，具备基础运维排查能力-后面部署服务、处理报错都会顺畅很多"><a href="#今天看进程、kill、端口，具备基础运维排查能力-后面部署服务、处理报错都会顺畅很多" class="headerlink" title="今天看进程、kill、端口，具备基础运维排查能力,后面部署服务、处理报错都会顺畅很多"></a>今天看进程、kill、端口，具备基础运维排查能力,后面部署服务、处理报错都会顺畅很多</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day04 Linux 网络基础与常见网络命令</title>
+    <url>/2026/04/23/Day04-Linux-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Day04｜Linux-网络基础与常用网络命令"><a href="#Day04｜Linux-网络基础与常用网络命令" class="headerlink" title="Day04｜Linux 网络基础与常用网络命令"></a>Day04｜Linux 网络基础与常用网络命令</h1><p>今天是 180 天运维自学计划第 4 天，我们学习 <strong>Linux 网络</strong>。<br>不管是搭环境、部署服务、排查问题，网络都是必须掌握的核心技能。</p>
+<span id="more"></span>
+<h2 id="一、查看-IP-地址"><a href="#一、查看-IP-地址" class="headerlink" title="一、查看 IP 地址"></a>一、查看 IP 地址</h2><h3 id="1-查看网卡与IP信息"><a href="#1-查看网卡与IP信息" class="headerlink" title="1. 查看网卡与IP信息"></a>1. 查看网卡与IP信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 大部分输出的内容再Day01 中已经见过了，这里不再赘述</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 IP 地址</span></span><br><span class="line">hostname -i         <span class="comment"># 获取本机 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网关与路由</span></span><br><span class="line">ip route            <span class="comment"># 获取路由信息   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<h3 id="2-测试网络连通性"><a href="#2-测试网络连通性" class="headerlink" title="2. 测试网络连通性"></a>2. 测试网络连通性</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br><span class="line">ping -c 4 www.baidu.com            <span class="comment"># 测试 4 次</span></span><br><span class="line">ping -c 4 -w 2 www.baidu.com       <span class="comment"># 测试 4 次，每次等待 2 秒</span></span><br><span class="line">ping -c 4 -i 2 www.baidu.com       <span class="comment"># 测试 4 次，每次间隔 2 秒</span></span><br><span class="line">ping -s 1000 www.baidu.com         <span class="comment"># 测试 1000 字节</span></span><br><span class="line">&gt; -c ：指定测试次数  -w ：指定测试时间  -i ：指定测试间隔   -s ：指定测试数据包大小</span><br></pre></td></tr></table></figure>
 
-<h1 id="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"><a href="#今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起" class="headerlink" title="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"></a>今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起</h1>]]></content>
+<h2 id="二、查看端口情况"><a href="#二、查看端口情况" class="headerlink" title="二、查看端口情况"></a>二、查看端口情况</h2><h3 id="1-查看连通情况"><a href="#1-查看连通情况" class="headerlink" title="1.查看连通情况"></a>1.查看连通情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet www.baidu.com 80         <span class="comment"># 测试端口是否连通</span></span><br><span class="line">curl www.baidu.com              <span class="comment"># 测试端口是否连通</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-查看端口占用情况"><a href="#2-查看端口占用情况" class="headerlink" title="2.查看端口占用情况"></a>2.查看端口占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 net-tools（没有就装一下）</span></span><br><span class="line">yum install -y net-tools</span><br><span class="line"><span class="comment"># 2. 查看所有端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line">&gt; -n: 以数字显示 IP 和端口  -t: 显示 TCP 端口  -l: 显示正在监听的端口  -p: 显示进程名</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、防火墙基础操作"><a href="#三、防火墙基础操作" class="headerlink" title="三、防火墙基础操作"></a>三、防火墙基础操作</h2><ol>
+<li>查看防火墙状态 <code>systemctl status firewalld</code></li>
+<li>临时关闭防火墙（测试环境用） <code>systemctl stop firewalld</code></li>
+<li>禁止开机自启 <code>systemctl disable firewalld</code></li>
+</ol>
+<h2 id="实战训练"><a href="#实战训练" class="headerlink" title="实战训练"></a>实战训练</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看自己的IP</span></span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 测试网络</span></span><br><span class="line">ping -c 4 www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 查看网关</span></span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口占用</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 查看DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="Day04-合格标准"><a href="#Day04-合格标准" class="headerlink" title="Day04 合格标准"></a>Day04 合格标准</h2><ul>
+<li>会用 ip addr 查看自己的 IP</li>
+<li>会用 ping 测试网络</li>
+<li>会用 netstat -ntlp 查看端口</li>
+<li>知道如何关闭防火墙</li>
+<li>能判断自己的虚拟机是否能正常上网</li>
+</ul>
+<h1 id="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"><a href="#以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！" class="headerlink" title="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"></a>以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python实战: 台账--时间的创建与格式</title>
+    <url>/2026/04/24/python%E5%AE%9E%E6%88%98-%E5%8F%B0%E8%B4%A6-2.%20%E6%97%B6%E9%97%B4%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%A0%BC%E5%BC%8F/</url>
+    <content><![CDATA[<ul>
+<li>今天学习了如何获取今天的时间, 时间的格式化输出</li>
+<li><code>today_md = datetime.date.today().strftime(&quot;%m月%d日&quot;).lstrip(&quot;0&quot;).replace(&quot;月0&quot;, &quot;月&quot;)</code> <span id="more"></span></li>
+</ul>
+<h2 id="原版代码"><a href="#原版代码" class="headerlink" title="原版代码"></a>原版代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">today_md = datetime.date.today().strftime(<span class="string">&quot;%m月%d日&quot;</span>).lstrip(<span class="string">&quot;0&quot;</span>).replace(<span class="string">&quot;月0&quot;</span>, <span class="string">&quot;月&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 功能: 获取今天的日期, 格式化为月-日,自动去掉0, 如01月02日, 变为1月2日</span></span><br><span class="line"><span class="comment"># 逻辑: 先获取今天的日期 格式化成想要的样式</span></span><br><span class="line"><span class="comment"># 易错点: 对lstrip()和replace()的使用</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">datetime.date.today()  <span class="comment"># 获取今天的日期 如2025-04-05</span></span><br><span class="line">date.strftime(<span class="built_in">format</span>)  <span class="comment"># 返回一个由显式格式字符串所控制的，代表日期的字符串</span></span><br><span class="line"><span class="built_in">str</span>.lstrip([chars])    <span class="comment"># 返回原字符串的副本，移除其中的前导字符 strip:除去、剥去</span></span><br><span class="line"><span class="built_in">str</span>.replace(old, new[, count])</span><br><span class="line"><span class="comment"># 用 new 替换子字符串 old 的所有出现次数，并返回该字符串的副本。如果给定了可选参数 count，则只替换前 count 次出现的字符串。</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
         <category>python实战--台账</category>
       </categories>
       <tags>
         <tag>python</tag>
         <tag>python实战</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo的使用技巧（AI生成）</title>
+    <url>/2026/04/22/Hexo%20%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%20Markdown%20%E6%A8%A1%E6%9D%BF%EF%BC%88%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E4%BD%BF%E7%94%A8%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="Hexo-博客文章-Markdown-模板（可直接复制使用）"><a href="#Hexo-博客文章-Markdown-模板（可直接复制使用）" class="headerlink" title="Hexo 博客文章 Markdown 模板（可直接复制使用）"></a>Hexo 博客文章 Markdown 模板（可直接复制使用）</h1><span id="more"></span>
+<p>说明：复制全文到 Hexo 生成的 .md 文章文件中，替换【】内的内容即可，格式已适配 Hexo，无需额外调整，包含常用的文章配置和正文格式。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section"># 文章核心配置（必改，Hexo 识别用）</span></span><br><span class="line">title: 【你的文章标题】  # 例：Hexo 博客新手入门：从写第一篇文章开始</span><br><span class="line">date: 【自动生成，无需修改】  # Hexo new 命令会自动生成，格式：2026-04-21 19:30:00</span><br><span class="line">categories: [【一级分类】, 【二级分类】]  # 例：[技术, Hexo]，支持多级，无二级分类可写 [技术]</span><br><span class="line">tags: [【标签1】, 【标签2】, 【标签3】]  # 例：[Hexo, GitHub, 博客技巧]，可多可少，用英文逗号分隔</span><br><span class="line">cover: 【封面图路径，可选】  # 例：/img/cover/hexo-article.jpg（图片放 source/img/cover/ 下）</span><br><span class="line"><span class="section">description: 【文章简介，可选】  # 用于博客首页展示，100字内最佳，例：记录 Hexo 博客写文章的完整流程，新手可直接照搬操作。</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line"><span class="section"># 正文标题（一级标题，对应文章核心主题）</span></span><br><span class="line">这里写文章开头，可简单介绍本文核心内容，引导读者阅读。比如：本文将详细介绍 Hexo 博客文章的撰写技巧，包含 Markdown 常用格式、图片插入、代码块使用等，新手跟着操作就能快速上手。</span><br><span class="line"></span><br><span class="line"><span class="section">## 一、二级标题（分章节，清晰排版）</span></span><br><span class="line"><span class="section">### 1.1 三级标题（子章节，细化内容）</span></span><br><span class="line">正文内容可自由发挥，以下是 Hexo 博客常用的 Markdown 格式，直接复制替换即可使用。</span><br><span class="line"></span><br><span class="line"><span class="section">### 1.2 常用文本格式示例</span></span><br><span class="line"><span class="bullet">-</span> 加粗：<span class="strong">**这是加粗文本**</span>（适合强调重点，比如核心步骤、关键结论）</span><br><span class="line"><span class="bullet">-</span> 斜体：<span class="emphasis">*这是斜体文本*</span>（适合补充说明、引用）</span><br><span class="line"><span class="bullet">-</span> 删除线：~~这是删除线文本~~（适合修改说明、废弃内容）</span><br><span class="line"><span class="bullet">-</span> 引用：</span><br><span class="line"><span class="quote">&gt; 这是引用块，适合引用名言、他人观点，或者重点提示内容，比如：Hexo 的核心优势是轻量化、易部署，非常适合新手搭建个人博客。</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 二、列表格式（适合步骤、要点）</span></span><br><span class="line"><span class="section">### 2.1 无序列表（用于并列要点）</span></span><br><span class="line"><span class="bullet">-</span> 要点1：无需按顺序的内容，比如文章核心亮点</span><br><span class="line"><span class="bullet">-</span> 要点2：Hexo 文章支持所有标准 Markdown 格式</span><br><span class="line"><span class="bullet">-</span> 要点3：部署前记得本地预览，避免格式错乱</span><br><span class="line"></span><br><span class="line"><span class="section">### 2.2 有序列表（用于步骤类内容，比如操作流程）</span></span><br><span class="line"><span class="bullet">1.</span> 第一步：打开终端，进入 Hexo 博客根目录</span><br><span class="line"><span class="bullet">2.</span> 第二步：执行 hexo new &quot;文章标题&quot; 生成文章文件</span><br><span class="line"><span class="bullet">3.</span> 第三步：用编辑器编辑文章，替换模板内容</span><br><span class="line"><span class="bullet">4.</span> 第四步：本地预览无误后，部署到 GitHub</span><br><span class="line"></span><br><span class="line"><span class="section">## 三、代码块（重点！技术博客常用）</span></span><br><span class="line"><span class="section">### 3.1 行内代码</span></span><br><span class="line">行内代码用 <span class="code">`包裹`</span>，比如：执行 <span class="code">`hexo clean &amp;&amp; hexo g &amp;&amp; hexo s`</span> 可本地预览博客。</span><br><span class="line"></span><br><span class="line"><span class="section">### 3.2 代码块（指定语言，高亮显示）</span></span><br><span class="line"><span class="code">```bash</span></span><br><span class="line"><span class="code"># Hexo 常用命令（bash 语言，自动高亮）</span></span><br><span class="line"><span class="code">hexo new &quot;文章标题&quot;  # 新建文章</span></span><br><span class="line"><span class="code">hexo clean  # 清理缓存</span></span><br><span class="line"><span class="code">hexo g  # 生成静态文件</span></span><br><span class="line"><span class="code">hexo s  # 启动本地服务器</span></span><br><span class="line"><span class="code">hexo d -g  # 生成并部署到 GitHub</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例：Python 代码块（其他语言同理，替换 lang 即可）</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello_hexo</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello Hexo! 我的第一篇博客文章&quot;</span>)</span><br><span class="line">hello_hexo()</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、图片插入（本地图片-格式适配）"><a href="#四、图片插入（本地图片-格式适配）" class="headerlink" title="四、图片插入（本地图片+格式适配）"></a>四、图片插入（本地图片+格式适配）</h2><h3 id="4-1-本地图片（推荐，加载更快）"><a href="#4-1-本地图片（推荐，加载更快）" class="headerlink" title="4.1 本地图片（推荐，加载更快）"></a>4.1 本地图片（推荐，加载更快）</h3><ol>
+<li>先将图片放入 Hexo 博客的 <code>source/img/</code> 文件夹（可新建子文件夹，比如 img&#x2F;hexo&#x2F;）</li>
+<li>文章内插入格式：</li>
+</ol>
+<p><code>![图片描述（可选，利于SEO）](/img/【图片文件名】.jpg)</code></p>
+<p>示例（假设图片放 source&#x2F;img&#x2F;hexo&#x2F; 下）：</p>
+<p><code>![Hexo 本地预览界面](/img/hexo/preview.jpg)</code></p>
+<h3 id="4-2-网络图片（可选）"><a href="#4-2-网络图片（可选）" class="headerlink" title="4.2 网络图片（可选）"></a>4.2 网络图片（可选）</h3><p><code>![网络图片示例](https://cdn.jsdelivr.net/npm/hexo-theme-next@8.11.0/source/images/hexo.svg)</code></p>
+<h2 id="五、超链接（跳转链接、友链等）"><a href="#五、超链接（跳转链接、友链等）" class="headerlink" title="五、超链接（跳转链接、友链等）"></a>五、超链接（跳转链接、友链等）</h2><p><code>普通超链接：[链接文本](链接地址)，例：[GitHub 官网](https://github.com)  锚点链接（跳转到本文某章节）：[跳转到代码块章节](#三、代码块（重点！技术博客常用）)</code></p>
+<h2 id="六、结尾总结（可选）"><a href="#六、结尾总结（可选）" class="headerlink" title="六、结尾总结（可选）"></a>六、结尾总结（可选）</h2><p>可在文章结尾总结核心内容，或者引导互动，比如：以上就是 Hexo 博客文章的完整模板使用方法，按照模板填空，就能快速写出格式规范的博客文章。如果遇到问题，可在评论区留言交流～</p>
+<h1 id="补充说明（必看）"><a href="#补充说明（必看）" class="headerlink" title="补充说明（必看）"></a>补充说明（必看）</h1><ol>
+<li>所有【】内的内容必须替换，否则会显示异常；</li>
+<li>封面图可选，没有可直接删除 cover: 这一行；</li>
+<li>分类和标签不要有特殊符号，中文、英文均可；</li>
+<li>文章内不要使用绝对本地路径（如 D:&#x2F;img&#x2F;xxx.jpg），否则部署后不显示；</li>
+<li>写完后执行 hexo clean &amp;&amp; hexo g &amp;&amp; hexo s 本地预览，确认格式无误再部署。</li>
+</ol>
+<pre><code>
+使用提示：复制上述代码块内的所有内容，粘贴到你用 `hexo new \&amp;\#34;标题\&amp;\#34;` 生成的 \.md 文件中，替换掉默认生成的内容，再修改【】内的信息、补充正文即可，无需额外调整格式。
+
+&gt; （注：文档部分内容可能由 AI 生成）
+</code></pre>
+]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day07 Linux一周总结</title>
+    <url>/2026/04/27/Day07-Linux%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<ul>
+<li>今天是第7天，总结回顾一下学了什么，还记得多少</li>
+<li><span id="more"></span></li>
+</ul>
+<h2 id="1-今日实操："><a href="#1-今日实操：" class="headerlink" title="1. 今日实操："></a>1. 今日实操：</h2><p>今天是第7天，关于Linux前六天的学习，今天的我所能记住的内容回顾：</p>
+<ol>
+<li>第一天初入Linux，下载了centos7_mini镜像，下载Finalshell，下载vmware，安装VMware虚拟机，配置安装centos7_mini镜像，使用<code>ip addir&#39;查看ip</code>，安装Finalshell，使用ssh连接centos7操作系统</li>
+<li>第二天, 使用Linux的命令，在Linux系统里操作，<code>pwd</code>查看当前所在目录，<code>ls</code>查看当前目录，<code>cd</code>移动到指定目录， <code>makdir</code>创建目录， <code>rmdir</code>删除目录 <code>chomd</code>修改文件权限,<code>chown</code> 修改文件所有者，<code>touch</code>创建文件， <code>cp</code>复制文件， <code>rm</code>删除文件， <code>mv</code>重命名&#x2F;移动文件， <code>stat</code>查看文件权限， <code>\</code>所有文件的根目录 ，<code>/root</code>root用户目录  </li>
+<li>第三天，Linux的网络配置记得不多，<code>ip addir</code>输出的内容可以看懂，然后就是一些权限的东西，读取权限为4，写入权限为2，执行权限为1，r可读，w可写，x可执行，u所有者，g用户组，- 取消权限，+ 添加权限，<code>ping</code> 测试连通</li>
+<li>第四天，vim编辑器大脑基本没什么记忆，就剩下命令模式有什么强制退出什么的</li>
+<li>第五天，忘了第五天学了什么</li>
+<li>第六天，只记得<code>kill</code>杀死进程，然后有个改进程权限，查找进程，<code>ps</code>是什么来着</li>
+</ol>
+<h2 id="2-我理解："><a href="#2-我理解：" class="headerlink" title="2. 我理解："></a>2. 我理解：</h2><p>linux是一个文件系统，基本上都需要命令来操作，而本人六天的学习记忆的不多，但自我认为基础的应该还是可以的</p>
+<h2 id="3-踩坑："><a href="#3-踩坑：" class="headerlink" title="3. 踩坑："></a>3. 踩坑：</h2><p>应该就是注意<code>rm -rf</code>强制删除的使用，加个<code>-i</code>提示一下</p>
+<h2 id="4-总结："><a href="#4-总结：" class="headerlink" title="4. 总结："></a>4. 总结：</h2><ul>
+<li>革命尚未成功，同志仍需努力</li>
+<li>还是记忆的不多，需要多进行实际操作，加深印象</li>
+<li>博客的书写还是磨磨唧唧的，流失大量时间</li>
+</ul>
+]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -466,18 +442,21 @@
       </tags>
   </entry>
   <entry>
-    <title>python实战：台账-5.添加excel文件内容</title>
-    <url>/2026/04/27/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-5-%E6%B7%BB%E5%8A%A0excel%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</url>
+    <title>python实战--台账6.感觉很虚，所以改变策略仿写之前的内容</title>
+    <url>/2026/04/28/python%E5%AE%9E%E6%88%98-%E5%8F%B0%E8%B4%A66-%E6%84%9F%E8%A7%89%E5%BE%88%E8%99%9A%EF%BC%8C%E6%89%80%E4%BB%A5%E6%94%B9%E5%8F%98%E7%AD%96%E7%95%A5%E4%BB%BF%E5%86%99%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E5%AE%B9/</url>
     <content><![CDATA[<ul>
-<li>今天学习了往excel文件中添加数据</li>
+<li>今天的主要内容是仿写之前内容，要求达到独自书写下来的效果</li>
+<li>已经对之前的内容进行查漏补缺</li>
 </ul>
 <span id="more"></span>
 
-<h2 id="原版代码"><a href="#原版代码" class="headerlink" title="原版代码"></a>原版代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 作用：使用openpyxl模块的Workbook类</span></span><br><span class="line"><span class="comment"># 原因：要获取excel文件，并添加数据</span></span><br><span class="line"><span class="comment"># 易错：不导入openpyxl库无法使用excel_mame.cell()方法, 会报错</span></span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="comment"># 作用：封装一个函数</span></span><br><span class="line"><span class="comment"># 原因：使用封装，方便调用，模块化，获取最后有效行</span></span><br><span class="line"><span class="comment"># 易错：函数名不能与模块名相同，且函数名需要简单易读</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_last_valid_row</span>(<span class="params">ws</span>):</span><br><span class="line">    <span class="comment"># 作用：range()函数：range(start, stop, 步长) 倒序遍历从最后一行开始，到第四行之前结束，不包括第四行，步长：依次减1</span></span><br><span class="line">    <span class="comment"># 原因：需要倒序遍历，一般前几行都是表头、标题等固定信息</span></span><br><span class="line">    <span class="comment"># 易错：range()函数的参数必须是整数，否则会报错</span></span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(ws.max_row, <span class="number">4</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 作用：判断当前行是否为空，即第r行的第一列（A列）的值</span></span><br><span class="line">        <span class="comment"># 原因：判断是否有内容</span></span><br><span class="line">        <span class="comment"># 易错：cell()方法参数必须是整数，否则会报错</span></span><br><span class="line">        <span class="keyword">if</span> ws.cell(r, <span class="number">1</span>).value <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="comment"># 作用：返回当前行</span></span><br><span class="line">            <span class="comment"># 原因：有值，则返回当前行</span></span><br><span class="line">            <span class="comment"># 易错：None is not None = False，不执行return r</span></span><br><span class="line">            <span class="keyword">return</span> r</span><br><span class="line">    <span class="comment"># 作用：返回默认行</span></span><br><span class="line">    <span class="comment"># 原因：没有找到有内容的行，则返回默认行</span></span><br><span class="line">    <span class="comment"># 易错：因为代码的设计逻辑是：第 1~4 行是固定的表头 / 标题行，默认认为这几行一定有效</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4</span></span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Border, Side, Alignment</span><br><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> messagebox</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add_row</span>():</span><br><span class="line">    name = entry_name.get().strip()</span><br><span class="line">    spec = entry_spec.get().strip()</span><br><span class="line">    qty = entry_qty.get().strip()</span><br><span class="line">    <span class="comment"># 作用：将中文句号替换为英文小数点</span></span><br><span class="line">    <span class="comment"># 原因：输入小数时在中文输入法中是句号，来回切换很麻烦</span></span><br><span class="line">    qty = qty.replace(<span class="string">&quot;。&quot;</span>, <span class="string">&quot;.&quot;</span>)</span><br><span class="line">    <span class="comment"># 作用：判断输入是否为空</span></span><br><span class="line">    <span class="comment"># 原因：如果任意值为空，not None = True 执行下面语句</span></span><br><span class="line">    <span class="comment"># 易错：当数量就是0时，就会无法正常填写，因为数字0 是False，not 0 = True 执行下面语句，所以需要数量为0有效时，or qty is None：不执行下面语句</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> name <span class="keyword">or</span> <span class="keyword">not</span> spec <span class="keyword">or</span> <span class="keyword">not</span> qty:</span><br><span class="line">        messagebox.showerror(<span class="string">&quot;提示&quot;</span>,<span class="string">&quot;商品、规格、数量不能为空&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">float</span>(qty)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        messagebox.showerror(<span class="string">&quot;提示&quot;</span>, <span class="string">&quot;数量必须是数字（支持小数）&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        wb, ws, file = init_excel()</span><br><span class="line">        last_row = get_last_valid_row(ws)</span><br><span class="line">        new_row = last_row + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        last_num = ws.cell(last_row, <span class="number">1</span>).value</span><br><span class="line">        <span class="comment"># 作用：isinstance(对象, 类型/类型元组) 判断last_num是不是int or float </span></span><br><span class="line">        <span class="comment"># 原因：last_num是最后有效行的第一列中的值即行号</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(last_num, (<span class="built_in">int</span>, <span class="built_in">float</span>)):</span><br><span class="line">            num = <span class="built_in">int</span>(last_num) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            num = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        ws[<span class="string">f&#x27;A<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = num</span><br><span class="line">        ws[<span class="string">f&#x27;B<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = name</span><br><span class="line">        ws[<span class="string">f&#x27;C<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = spec</span><br><span class="line">        ws[<span class="string">f&#x27;D<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = qty</span><br><span class="line">        ws[<span class="string">f&#x27;E<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = today_md</span><br><span class="line">        ws[<span class="string">f&#x27;H<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_SUPPLIER</span><br><span class="line">        ws[<span class="string">f&#x27;I<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_PHONE</span><br><span class="line">        ws[<span class="string">f&#x27;J<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_CHECK</span><br><span class="line">        ws[<span class="string">f&#x27;K<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_CHECK</span><br><span class="line">        ws[<span class="string">f&#x27;L<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_CHECK</span><br><span class="line">        ws[<span class="string">f&#x27;M<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_CHECK</span><br><span class="line"></span><br><span class="line">        thin = Border(left=Side(<span class="string">&#x27;thin&#x27;</span>),right=Side(<span class="string">&#x27;thin&#x27;</span>),top=Side(<span class="string">&#x27;thin&#x27;</span>),bottom=Side(<span class="string">&#x27;thin&#x27;</span>))</span><br><span class="line">        align = Alignment(horizontal=<span class="string">&#x27;center&#x27;</span>,vertical=<span class="string">&#x27;center&#x27;</span>,wrap_text=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">17</span>):</span><br><span class="line">            c = ws.cell(row=new_row, column=col)</span><br><span class="line">            c.border = thin</span><br><span class="line">            c.alignment = align</span><br><span class="line"></span><br><span class="line">        wb.save(file)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 清空输入框</span></span><br><span class="line">        entry_name.delete(<span class="number">0</span>, tk.END)</span><br><span class="line">        entry_spec.delete(<span class="number">0</span>, tk.END)</span><br><span class="line">        entry_qty.delete(<span class="number">0</span>, tk.END)</span><br><span class="line">        <span class="comment"># 光标自动定位到name输入框，方便输入下一个商品</span></span><br><span class="line">        entry_name.focus()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> PermissionError:</span><br><span class="line">        messagebox.showerror(<span class="string">&quot;错误&quot;</span>, <span class="string">&quot;台账文件被占用，请先关闭Excel！&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        messagebox.showerror(<span class="string">&quot;错误&quot;</span>, <span class="string">f&quot;录入失败：<span class="subst">&#123;<span class="built_in">str</span>(e)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="第一天是创建文件并判断是否存在内容"><a href="#第一天是创建文件并判断是否存在内容" class="headerlink" title="第一天是创建文件并判断是否存在内容"></a>第一天是创建文件并判断是否存在内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写不出来</span></span><br></pre></td></tr></table></figure>
+<h2 id="第二天是时间的创建与格式化"><a href="#第二天是时间的创建与格式化" class="headerlink" title="第二天是时间的创建与格式化"></a>第二天是时间的创建与格式化</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">today = datetime.date.today()</span><br><span class="line"><span class="comment"># 实时证明函数不记得，无法独自仿写出来</span></span><br></pre></td></tr></table></figure>
+<h2 id="第三天是创建一个以时间为文件名的文件路径"><a href="#第三天是创建一个以时间为文件名的文件路径" class="headerlink" title="第三天是创建一个以时间为文件名的文件路径"></a>第三天是创建一个以时间为文件名的文件路径</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第四天是初始化Excel表格"><a href="#第四天是初始化Excel表格" class="headerlink" title="第四天是初始化Excel表格"></a>第四天是初始化Excel表格</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第五天是给excel表格添加内容"><a href="#第五天是给excel表格添加内容" class="headerlink" title="第五天是给excel表格添加内容"></a>第五天是给excel表格添加内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="优化代码"><a href="#优化代码" class="headerlink" title="优化代码"></a>优化代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_last_valid_row</span>(<span class="params">ws,header_row=<span class="number">4</span></span>):</span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(ws.max_row, header_row, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> cell <span class="keyword">in</span> ws[r]:</span><br><span class="line">        <span class="comment"># 作用：判断每一行的每一列是否有内容</span></span><br><span class="line">        <span class="comment"># 原因：万一是第一列没有值但其他列有值</span></span><br><span class="line">        <span class="comment"># 易错：同时处理None值和空白字符这两句要同时出现，str(None).strip() = &quot;None&quot; 是有值的所有要先检测None值，再检测空白字符</span></span><br><span class="line">        <span class="keyword">if</span> cell.value <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> <span class="built_in">str</span>(cell.value).strip() != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> r</span><br><span class="line">    <span class="keyword">return</span> header_row</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取序号（前面你写的逻辑）</span></span><br><span class="line">    last_num = ws.cell(last_row, <span class="number">1</span>).value</span><br><span class="line">    <span class="comment"># 改成这样是为了避免int(float类型)出错，如int(3.9) = 3,序号使用整数，所以用 last_num.is_integer() 来判断是小数但也是整数如5.0 true ，5.5 false</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(last_num, (<span class="built_in">int</span>, <span class="built_in">float</span>)) <span class="keyword">and</span> (<span class="built_in">isinstance</span>(last_num, <span class="built_in">int</span>) <span class="keyword">or</span> last_num.is_integer()) :</span><br><span class="line">        num = <span class="built_in">int</span>(last_num) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        num = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># try except 块后</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="comment"># 确保文件对象被关闭</span></span><br><span class="line">        <span class="keyword">if</span> wb <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            wb.close()</span><br><span class="line">        <span class="keyword">if</span> file <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            file.close()</span><br></pre></td></tr></table></figure>]]></content>
+<h1 id="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"><a href="#今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起" class="headerlink" title="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"></a>今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起</h1>]]></content>
       <categories>
         <category>python实战--台账</category>
       </categories>
@@ -521,85 +500,6 @@
       <tags>
         <tag>python</tag>
         <tag>python实战</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python实战：台账--初始化Excel表格</title>
-    <url>/2026/04/24/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-4.%20%E5%88%9D%E5%A7%8B%E5%8C%96Excel%E8%A1%A8%E6%A0%BC/</url>
-    <content><![CDATA[<ul>
-<li>今天学习了使用python操作excel建立台账表格</li>
-<li>创建一个excel表格，并添加表头<span id="more"></span></li>
-</ul>
-<h2 id="原版代码"><a href="#原版代码" class="headerlink" title="原版代码"></a>原版代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook, load_workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Alignment, Border, Side, Font</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_excel</span>():</span><br><span class="line">    excel_file = get_excel_file()</span><br><span class="line">    os.makedirs(os.path.dirname(excel_file), exist_ok=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> os.path.exists(excel_file):</span><br><span class="line">        wb = load_workbook(excel_file)</span><br><span class="line">        ws = wb.active</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        wb = Workbook()</span><br><span class="line">        ws = wb.active</span><br><span class="line">        ws.title = <span class="string">&quot;食品及食品原辅料采购查验记录&quot;</span></span><br><span class="line"></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;A1:P1&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;A1&#x27;</span>] = <span class="string">&#x27;食品及食品原辅料采购查验记录&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;A1&#x27;</span>].font = Font(bold=<span class="literal">True</span>, size=<span class="number">16</span>)</span><br><span class="line">        ws[<span class="string">&#x27;A1&#x27;</span>].alignment = Alignment(horizontal=<span class="string">&#x27;center&#x27;</span>, vertical=<span class="string">&#x27;center&#x27;</span>)</span><br><span class="line">        ws.row_dimensions[<span class="number">1</span>].height = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;A2:A4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;A2&#x27;</span>] = <span class="string">&#x27;序号&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;B2:B4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;B2&#x27;</span>] = <span class="string">&#x27;产品名称&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;C2:C4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;C2&#x27;</span>] = <span class="string">&#x27;规格&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;D2:D4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;D2&#x27;</span>] = <span class="string">&#x27;数量&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;E2:E4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;E2&#x27;</span>] = <span class="string">&#x27;进货时间&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;F2:F4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;F2&#x27;</span>] = <span class="string">&#x27;生产日期或批号&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;G2:G4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;G2&#x27;</span>] = <span class="string">&#x27;保质期&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;H2:H4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;H2&#x27;</span>] = <span class="string">&#x27;供货商名称&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;I2:I4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;I2&#x27;</span>] = <span class="string">&#x27;联系方式&#x27;</span></span><br><span class="line"></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;J2:N2&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;J2&#x27;</span>] = <span class="string">&#x27;索证索票情况（有√/无×）&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;J3&#x27;</span>] = <span class="string">&#x27;营业执照&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;K3:L3&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;K3&#x27;</span>] = <span class="string">&#x27;许可证&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;M3&#x27;</span>] = <span class="string">&#x27;产品合格证明&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;N3&#x27;</span>] = <span class="string">&#x27;检疫证明&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;K4&#x27;</span>] = <span class="string">&#x27;生产&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;L4&#x27;</span>] = <span class="string">&#x27;经营&#x27;</span></span><br><span class="line"></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;O2:O4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;O2&#x27;</span>] = <span class="string">&#x27;验收人签字（双人）&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;P2:P4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;P2&#x27;</span>] = <span class="string">&#x27;备注&#x27;</span></span><br><span class="line"></span><br><span class="line">        thin = Border(left=Side(<span class="string">&#x27;thin&#x27;</span>),right=Side(<span class="string">&#x27;thin&#x27;</span>),top=Side(<span class="string">&#x27;thin&#x27;</span>),bottom=Side(<span class="string">&#x27;thin&#x27;</span>))</span><br><span class="line">        align = Alignment(horizontal=<span class="string">&#x27;center&#x27;</span>,vertical=<span class="string">&#x27;center&#x27;</span>,wrap_text=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> ws.iter_rows(min_row=<span class="number">1</span>, max_row=<span class="number">4</span>):</span><br><span class="line">            <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">                cell.border = thin</span><br><span class="line">                cell.alignment = align</span><br><span class="line"></span><br><span class="line">        widths = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">18</span>,<span class="string">&#x27;C&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;D&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;E&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;F&#x27;</span>:<span class="number">16</span>,<span class="string">&#x27;G&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;H&#x27;</span>:<span class="number">30</span>,</span><br><span class="line">                   <span class="string">&#x27;I&#x27;</span>:<span class="number">15</span>,<span class="string">&#x27;J&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;K&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;L&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;M&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;N&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;O&#x27;</span>:<span class="number">15</span>,<span class="string">&#x27;P&#x27;</span>:<span class="number">10</span>&#125;</span><br><span class="line">        <span class="keyword">for</span> col, w <span class="keyword">in</span> widths.items():</span><br><span class="line">            ws.column_dimensions[col].width = w</span><br><span class="line">        wb.save(excel_file)</span><br><span class="line">    <span class="keyword">return</span> wb, ws, excel_file</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="逐一分析原版代码中的方法"><a href="#逐一分析原版代码中的方法" class="headerlink" title="逐一分析原版代码中的方法"></a>逐一分析原版代码中的方法</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一个</span></span><br><span class="line"><span class="comment"># 创建目录当文件不存在时创建，存在时不创建不报错</span></span><br><span class="line">os.makedirs(dir_name, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个</span></span><br><span class="line"><span class="comment"># 获取文件目录</span></span><br><span class="line">os.path.dirname(excel_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三个</span></span><br><span class="line"><span class="comment"># 判断文件是否存在</span></span><br><span class="line">os.path.exists(excel_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第四个</span></span><br><span class="line"><span class="comment"># 加载excel文件</span></span><br><span class="line">wb = load_workbook(excel_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第五个</span></span><br><span class="line"><span class="comment"># 获取当前工作表</span></span><br><span class="line">ws = wb.active</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第六个</span></span><br><span class="line"><span class="comment"># 创建工作表</span></span><br><span class="line">wb = Workbook()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第七个</span></span><br><span class="line"><span class="comment"># 单元格合并操作：合并表格第一行的A-P列 </span></span><br><span class="line"><span class="comment"># # 合并取消 对象.unmerge_cells(&#x27;A1:P1&#x27;) </span></span><br><span class="line">ws.merge_cells(<span class="string">&#x27;A1:P1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第八个</span></span><br><span class="line"><span class="comment"># 设置单元格内容 定位到 Excel 表格里的 A1 单元格</span></span><br><span class="line">ws[<span class="string">&#x27;A1&#x27;</span>] = <span class="string">&#x27;食品及食品原辅料采购查验记录&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第九个</span></span><br><span class="line"><span class="comment"># 设置字体样式 字体加粗、字体大小16号</span></span><br><span class="line">ws[<span class="string">&#x27;A1&#x27;</span>].font = Font(bold=<span class="literal">True</span>, size=<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十个</span></span><br><span class="line"><span class="comment"># 设置单元格居中 水平居中、垂直居中</span></span><br><span class="line"><span class="comment"># .alignment：是单元格的 “对齐方式” 属性</span></span><br><span class="line"><span class="comment"># horizontal：是单元格的 “水平对齐方式” 属性  center(居中) left（左对齐）right（右对齐）</span></span><br><span class="line"><span class="comment"># vertical  ：是单元格的 “垂直对齐方式” 属性  center(居中) top（上对齐）bottom（下对齐）</span></span><br><span class="line">ws[<span class="string">&#x27;A1&#x27;</span>].alignment = Alignment(horizontal=<span class="string">&#x27;center&#x27;</span>, vertical=<span class="string">&#x27;center&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十一个</span></span><br><span class="line"><span class="comment"># 设置行高（单位为磅）</span></span><br><span class="line"><span class="comment"># .row_dimensions：工作表中所有行的维度管理对象</span></span><br><span class="line"><span class="comment"># [1]：指定第 1 行（行号从 1 开始）</span></span><br><span class="line">ws.row_dimensions[<span class="number">1</span>].height = <span class="number">30</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十二个</span></span><br><span class="line"><span class="comment"># 单元格合并操作：合并表格A2-A4行即A列的第二行到第四行</span></span><br><span class="line"><span class="comment"># 这样写也行：</span></span><br><span class="line"><span class="comment"># ws.merge_cells(start_row=2, start_column=1, end_row=4, end_column=1)</span></span><br><span class="line">ws.merge_cells(<span class="string">&#x27;A2:A4&#x27;</span>)</span><br><span class="line">    ws[<span class="string">&#x27;A2&#x27;</span>] = <span class="string">&#x27;序号&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十三个</span></span><br><span class="line"><span class="comment"># 合并第二行的J列-N列</span></span><br><span class="line">ws.merge_cells(<span class="string">&#x27;J2:N2&#x27;</span>)</span><br><span class="line">ws[<span class="string">&#x27;J2&#x27;</span>] = <span class="string">&#x27;索证索票情况（有√/无×）&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;J3&#x27;</span>] = <span class="string">&#x27;营业执照&#x27;</span></span><br><span class="line">ws.merge_cells(<span class="string">&#x27;K3:L3&#x27;</span>)</span><br><span class="line">ws[<span class="string">&#x27;K3&#x27;</span>] = <span class="string">&#x27;许可证&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;M3&#x27;</span>] = <span class="string">&#x27;产品合格证明&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;N3&#x27;</span>] = <span class="string">&#x27;检疫证明&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;K4&#x27;</span>] = <span class="string">&#x27;生产&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;L4&#x27;</span>] = <span class="string">&#x27;经营&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十四个</span></span><br><span class="line"><span class="comment"># 设置单元格边框 边框样式 给单元格设置四周都为细边框</span></span><br><span class="line"><span class="comment"># Border：openpyxl.styles 中用于定义单元格边框的类</span></span><br><span class="line"><span class="comment"># left/right/top/bottom：分别指定单元格的左、右、上、下边框</span></span><br><span class="line"><span class="comment"># Side(&#x27;thin&#x27;)：指定边框的线型为 thin（细线），还支持 medium（中等线）、thick（粗线）、dashed（虚线）等</span></span><br><span class="line"><span class="comment"># 定义好thin后可以直接使用如ws[&#x27;A1&#x27;].border = thin</span></span><br><span class="line">thin = Border(left=Side(<span class="string">&#x27;thin&#x27;</span>),right=Side(<span class="string">&#x27;thin&#x27;</span>),top=Side(<span class="string">&#x27;thin&#x27;</span>),bottom=Side(<span class="string">&#x27;thin&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十五个</span></span><br><span class="line"><span class="comment"># for循环设置单元格边框</span></span><br><span class="line"><span class="comment"># min_row=1：遍历的起始行号（从第 1 行开始)</span></span><br><span class="line"><span class="comment"># max_row=4：遍历的结束行号（到第 4 行结束)</span></span><br><span class="line"><span class="comment"># 遍历第1-4行，A-C列的单元格</span></span><br><span class="line"><span class="comment"># ws.iter_rows(min_row=1, max_row=4, min_col=1, max_col=3)</span></span><br><span class="line"><span class="comment"># 该方法会返回一个生成器，每次迭代会返回一整行的所有单元格对象</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> ws.iter_rows(min_row=<span class="number">1</span>, max_row=<span class="number">4</span>):</span><br><span class="line">    <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">        cell.border = thin</span><br><span class="line">        cell.alignment = align</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十六个</span></span><br><span class="line"><span class="comment"># 设置单元格宽度 单位为字符 </span></span><br><span class="line">widths = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">18</span>,<span class="string">&#x27;C&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;D&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;E&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;F&#x27;</span>:<span class="number">16</span>,<span class="string">&#x27;G&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;H&#x27;</span>:<span class="number">30</span>,</span><br><span class="line">           <span class="string">&#x27;I&#x27;</span>:<span class="number">15</span>,<span class="string">&#x27;J&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;K&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;L&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;M&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;N&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;O&#x27;</span>:<span class="number">15</span>,<span class="string">&#x27;P&#x27;</span>:<span class="number">10</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十七个</span></span><br><span class="line"><span class="comment"># 遍历widths字典</span></span><br><span class="line"><span class="comment"># col：字典的键</span></span><br><span class="line"><span class="comment"># w：字典的值</span></span><br><span class="line"><span class="comment"># 将工作表 ws 中列 col 的宽度设置为 w（单位为字符数）</span></span><br><span class="line"><span class="keyword">for</span> col, w <span class="keyword">in</span> widths.items():</span><br><span class="line">    ws.column_dimensions[col].width = w</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十八个</span></span><br><span class="line"><span class="comment"># 保存文件</span></span><br><span class="line">wb.save(excel_file)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>学会上面的方法，你就可以熟练生成各式表头的Excel文件了</li>
-<li>当然的，这个方法只是最基础的，你可以根据自己需求进行扩展</li>
-</ol>
-]]></content>
-      <categories>
-        <category>python实战--台账</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>python实战</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的运维自学开篇：开篇规划+AI辅助+合格标准</title>
-    <url>/2026/04/22/%E6%88%91%E7%9A%84%E8%BF%90%E7%BB%B4%E8%87%AA%E5%AD%A6%E5%BC%80%E7%AF%87%EF%BC%9A%E5%BC%80%E7%AF%87%E8%A7%84%E5%88%92-AI%E8%BE%85%E5%8A%A9-%E5%90%88%E6%A0%BC%E6%A0%87%E5%87%86/</url>
-    <content><![CDATA[<p>今天正式在 GitHub Pages 上开启我的 <strong>Linux+Python+华为云&#x2F;阿里云+Docker</strong> 180天自学之路！之前找了很多教程，要么太散、要么不知道学到什么程度才算会，直到整理出这套<strong>带每日合格标准+AI辅助</strong>的完整路线，每天学完就能自测，不迷茫、不内耗。</p>
-<p>这篇是我的学习博客开篇，后面会按天更新打卡、踩坑、成果，新手可以直接跟着学！</p>
-<h2 id="一、为什么选运维-云计算方向"><a href="#一、为什么选运维-云计算方向" class="headerlink" title="一、为什么选运维&#x2F;云计算方向"></a>一、为什么选运维&#x2F;云计算方向</h2><ul>
-<li>岗位需求大，适合零基础转行</li>
-<li>越练越熟，靠实操技能拿Offer</li>
-<li>配合AI辅助学习，效率直接翻倍</li>
-<li>我认为未来是智能的—–服务器是基石—–管理它们的人就是中流砥柱<span id="more"></span></li>
-</ul>
-<h2 id="二、我的180天总路线（含合格标准）"><a href="#二、我的180天总路线（含合格标准）" class="headerlink" title="二、我的180天总路线（含合格标准）"></a>二、我的180天总路线（含合格标准）</h2><h3 id="阶段1：Linux基础（Day1-30）"><a href="#阶段1：Linux基础（Day1-30）" class="headerlink" title="阶段1：Linux基础（Day1-30）"></a>阶段1：Linux基础（Day1-30）</h3><ul>
-<li>会装系统、配网、用户&#x2F;权限&#x2F;进程管理</li>
-<li>部署Nginx网页服务</li>
-<li>最终考核：2小时内重装系统+配置网络+跑通网页</li>
-</ul>
-<h3 id="阶段2：Python运维脚本（Day31-60）"><a href="#阶段2：Python运维脚本（Day31-60）" class="headerlink" title="阶段2：Python运维脚本（Day31-60）"></a>阶段2：Python运维脚本（Day31-60）</h3><ul>
-<li>掌握变量、判断、循环、函数基础语法</li>
-<li>实战文件操作、os模块</li>
-<li>开发3个核心脚本：批量文件整理、磁盘监控、网络请求自动化</li>
-</ul>
-<h3 id="阶段3：华为云-阿里云（Day61-120）"><a href="#阶段3：华为云-阿里云（Day61-120）" class="headerlink" title="阶段3：华为云&#x2F;阿里云（Day61-120）"></a>阶段3：华为云&#x2F;阿里云（Day61-120）</h3><ul>
-<li>熟练操作ECS、安全组、OSS、RDS</li>
-<li>外网部署个人网站</li>
-<li>ACP模拟考试成绩≥85分</li>
-</ul>
-<h3 id="阶段4：Docker-就业冲刺（Day121-180）"><a href="#阶段4：Docker-就业冲刺（Day121-180）" class="headerlink" title="阶段4：Docker+就业冲刺（Day121-180）"></a>阶段4：Docker+就业冲刺（Day121-180）</h3><ul>
-<li>掌握Docker容器核心原理与使用</li>
-<li>编写自动化运维脚本</li>
-<li>完成简历打磨+项目实战+面试准备</li>
-</ul>
-<h2 id="三、AI怎么帮我提速40-（复制就能用）"><a href="#三、AI怎么帮我提速40-（复制就能用）" class="headerlink" title="三、AI怎么帮我提速40%（复制就能用）"></a>三、AI怎么帮我提速40%（复制就能用）</h2><p>向AI（豆包&#x2F;文心&#x2F;通义）发送以下指令：</p>
-<blockquote>
-<p>我今天学习__________，用最简单的话讲原理，给我3个必背命令，出5道实操题，批改并判断是否合格。</p>
-</blockquote>
-<h2 id="四、Day1任务-合格标准"><a href="#四、Day1任务-合格标准" class="headerlink" title="四、Day1任务+合格标准"></a>四、Day1任务+合格标准</h2><ul>
-<li><strong>任务</strong>：安装VMware Workstation + 新建CentOS7虚拟机</li>
-<li><strong>配置建议</strong>：CPU 2核 &#x2F; 内存 4G &#x2F; 硬盘 40G</li>
-<li><strong>合格标准</strong>：<ol>
-<li>虚拟机创建成功并正常启动</li>
-<li>能远程连接（如使用FinalShell）</li>
-<li>能向我完整复述创建步骤与核心配置逻辑</li>
-</ol>
-</li>
-</ul>
-<h2 id="五、我的学习承诺"><a href="#五、我的学习承诺" class="headerlink" title="五、我的学习承诺"></a>五、我的学习承诺</h2><p>每天按<strong>合格标准</strong>严格执行，不拖延、不跳步！</p>
-]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>运维自学</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -667,6 +567,106 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的运维自学开篇：开篇规划+AI辅助+合格标准</title>
+    <url>/2026/04/22/%E6%88%91%E7%9A%84%E8%BF%90%E7%BB%B4%E8%87%AA%E5%AD%A6%E5%BC%80%E7%AF%87%EF%BC%9A%E5%BC%80%E7%AF%87%E8%A7%84%E5%88%92-AI%E8%BE%85%E5%8A%A9-%E5%90%88%E6%A0%BC%E6%A0%87%E5%87%86/</url>
+    <content><![CDATA[<p>今天正式在 GitHub Pages 上开启我的 <strong>Linux+Python+华为云&#x2F;阿里云+Docker</strong> 180天自学之路！之前找了很多教程，要么太散、要么不知道学到什么程度才算会，直到整理出这套<strong>带每日合格标准+AI辅助</strong>的完整路线，每天学完就能自测，不迷茫、不内耗。</p>
+<p>这篇是我的学习博客开篇，后面会按天更新打卡、踩坑、成果，新手可以直接跟着学！</p>
+<h2 id="一、为什么选运维-云计算方向"><a href="#一、为什么选运维-云计算方向" class="headerlink" title="一、为什么选运维&#x2F;云计算方向"></a>一、为什么选运维&#x2F;云计算方向</h2><ul>
+<li>岗位需求大，适合零基础转行</li>
+<li>越练越熟，靠实操技能拿Offer</li>
+<li>配合AI辅助学习，效率直接翻倍</li>
+<li>我认为未来是智能的—–服务器是基石—–管理它们的人就是中流砥柱<span id="more"></span></li>
+</ul>
+<h2 id="二、我的180天总路线（含合格标准）"><a href="#二、我的180天总路线（含合格标准）" class="headerlink" title="二、我的180天总路线（含合格标准）"></a>二、我的180天总路线（含合格标准）</h2><h3 id="阶段1：Linux基础（Day1-30）"><a href="#阶段1：Linux基础（Day1-30）" class="headerlink" title="阶段1：Linux基础（Day1-30）"></a>阶段1：Linux基础（Day1-30）</h3><ul>
+<li>会装系统、配网、用户&#x2F;权限&#x2F;进程管理</li>
+<li>部署Nginx网页服务</li>
+<li>最终考核：2小时内重装系统+配置网络+跑通网页</li>
+</ul>
+<h3 id="阶段2：Python运维脚本（Day31-60）"><a href="#阶段2：Python运维脚本（Day31-60）" class="headerlink" title="阶段2：Python运维脚本（Day31-60）"></a>阶段2：Python运维脚本（Day31-60）</h3><ul>
+<li>掌握变量、判断、循环、函数基础语法</li>
+<li>实战文件操作、os模块</li>
+<li>开发3个核心脚本：批量文件整理、磁盘监控、网络请求自动化</li>
+</ul>
+<h3 id="阶段3：华为云-阿里云（Day61-120）"><a href="#阶段3：华为云-阿里云（Day61-120）" class="headerlink" title="阶段3：华为云&#x2F;阿里云（Day61-120）"></a>阶段3：华为云&#x2F;阿里云（Day61-120）</h3><ul>
+<li>熟练操作ECS、安全组、OSS、RDS</li>
+<li>外网部署个人网站</li>
+<li>ACP模拟考试成绩≥85分</li>
+</ul>
+<h3 id="阶段4：Docker-就业冲刺（Day121-180）"><a href="#阶段4：Docker-就业冲刺（Day121-180）" class="headerlink" title="阶段4：Docker+就业冲刺（Day121-180）"></a>阶段4：Docker+就业冲刺（Day121-180）</h3><ul>
+<li>掌握Docker容器核心原理与使用</li>
+<li>编写自动化运维脚本</li>
+<li>完成简历打磨+项目实战+面试准备</li>
+</ul>
+<h2 id="三、AI怎么帮我提速40-（复制就能用）"><a href="#三、AI怎么帮我提速40-（复制就能用）" class="headerlink" title="三、AI怎么帮我提速40%（复制就能用）"></a>三、AI怎么帮我提速40%（复制就能用）</h2><p>向AI（豆包&#x2F;文心&#x2F;通义）发送以下指令：</p>
+<blockquote>
+<p>我今天学习__________，用最简单的话讲原理，给我3个必背命令，出5道实操题，批改并判断是否合格。</p>
+</blockquote>
+<h2 id="四、Day1任务-合格标准"><a href="#四、Day1任务-合格标准" class="headerlink" title="四、Day1任务+合格标准"></a>四、Day1任务+合格标准</h2><ul>
+<li><strong>任务</strong>：安装VMware Workstation + 新建CentOS7虚拟机</li>
+<li><strong>配置建议</strong>：CPU 2核 &#x2F; 内存 4G &#x2F; 硬盘 40G</li>
+<li><strong>合格标准</strong>：<ol>
+<li>虚拟机创建成功并正常启动</li>
+<li>能远程连接（如使用FinalShell）</li>
+<li>能向我完整复述创建步骤与核心配置逻辑</li>
+</ol>
+</li>
+</ul>
+<h2 id="五、我的学习承诺"><a href="#五、我的学习承诺" class="headerlink" title="五、我的学习承诺"></a>五、我的学习承诺</h2><p>每天按<strong>合格标准</strong>严格执行，不拖延、不跳步！</p>
+]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>运维自学</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python实战：台账-5.添加excel文件内容</title>
+    <url>/2026/04/27/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-5-%E6%B7%BB%E5%8A%A0excel%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</url>
+    <content><![CDATA[<ul>
+<li>今天学习了往excel文件中添加数据</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="原版代码"><a href="#原版代码" class="headerlink" title="原版代码"></a>原版代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 作用：使用openpyxl模块的Workbook类</span></span><br><span class="line"><span class="comment"># 原因：要获取excel文件，并添加数据</span></span><br><span class="line"><span class="comment"># 易错：不导入openpyxl库无法使用excel_mame.cell()方法, 会报错</span></span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="comment"># 作用：封装一个函数</span></span><br><span class="line"><span class="comment"># 原因：使用封装，方便调用，模块化，获取最后有效行</span></span><br><span class="line"><span class="comment"># 易错：函数名不能与模块名相同，且函数名需要简单易读</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_last_valid_row</span>(<span class="params">ws</span>):</span><br><span class="line">    <span class="comment"># 作用：range()函数：range(start, stop, 步长) 倒序遍历从最后一行开始，到第四行之前结束，不包括第四行，步长：依次减1</span></span><br><span class="line">    <span class="comment"># 原因：需要倒序遍历，一般前几行都是表头、标题等固定信息</span></span><br><span class="line">    <span class="comment"># 易错：range()函数的参数必须是整数，否则会报错</span></span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(ws.max_row, <span class="number">4</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 作用：判断当前行是否为空，即第r行的第一列（A列）的值</span></span><br><span class="line">        <span class="comment"># 原因：判断是否有内容</span></span><br><span class="line">        <span class="comment"># 易错：cell()方法参数必须是整数，否则会报错</span></span><br><span class="line">        <span class="keyword">if</span> ws.cell(r, <span class="number">1</span>).value <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="comment"># 作用：返回当前行</span></span><br><span class="line">            <span class="comment"># 原因：有值，则返回当前行</span></span><br><span class="line">            <span class="comment"># 易错：None is not None = False，不执行return r</span></span><br><span class="line">            <span class="keyword">return</span> r</span><br><span class="line">    <span class="comment"># 作用：返回默认行</span></span><br><span class="line">    <span class="comment"># 原因：没有找到有内容的行，则返回默认行</span></span><br><span class="line">    <span class="comment"># 易错：因为代码的设计逻辑是：第 1~4 行是固定的表头 / 标题行，默认认为这几行一定有效</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4</span></span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Border, Side, Alignment</span><br><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> messagebox</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add_row</span>():</span><br><span class="line">    name = entry_name.get().strip()</span><br><span class="line">    spec = entry_spec.get().strip()</span><br><span class="line">    qty = entry_qty.get().strip()</span><br><span class="line">    <span class="comment"># 作用：将中文句号替换为英文小数点</span></span><br><span class="line">    <span class="comment"># 原因：输入小数时在中文输入法中是句号，来回切换很麻烦</span></span><br><span class="line">    qty = qty.replace(<span class="string">&quot;。&quot;</span>, <span class="string">&quot;.&quot;</span>)</span><br><span class="line">    <span class="comment"># 作用：判断输入是否为空</span></span><br><span class="line">    <span class="comment"># 原因：如果任意值为空，not None = True 执行下面语句</span></span><br><span class="line">    <span class="comment"># 易错：当数量就是0时，就会无法正常填写，因为数字0 是False，not 0 = True 执行下面语句，所以需要数量为0有效时，or qty is None：不执行下面语句</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> name <span class="keyword">or</span> <span class="keyword">not</span> spec <span class="keyword">or</span> <span class="keyword">not</span> qty:</span><br><span class="line">        messagebox.showerror(<span class="string">&quot;提示&quot;</span>,<span class="string">&quot;商品、规格、数量不能为空&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">float</span>(qty)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        messagebox.showerror(<span class="string">&quot;提示&quot;</span>, <span class="string">&quot;数量必须是数字（支持小数）&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        wb, ws, file = init_excel()</span><br><span class="line">        last_row = get_last_valid_row(ws)</span><br><span class="line">        new_row = last_row + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        last_num = ws.cell(last_row, <span class="number">1</span>).value</span><br><span class="line">        <span class="comment"># 作用：isinstance(对象, 类型/类型元组) 判断last_num是不是int or float </span></span><br><span class="line">        <span class="comment"># 原因：last_num是最后有效行的第一列中的值即行号</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(last_num, (<span class="built_in">int</span>, <span class="built_in">float</span>)):</span><br><span class="line">            num = <span class="built_in">int</span>(last_num) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            num = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        ws[<span class="string">f&#x27;A<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = num</span><br><span class="line">        ws[<span class="string">f&#x27;B<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = name</span><br><span class="line">        ws[<span class="string">f&#x27;C<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = spec</span><br><span class="line">        ws[<span class="string">f&#x27;D<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = qty</span><br><span class="line">        ws[<span class="string">f&#x27;E<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = today_md</span><br><span class="line">        ws[<span class="string">f&#x27;H<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_SUPPLIER</span><br><span class="line">        ws[<span class="string">f&#x27;I<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_PHONE</span><br><span class="line">        ws[<span class="string">f&#x27;J<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_CHECK</span><br><span class="line">        ws[<span class="string">f&#x27;K<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_CHECK</span><br><span class="line">        ws[<span class="string">f&#x27;L<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_CHECK</span><br><span class="line">        ws[<span class="string">f&#x27;M<span class="subst">&#123;new_row&#125;</span>&#x27;</span>] = FIX_CHECK</span><br><span class="line"></span><br><span class="line">        thin = Border(left=Side(<span class="string">&#x27;thin&#x27;</span>),right=Side(<span class="string">&#x27;thin&#x27;</span>),top=Side(<span class="string">&#x27;thin&#x27;</span>),bottom=Side(<span class="string">&#x27;thin&#x27;</span>))</span><br><span class="line">        align = Alignment(horizontal=<span class="string">&#x27;center&#x27;</span>,vertical=<span class="string">&#x27;center&#x27;</span>,wrap_text=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">17</span>):</span><br><span class="line">            c = ws.cell(row=new_row, column=col)</span><br><span class="line">            c.border = thin</span><br><span class="line">            c.alignment = align</span><br><span class="line"></span><br><span class="line">        wb.save(file)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 清空输入框</span></span><br><span class="line">        entry_name.delete(<span class="number">0</span>, tk.END)</span><br><span class="line">        entry_spec.delete(<span class="number">0</span>, tk.END)</span><br><span class="line">        entry_qty.delete(<span class="number">0</span>, tk.END)</span><br><span class="line">        <span class="comment"># 光标自动定位到name输入框，方便输入下一个商品</span></span><br><span class="line">        entry_name.focus()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> PermissionError:</span><br><span class="line">        messagebox.showerror(<span class="string">&quot;错误&quot;</span>, <span class="string">&quot;台账文件被占用，请先关闭Excel！&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        messagebox.showerror(<span class="string">&quot;错误&quot;</span>, <span class="string">f&quot;录入失败：<span class="subst">&#123;<span class="built_in">str</span>(e)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化代码"><a href="#优化代码" class="headerlink" title="优化代码"></a>优化代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_last_valid_row</span>(<span class="params">ws,header_row=<span class="number">4</span></span>):</span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(ws.max_row, header_row, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> cell <span class="keyword">in</span> ws[r]:</span><br><span class="line">        <span class="comment"># 作用：判断每一行的每一列是否有内容</span></span><br><span class="line">        <span class="comment"># 原因：万一是第一列没有值但其他列有值</span></span><br><span class="line">        <span class="comment"># 易错：同时处理None值和空白字符这两句要同时出现，str(None).strip() = &quot;None&quot; 是有值的所有要先检测None值，再检测空白字符</span></span><br><span class="line">        <span class="keyword">if</span> cell.value <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> <span class="built_in">str</span>(cell.value).strip() != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> r</span><br><span class="line">    <span class="keyword">return</span> header_row</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取序号（前面你写的逻辑）</span></span><br><span class="line">    last_num = ws.cell(last_row, <span class="number">1</span>).value</span><br><span class="line">    <span class="comment"># 改成这样是为了避免int(float类型)出错，如int(3.9) = 3,序号使用整数，所以用 last_num.is_integer() 来判断是小数但也是整数如5.0 true ，5.5 false</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(last_num, (<span class="built_in">int</span>, <span class="built_in">float</span>)) <span class="keyword">and</span> (<span class="built_in">isinstance</span>(last_num, <span class="built_in">int</span>) <span class="keyword">or</span> last_num.is_integer()) :</span><br><span class="line">        num = <span class="built_in">int</span>(last_num) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        num = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># try except 块后</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="comment"># 确保文件对象被关闭</span></span><br><span class="line">        <span class="keyword">if</span> wb <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            wb.close()</span><br><span class="line">        <span class="keyword">if</span> file <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            file.close()</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python实战--台账</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>python实战</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python实战：台账--初始化Excel表格</title>
+    <url>/2026/04/24/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-4.%20%E5%88%9D%E5%A7%8B%E5%8C%96Excel%E8%A1%A8%E6%A0%BC/</url>
+    <content><![CDATA[<ul>
+<li>今天学习了使用python操作excel建立台账表格</li>
+<li>创建一个excel表格，并添加表头<span id="more"></span></li>
+</ul>
+<h2 id="原版代码"><a href="#原版代码" class="headerlink" title="原版代码"></a>原版代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook, load_workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Alignment, Border, Side, Font</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_excel</span>():</span><br><span class="line">    excel_file = get_excel_file()</span><br><span class="line">    os.makedirs(os.path.dirname(excel_file), exist_ok=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> os.path.exists(excel_file):</span><br><span class="line">        wb = load_workbook(excel_file)</span><br><span class="line">        ws = wb.active</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        wb = Workbook()</span><br><span class="line">        ws = wb.active</span><br><span class="line">        ws.title = <span class="string">&quot;食品及食品原辅料采购查验记录&quot;</span></span><br><span class="line"></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;A1:P1&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;A1&#x27;</span>] = <span class="string">&#x27;食品及食品原辅料采购查验记录&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;A1&#x27;</span>].font = Font(bold=<span class="literal">True</span>, size=<span class="number">16</span>)</span><br><span class="line">        ws[<span class="string">&#x27;A1&#x27;</span>].alignment = Alignment(horizontal=<span class="string">&#x27;center&#x27;</span>, vertical=<span class="string">&#x27;center&#x27;</span>)</span><br><span class="line">        ws.row_dimensions[<span class="number">1</span>].height = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;A2:A4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;A2&#x27;</span>] = <span class="string">&#x27;序号&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;B2:B4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;B2&#x27;</span>] = <span class="string">&#x27;产品名称&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;C2:C4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;C2&#x27;</span>] = <span class="string">&#x27;规格&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;D2:D4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;D2&#x27;</span>] = <span class="string">&#x27;数量&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;E2:E4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;E2&#x27;</span>] = <span class="string">&#x27;进货时间&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;F2:F4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;F2&#x27;</span>] = <span class="string">&#x27;生产日期或批号&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;G2:G4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;G2&#x27;</span>] = <span class="string">&#x27;保质期&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;H2:H4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;H2&#x27;</span>] = <span class="string">&#x27;供货商名称&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;I2:I4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;I2&#x27;</span>] = <span class="string">&#x27;联系方式&#x27;</span></span><br><span class="line"></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;J2:N2&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;J2&#x27;</span>] = <span class="string">&#x27;索证索票情况（有√/无×）&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;J3&#x27;</span>] = <span class="string">&#x27;营业执照&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;K3:L3&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;K3&#x27;</span>] = <span class="string">&#x27;许可证&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;M3&#x27;</span>] = <span class="string">&#x27;产品合格证明&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;N3&#x27;</span>] = <span class="string">&#x27;检疫证明&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;K4&#x27;</span>] = <span class="string">&#x27;生产&#x27;</span></span><br><span class="line">        ws[<span class="string">&#x27;L4&#x27;</span>] = <span class="string">&#x27;经营&#x27;</span></span><br><span class="line"></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;O2:O4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;O2&#x27;</span>] = <span class="string">&#x27;验收人签字（双人）&#x27;</span></span><br><span class="line">        ws.merge_cells(<span class="string">&#x27;P2:P4&#x27;</span>)</span><br><span class="line">        ws[<span class="string">&#x27;P2&#x27;</span>] = <span class="string">&#x27;备注&#x27;</span></span><br><span class="line"></span><br><span class="line">        thin = Border(left=Side(<span class="string">&#x27;thin&#x27;</span>),right=Side(<span class="string">&#x27;thin&#x27;</span>),top=Side(<span class="string">&#x27;thin&#x27;</span>),bottom=Side(<span class="string">&#x27;thin&#x27;</span>))</span><br><span class="line">        align = Alignment(horizontal=<span class="string">&#x27;center&#x27;</span>,vertical=<span class="string">&#x27;center&#x27;</span>,wrap_text=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> ws.iter_rows(min_row=<span class="number">1</span>, max_row=<span class="number">4</span>):</span><br><span class="line">            <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">                cell.border = thin</span><br><span class="line">                cell.alignment = align</span><br><span class="line"></span><br><span class="line">        widths = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">18</span>,<span class="string">&#x27;C&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;D&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;E&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;F&#x27;</span>:<span class="number">16</span>,<span class="string">&#x27;G&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;H&#x27;</span>:<span class="number">30</span>,</span><br><span class="line">                   <span class="string">&#x27;I&#x27;</span>:<span class="number">15</span>,<span class="string">&#x27;J&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;K&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;L&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;M&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;N&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;O&#x27;</span>:<span class="number">15</span>,<span class="string">&#x27;P&#x27;</span>:<span class="number">10</span>&#125;</span><br><span class="line">        <span class="keyword">for</span> col, w <span class="keyword">in</span> widths.items():</span><br><span class="line">            ws.column_dimensions[col].width = w</span><br><span class="line">        wb.save(excel_file)</span><br><span class="line">    <span class="keyword">return</span> wb, ws, excel_file</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="逐一分析原版代码中的方法"><a href="#逐一分析原版代码中的方法" class="headerlink" title="逐一分析原版代码中的方法"></a>逐一分析原版代码中的方法</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一个</span></span><br><span class="line"><span class="comment"># 创建目录当文件不存在时创建，存在时不创建不报错</span></span><br><span class="line">os.makedirs(dir_name, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个</span></span><br><span class="line"><span class="comment"># 获取文件目录</span></span><br><span class="line">os.path.dirname(excel_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三个</span></span><br><span class="line"><span class="comment"># 判断文件是否存在</span></span><br><span class="line">os.path.exists(excel_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第四个</span></span><br><span class="line"><span class="comment"># 加载excel文件</span></span><br><span class="line">wb = load_workbook(excel_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第五个</span></span><br><span class="line"><span class="comment"># 获取当前工作表</span></span><br><span class="line">ws = wb.active</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第六个</span></span><br><span class="line"><span class="comment"># 创建工作表</span></span><br><span class="line">wb = Workbook()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第七个</span></span><br><span class="line"><span class="comment"># 单元格合并操作：合并表格第一行的A-P列 </span></span><br><span class="line"><span class="comment"># # 合并取消 对象.unmerge_cells(&#x27;A1:P1&#x27;) </span></span><br><span class="line">ws.merge_cells(<span class="string">&#x27;A1:P1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第八个</span></span><br><span class="line"><span class="comment"># 设置单元格内容 定位到 Excel 表格里的 A1 单元格</span></span><br><span class="line">ws[<span class="string">&#x27;A1&#x27;</span>] = <span class="string">&#x27;食品及食品原辅料采购查验记录&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第九个</span></span><br><span class="line"><span class="comment"># 设置字体样式 字体加粗、字体大小16号</span></span><br><span class="line">ws[<span class="string">&#x27;A1&#x27;</span>].font = Font(bold=<span class="literal">True</span>, size=<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十个</span></span><br><span class="line"><span class="comment"># 设置单元格居中 水平居中、垂直居中</span></span><br><span class="line"><span class="comment"># .alignment：是单元格的 “对齐方式” 属性</span></span><br><span class="line"><span class="comment"># horizontal：是单元格的 “水平对齐方式” 属性  center(居中) left（左对齐）right（右对齐）</span></span><br><span class="line"><span class="comment"># vertical  ：是单元格的 “垂直对齐方式” 属性  center(居中) top（上对齐）bottom（下对齐）</span></span><br><span class="line">ws[<span class="string">&#x27;A1&#x27;</span>].alignment = Alignment(horizontal=<span class="string">&#x27;center&#x27;</span>, vertical=<span class="string">&#x27;center&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十一个</span></span><br><span class="line"><span class="comment"># 设置行高（单位为磅）</span></span><br><span class="line"><span class="comment"># .row_dimensions：工作表中所有行的维度管理对象</span></span><br><span class="line"><span class="comment"># [1]：指定第 1 行（行号从 1 开始）</span></span><br><span class="line">ws.row_dimensions[<span class="number">1</span>].height = <span class="number">30</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十二个</span></span><br><span class="line"><span class="comment"># 单元格合并操作：合并表格A2-A4行即A列的第二行到第四行</span></span><br><span class="line"><span class="comment"># 这样写也行：</span></span><br><span class="line"><span class="comment"># ws.merge_cells(start_row=2, start_column=1, end_row=4, end_column=1)</span></span><br><span class="line">ws.merge_cells(<span class="string">&#x27;A2:A4&#x27;</span>)</span><br><span class="line">    ws[<span class="string">&#x27;A2&#x27;</span>] = <span class="string">&#x27;序号&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十三个</span></span><br><span class="line"><span class="comment"># 合并第二行的J列-N列</span></span><br><span class="line">ws.merge_cells(<span class="string">&#x27;J2:N2&#x27;</span>)</span><br><span class="line">ws[<span class="string">&#x27;J2&#x27;</span>] = <span class="string">&#x27;索证索票情况（有√/无×）&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;J3&#x27;</span>] = <span class="string">&#x27;营业执照&#x27;</span></span><br><span class="line">ws.merge_cells(<span class="string">&#x27;K3:L3&#x27;</span>)</span><br><span class="line">ws[<span class="string">&#x27;K3&#x27;</span>] = <span class="string">&#x27;许可证&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;M3&#x27;</span>] = <span class="string">&#x27;产品合格证明&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;N3&#x27;</span>] = <span class="string">&#x27;检疫证明&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;K4&#x27;</span>] = <span class="string">&#x27;生产&#x27;</span></span><br><span class="line">ws[<span class="string">&#x27;L4&#x27;</span>] = <span class="string">&#x27;经营&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十四个</span></span><br><span class="line"><span class="comment"># 设置单元格边框 边框样式 给单元格设置四周都为细边框</span></span><br><span class="line"><span class="comment"># Border：openpyxl.styles 中用于定义单元格边框的类</span></span><br><span class="line"><span class="comment"># left/right/top/bottom：分别指定单元格的左、右、上、下边框</span></span><br><span class="line"><span class="comment"># Side(&#x27;thin&#x27;)：指定边框的线型为 thin（细线），还支持 medium（中等线）、thick（粗线）、dashed（虚线）等</span></span><br><span class="line"><span class="comment"># 定义好thin后可以直接使用如ws[&#x27;A1&#x27;].border = thin</span></span><br><span class="line">thin = Border(left=Side(<span class="string">&#x27;thin&#x27;</span>),right=Side(<span class="string">&#x27;thin&#x27;</span>),top=Side(<span class="string">&#x27;thin&#x27;</span>),bottom=Side(<span class="string">&#x27;thin&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十五个</span></span><br><span class="line"><span class="comment"># for循环设置单元格边框</span></span><br><span class="line"><span class="comment"># min_row=1：遍历的起始行号（从第 1 行开始)</span></span><br><span class="line"><span class="comment"># max_row=4：遍历的结束行号（到第 4 行结束)</span></span><br><span class="line"><span class="comment"># 遍历第1-4行，A-C列的单元格</span></span><br><span class="line"><span class="comment"># ws.iter_rows(min_row=1, max_row=4, min_col=1, max_col=3)</span></span><br><span class="line"><span class="comment"># 该方法会返回一个生成器，每次迭代会返回一整行的所有单元格对象</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> ws.iter_rows(min_row=<span class="number">1</span>, max_row=<span class="number">4</span>):</span><br><span class="line">    <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">        cell.border = thin</span><br><span class="line">        cell.alignment = align</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十六个</span></span><br><span class="line"><span class="comment"># 设置单元格宽度 单位为字符 </span></span><br><span class="line">widths = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">18</span>,<span class="string">&#x27;C&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;D&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;E&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;F&#x27;</span>:<span class="number">16</span>,<span class="string">&#x27;G&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;H&#x27;</span>:<span class="number">30</span>,</span><br><span class="line">           <span class="string">&#x27;I&#x27;</span>:<span class="number">15</span>,<span class="string">&#x27;J&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;K&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;L&#x27;</span>:<span class="number">10</span>,<span class="string">&#x27;M&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;N&#x27;</span>:<span class="number">12</span>,<span class="string">&#x27;O&#x27;</span>:<span class="number">15</span>,<span class="string">&#x27;P&#x27;</span>:<span class="number">10</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十七个</span></span><br><span class="line"><span class="comment"># 遍历widths字典</span></span><br><span class="line"><span class="comment"># col：字典的键</span></span><br><span class="line"><span class="comment"># w：字典的值</span></span><br><span class="line"><span class="comment"># 将工作表 ws 中列 col 的宽度设置为 w（单位为字符数）</span></span><br><span class="line"><span class="keyword">for</span> col, w <span class="keyword">in</span> widths.items():</span><br><span class="line">    ws.column_dimensions[col].width = w</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第十八个</span></span><br><span class="line"><span class="comment"># 保存文件</span></span><br><span class="line">wb.save(excel_file)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>学会上面的方法，你就可以熟练生成各式表头的Excel文件了</li>
+<li>当然的，这个方法只是最基础的，你可以根据自己需求进行扩展</li>
+</ol>
+]]></content>
+      <categories>
+        <category>python实战--台账</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>python实战</tag>
       </tags>
   </entry>
 </search>
