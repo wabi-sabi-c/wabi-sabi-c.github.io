@@ -179,110 +179,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Day04 Linux 网络基础与常见网络命令</title>
-    <url>/2026/04/23/Day04-Linux-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Day04｜Linux-网络基础与常用网络命令"><a href="#Day04｜Linux-网络基础与常用网络命令" class="headerlink" title="Day04｜Linux 网络基础与常用网络命令"></a>Day04｜Linux 网络基础与常用网络命令</h1><p>今天是 180 天运维自学计划第 4 天，我们学习 <strong>Linux 网络</strong>。<br>不管是搭环境、部署服务、排查问题，网络都是必须掌握的核心技能。</p>
-<span id="more"></span>
-<h2 id="一、查看-IP-地址"><a href="#一、查看-IP-地址" class="headerlink" title="一、查看 IP 地址"></a>一、查看 IP 地址</h2><h3 id="1-查看网卡与IP信息"><a href="#1-查看网卡与IP信息" class="headerlink" title="1. 查看网卡与IP信息"></a>1. 查看网卡与IP信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 大部分输出的内容再Day01 中已经见过了，这里不再赘述</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 IP 地址</span></span><br><span class="line">hostname -i         <span class="comment"># 获取本机 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网关与路由</span></span><br><span class="line">ip route            <span class="comment"># 获取路由信息   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-<h3 id="2-测试网络连通性"><a href="#2-测试网络连通性" class="headerlink" title="2. 测试网络连通性"></a>2. 测试网络连通性</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br><span class="line">ping -c 4 www.baidu.com            <span class="comment"># 测试 4 次</span></span><br><span class="line">ping -c 4 -w 2 www.baidu.com       <span class="comment"># 测试 4 次，每次等待 2 秒</span></span><br><span class="line">ping -c 4 -i 2 www.baidu.com       <span class="comment"># 测试 4 次，每次间隔 2 秒</span></span><br><span class="line">ping -s 1000 www.baidu.com         <span class="comment"># 测试 1000 字节</span></span><br><span class="line">&gt; -c ：指定测试次数  -w ：指定测试时间  -i ：指定测试间隔   -s ：指定测试数据包大小</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、查看端口情况"><a href="#二、查看端口情况" class="headerlink" title="二、查看端口情况"></a>二、查看端口情况</h2><h3 id="1-查看连通情况"><a href="#1-查看连通情况" class="headerlink" title="1.查看连通情况"></a>1.查看连通情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet www.baidu.com 80         <span class="comment"># 测试端口是否连通</span></span><br><span class="line">curl www.baidu.com              <span class="comment"># 测试端口是否连通</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-查看端口占用情况"><a href="#2-查看端口占用情况" class="headerlink" title="2.查看端口占用情况"></a>2.查看端口占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 net-tools（没有就装一下）</span></span><br><span class="line">yum install -y net-tools</span><br><span class="line"><span class="comment"># 2. 查看所有端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line">&gt; -n: 以数字显示 IP 和端口  -t: 显示 TCP 端口  -l: 显示正在监听的端口  -p: 显示进程名</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、防火墙基础操作"><a href="#三、防火墙基础操作" class="headerlink" title="三、防火墙基础操作"></a>三、防火墙基础操作</h2><ol>
-<li>查看防火墙状态 <code>systemctl status firewalld</code></li>
-<li>临时关闭防火墙（测试环境用） <code>systemctl stop firewalld</code></li>
-<li>禁止开机自启 <code>systemctl disable firewalld</code></li>
-</ol>
-<h2 id="实战训练"><a href="#实战训练" class="headerlink" title="实战训练"></a>实战训练</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看自己的IP</span></span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 测试网络</span></span><br><span class="line">ping -c 4 www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 查看网关</span></span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口占用</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 查看DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-
-<h2 id="Day04-合格标准"><a href="#Day04-合格标准" class="headerlink" title="Day04 合格标准"></a>Day04 合格标准</h2><ul>
-<li>会用 ip addr 查看自己的 IP</li>
-<li>会用 ping 测试网络</li>
-<li>会用 netstat -ntlp 查看端口</li>
-<li>知道如何关闭防火墙</li>
-<li>能判断自己的虚拟机是否能正常上网</li>
-</ul>
-<h1 id="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"><a href="#以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！" class="headerlink" title="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"></a>以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day05 Linux权限管理</title>
-    <url>/2026/04/23/Day05-Linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="Day05｜Linux-用户、组与权限管理（核心必学）"><a href="#Day05｜Linux-用户、组与权限管理（核心必学）" class="headerlink" title="Day05｜Linux 用户、组与权限管理（核心必学）"></a>Day05｜Linux 用户、组与权限管理（核心必学）</h1><p>今天是 180 天运维自学计划第 5 天，学习 Linux <strong>安全核心：用户、组、权限</strong>。<br>这是面试高频、实操必用、必须吃透的知识点。</p>
-<span id="more"></span>
-<h2 id="一、Linux-用户分类"><a href="#一、Linux-用户分类" class="headerlink" title="一、Linux 用户分类"></a>一、Linux 用户分类</h2><ul>
-<li><strong>root（UID&#x3D;0）</strong>：超级管理员，最高权限</li>
-<li><strong>系统用户（UID&#x3D;1~999）</strong>：运行服务专用</li>
-<li><strong>普通用户（UID&#x3D;1000+）</strong>：日常操作使用</li>
-</ul>
-<h2 id="二、用户管理常用命令"><a href="#二、用户管理常用命令" class="headerlink" title="二、用户管理常用命令"></a>二、用户管理常用命令</h2><h3 id="1-创建用户"><a href="#1-创建用户" class="headerlink" title="1. 创建用户"></a>1. 创建用户</h3><p><code>useradd zhangsan</code></p>
-<h3 id="2-设置-修改密码"><a href="#2-设置-修改密码" class="headerlink" title="2. 设置 &#x2F; 修改密码"></a>2. 设置 &#x2F; 修改密码</h3><p><code>passwd zhangsan</code></p>
-<h3 id="3-切换用户"><a href="#3-切换用户" class="headerlink" title="3. 切换用户"></a>3. 切换用户</h3><p><code>su zhangsan</code></p>
-<h3 id="4-删除用户"><a href="#4-删除用户" class="headerlink" title="4. 删除用户"></a>4. 删除用户</h3><p><code>userdel -r zhangsan</code>  # -r 同时删除用户目录</p>
-<h3 id="5-查看当前用户"><a href="#5-查看当前用户" class="headerlink" title="5. 查看当前用户"></a>5. 查看当前用户</h3><p><code>whoami zhangsan</code></p>
-<h2 id="三、用户组管理"><a href="#三、用户组管理" class="headerlink" title="三、用户组管理"></a>三、用户组管理</h2><h3 id="1-创建用户组"><a href="#1-创建用户组" class="headerlink" title="1. 创建用户组"></a>1. 创建用户组</h3><p><code>groupadd groupname</code></p>
-<h3 id="2-添加用户到用户组"><a href="#2-添加用户到用户组" class="headerlink" title="2. 添加用户到用户组"></a>2. 添加用户到用户组</h3><p><code>usermod -a -G groupname username</code></p>
-<h3 id="3-查看用户组信息"><a href="#3-查看用户组信息" class="headerlink" title="3. 查看用户组信息"></a>3. 查看用户组信息</h3><p><code>cat /etc/group</code></p>
-<h2 id="四、权限管理"><a href="#四、权限管理" class="headerlink" title="四、权限管理"></a>四、权限管理</h2><h3 id="1-文件权限"><a href="#1-文件权限" class="headerlink" title="1. 文件权限"></a>1. 文件权限</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">执行 ll 会看到一行：</span><br><span class="line">-rw-r--r--. 1 root root 12 Apr 23 10:00 test.txt</span><br></pre></td></tr></table></figure>
-<ol>
-<li><code>-rw-r--r--</code> 权限部分（共 10 位）</li>
-</ol>
-<ul>
-<li>第 1 位：文件类型<ul>
-<li><code>-</code> 普通文件</li>
-<li><code>d</code> 文件夹</li>
-<li><code>l</code> 快捷方式</li>
-</ul>
-</li>
-<li>第 2~4 位：所有者权限（user）<ul>
-<li><code>rw-</code> 可读、可写、不可执行</li>
-</ul>
-</li>
-<li>第 5~7 位：所属组权限（group）<ul>
-<li><code>r--</code> 只读</li>
-</ul>
-</li>
-<li>第 8~10 位：其他用户权限（others）<ul>
-<li><code>r--</code> 只读</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 root root 12 Apr 23 10:00 test.txt</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>1</code> 链接数(不用管)</li>
-<li><code>root</code> 文件所属用户</li>
-<li><code>root</code> 文件所属组</li>
-<li><code>12</code> 文件大小12字节</li>
-<li><code>Apr 23 10:00</code> 文件最后修改时间</li>
-<li><code>test.txt</code> 文件名</li>
-</ul>
-<p><strong>总结：</strong><br>只有 root 能读能改这个test.txt文件，别人只能看不能改</p>
-<h3 id="2-权限修改"><a href="#2-权限修改" class="headerlink" title="2. 权限修改"></a>2. 权限修改</h3><p>** 在<a href="Day02-Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E5%BF%85%E8%83%8C.md">Day02-Linux-文件与目录常用命令-必背</a>中解释过**<br>修改权限 <code>chmod</code><br>修改所有者与所属组 <code>chown</code></p>
-<h2 id="五、实战练习"><a href="#五、实战练习" class="headerlink" title="五、实战练习"></a>五、实战练习</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">useradd lisi</span><br><span class="line">passwd lisi</span><br><span class="line"></span><br><span class="line"><span class="built_in">touch</span> test.txt</span><br><span class="line">ll test.txt</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> 755 test.txt</span><br><span class="line"><span class="built_in">chown</span> lisi test.txt</span><br><span class="line"></span><br><span class="line">ll test.txt</span><br></pre></td></tr></table></figure>
-
-<h2 id="六、Day05-合格标准"><a href="#六、Day05-合格标准" class="headerlink" title="六、Day05 合格标准"></a>六、Day05 合格标准</h2><ol>
-<li>会创建 &#x2F; 删除 &#x2F; 切换用户</li>
-<li>能看懂 <code>ll</code> 那一行权限</li>
-<li>会用 <code>chmod 644 / 755</code></li>
-<li>会用 <code>chown</code> 改归属</li>
-<li>能独立完成实战练习</li>
-</ol>
-<h1 id="今天吃透权限，后面部署服务、处理报错都会顺畅很多"><a href="#今天吃透权限，后面部署服务、处理报错都会顺畅很多" class="headerlink" title="今天吃透权限，后面部署服务、处理报错都会顺畅很多"></a>今天吃透权限，后面部署服务、处理报错都会顺畅很多</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Day06 Linux 进程管理(ps/top/kill)</title>
     <url>/2026/04/23/Day06-Linux-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-ps-top-kill/</url>
     <content><![CDATA[<h1 id="Day06｜Linux-进程管理（ps-top-kill-必学）"><a href="#Day06｜Linux-进程管理（ps-top-kill-必学）" class="headerlink" title="Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）"></a>Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）</h1><p>今天是 180 天运维自学计划第 6 天，学习 <strong>Linux 进程管理</strong>。<br>以后排查卡慢、杀服务、看负载，全靠这几个命令。</p>
@@ -357,6 +253,40 @@
       </tags>
   </entry>
   <entry>
+    <title>Day04 Linux 网络基础与常见网络命令</title>
+    <url>/2026/04/23/Day04-Linux-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Day04｜Linux-网络基础与常用网络命令"><a href="#Day04｜Linux-网络基础与常用网络命令" class="headerlink" title="Day04｜Linux 网络基础与常用网络命令"></a>Day04｜Linux 网络基础与常用网络命令</h1><p>今天是 180 天运维自学计划第 4 天，我们学习 <strong>Linux 网络</strong>。<br>不管是搭环境、部署服务、排查问题，网络都是必须掌握的核心技能。</p>
+<span id="more"></span>
+<h2 id="一、查看-IP-地址"><a href="#一、查看-IP-地址" class="headerlink" title="一、查看 IP 地址"></a>一、查看 IP 地址</h2><h3 id="1-查看网卡与IP信息"><a href="#1-查看网卡与IP信息" class="headerlink" title="1. 查看网卡与IP信息"></a>1. 查看网卡与IP信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 大部分输出的内容再Day01 中已经见过了，这里不再赘述</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 IP 地址</span></span><br><span class="line">hostname -i         <span class="comment"># 获取本机 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网关与路由</span></span><br><span class="line">ip route            <span class="comment"># 获取路由信息   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<h3 id="2-测试网络连通性"><a href="#2-测试网络连通性" class="headerlink" title="2. 测试网络连通性"></a>2. 测试网络连通性</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br><span class="line">ping -c 4 www.baidu.com            <span class="comment"># 测试 4 次</span></span><br><span class="line">ping -c 4 -w 2 www.baidu.com       <span class="comment"># 测试 4 次，每次等待 2 秒</span></span><br><span class="line">ping -c 4 -i 2 www.baidu.com       <span class="comment"># 测试 4 次，每次间隔 2 秒</span></span><br><span class="line">ping -s 1000 www.baidu.com         <span class="comment"># 测试 1000 字节</span></span><br><span class="line">&gt; -c ：指定测试次数  -w ：指定测试时间  -i ：指定测试间隔   -s ：指定测试数据包大小</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、查看端口情况"><a href="#二、查看端口情况" class="headerlink" title="二、查看端口情况"></a>二、查看端口情况</h2><h3 id="1-查看连通情况"><a href="#1-查看连通情况" class="headerlink" title="1.查看连通情况"></a>1.查看连通情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet www.baidu.com 80         <span class="comment"># 测试端口是否连通</span></span><br><span class="line">curl www.baidu.com              <span class="comment"># 测试端口是否连通</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-查看端口占用情况"><a href="#2-查看端口占用情况" class="headerlink" title="2.查看端口占用情况"></a>2.查看端口占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 net-tools（没有就装一下）</span></span><br><span class="line">yum install -y net-tools</span><br><span class="line"><span class="comment"># 2. 查看所有端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line">&gt; -n: 以数字显示 IP 和端口  -t: 显示 TCP 端口  -l: 显示正在监听的端口  -p: 显示进程名</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、防火墙基础操作"><a href="#三、防火墙基础操作" class="headerlink" title="三、防火墙基础操作"></a>三、防火墙基础操作</h2><ol>
+<li>查看防火墙状态 <code>systemctl status firewalld</code></li>
+<li>临时关闭防火墙（测试环境用） <code>systemctl stop firewalld</code></li>
+<li>禁止开机自启 <code>systemctl disable firewalld</code></li>
+</ol>
+<h2 id="实战训练"><a href="#实战训练" class="headerlink" title="实战训练"></a>实战训练</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看自己的IP</span></span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 测试网络</span></span><br><span class="line">ping -c 4 www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 查看网关</span></span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口占用</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 查看DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="Day04-合格标准"><a href="#Day04-合格标准" class="headerlink" title="Day04 合格标准"></a>Day04 合格标准</h2><ul>
+<li>会用 ip addr 查看自己的 IP</li>
+<li>会用 ping 测试网络</li>
+<li>会用 netstat -ntlp 查看端口</li>
+<li>知道如何关闭防火墙</li>
+<li>能判断自己的虚拟机是否能正常上网</li>
+</ul>
+<h1 id="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"><a href="#以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！" class="headerlink" title="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"></a>以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo的使用技巧（AI生成）</title>
     <url>/2026/04/22/Hexo%20%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%20Markdown%20%E6%A8%A1%E6%9D%BF%EF%BC%88%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E4%BD%BF%E7%94%A8%EF%BC%89/</url>
     <content><![CDATA[<h1 id="Hexo-博客文章-Markdown-模板（可直接复制使用）"><a href="#Hexo-博客文章-Markdown-模板（可直接复制使用）" class="headerlink" title="Hexo 博客文章 Markdown 模板（可直接复制使用）"></a>Hexo 博客文章 Markdown 模板（可直接复制使用）</h1><span id="more"></span>
@@ -416,6 +346,76 @@
       </tags>
   </entry>
   <entry>
+    <title>Day05 Linux权限管理</title>
+    <url>/2026/04/23/Day05-Linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="Day05｜Linux-用户、组与权限管理（核心必学）"><a href="#Day05｜Linux-用户、组与权限管理（核心必学）" class="headerlink" title="Day05｜Linux 用户、组与权限管理（核心必学）"></a>Day05｜Linux 用户、组与权限管理（核心必学）</h1><p>今天是 180 天运维自学计划第 5 天，学习 Linux <strong>安全核心：用户、组、权限</strong>。<br>这是面试高频、实操必用、必须吃透的知识点。</p>
+<span id="more"></span>
+<h2 id="一、Linux-用户分类"><a href="#一、Linux-用户分类" class="headerlink" title="一、Linux 用户分类"></a>一、Linux 用户分类</h2><ul>
+<li><strong>root（UID&#x3D;0）</strong>：超级管理员，最高权限</li>
+<li><strong>系统用户（UID&#x3D;1~999）</strong>：运行服务专用</li>
+<li><strong>普通用户（UID&#x3D;1000+）</strong>：日常操作使用</li>
+</ul>
+<h2 id="二、用户管理常用命令"><a href="#二、用户管理常用命令" class="headerlink" title="二、用户管理常用命令"></a>二、用户管理常用命令</h2><h3 id="1-创建用户"><a href="#1-创建用户" class="headerlink" title="1. 创建用户"></a>1. 创建用户</h3><p><code>useradd zhangsan</code></p>
+<h3 id="2-设置-修改密码"><a href="#2-设置-修改密码" class="headerlink" title="2. 设置 &#x2F; 修改密码"></a>2. 设置 &#x2F; 修改密码</h3><p><code>passwd zhangsan</code></p>
+<h3 id="3-切换用户"><a href="#3-切换用户" class="headerlink" title="3. 切换用户"></a>3. 切换用户</h3><p><code>su zhangsan</code></p>
+<h3 id="4-删除用户"><a href="#4-删除用户" class="headerlink" title="4. 删除用户"></a>4. 删除用户</h3><p><code>userdel -r zhangsan</code>  # -r 同时删除用户目录</p>
+<h3 id="5-查看当前用户"><a href="#5-查看当前用户" class="headerlink" title="5. 查看当前用户"></a>5. 查看当前用户</h3><p><code>whoami zhangsan</code></p>
+<h2 id="三、用户组管理"><a href="#三、用户组管理" class="headerlink" title="三、用户组管理"></a>三、用户组管理</h2><h3 id="1-创建用户组"><a href="#1-创建用户组" class="headerlink" title="1. 创建用户组"></a>1. 创建用户组</h3><p><code>groupadd groupname</code></p>
+<h3 id="2-添加用户到用户组"><a href="#2-添加用户到用户组" class="headerlink" title="2. 添加用户到用户组"></a>2. 添加用户到用户组</h3><p><code>usermod -a -G groupname username</code></p>
+<h3 id="3-查看用户组信息"><a href="#3-查看用户组信息" class="headerlink" title="3. 查看用户组信息"></a>3. 查看用户组信息</h3><p><code>cat /etc/group</code></p>
+<h2 id="四、权限管理"><a href="#四、权限管理" class="headerlink" title="四、权限管理"></a>四、权限管理</h2><h3 id="1-文件权限"><a href="#1-文件权限" class="headerlink" title="1. 文件权限"></a>1. 文件权限</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">执行 ll 会看到一行：</span><br><span class="line">-rw-r--r--. 1 root root 12 Apr 23 10:00 test.txt</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>-rw-r--r--</code> 权限部分（共 10 位）</li>
+</ol>
+<ul>
+<li>第 1 位：文件类型<ul>
+<li><code>-</code> 普通文件</li>
+<li><code>d</code> 文件夹</li>
+<li><code>l</code> 快捷方式</li>
+</ul>
+</li>
+<li>第 2~4 位：所有者权限（user）<ul>
+<li><code>rw-</code> 可读、可写、不可执行</li>
+</ul>
+</li>
+<li>第 5~7 位：所属组权限（group）<ul>
+<li><code>r--</code> 只读</li>
+</ul>
+</li>
+<li>第 8~10 位：其他用户权限（others）<ul>
+<li><code>r--</code> 只读</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 root root 12 Apr 23 10:00 test.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>1</code> 链接数(不用管)</li>
+<li><code>root</code> 文件所属用户</li>
+<li><code>root</code> 文件所属组</li>
+<li><code>12</code> 文件大小12字节</li>
+<li><code>Apr 23 10:00</code> 文件最后修改时间</li>
+<li><code>test.txt</code> 文件名</li>
+</ul>
+<p><strong>总结：</strong><br>只有 root 能读能改这个test.txt文件，别人只能看不能改</p>
+<h3 id="2-权限修改"><a href="#2-权限修改" class="headerlink" title="2. 权限修改"></a>2. 权限修改</h3><p>** 在<a href="Day02-Linux-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E5%BF%85%E8%83%8C.md">Day02-Linux-文件与目录常用命令-必背</a>中解释过**<br>修改权限 <code>chmod</code><br>修改所有者与所属组 <code>chown</code></p>
+<h2 id="五、实战练习"><a href="#五、实战练习" class="headerlink" title="五、实战练习"></a>五、实战练习</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">useradd lisi</span><br><span class="line">passwd lisi</span><br><span class="line"></span><br><span class="line"><span class="built_in">touch</span> test.txt</span><br><span class="line">ll test.txt</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> 755 test.txt</span><br><span class="line"><span class="built_in">chown</span> lisi test.txt</span><br><span class="line"></span><br><span class="line">ll test.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、Day05-合格标准"><a href="#六、Day05-合格标准" class="headerlink" title="六、Day05 合格标准"></a>六、Day05 合格标准</h2><ol>
+<li>会创建 &#x2F; 删除 &#x2F; 切换用户</li>
+<li>能看懂 <code>ll</code> 那一行权限</li>
+<li>会用 <code>chmod 644 / 755</code></li>
+<li>会用 <code>chown</code> 改归属</li>
+<li>能独立完成实战练习</li>
+</ol>
+<h1 id="今天吃透权限，后面部署服务、处理报错都会顺畅很多"><a href="#今天吃透权限，后面部署服务、处理报错都会顺畅很多" class="headerlink" title="今天吃透权限，后面部署服务、处理报错都会顺畅很多"></a>今天吃透权限，后面部署服务、处理报错都会顺畅很多</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python实战：台账--创建文件夹并判断是否存在</title>
     <url>/2026/04/24/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-1.%20%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E5%B9%B6%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8/</url>
     <content><![CDATA[<ul>
@@ -433,30 +433,6 @@
 <li><code>os.path.exists()</code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python官方文档：</span></span><br><span class="line">os.path.exists(path)</span><br><span class="line"><span class="comment"># exists 中文意思是 存在</span></span><br><span class="line"><span class="comment"># 功能：检查指定路径的文件/文件夹是否存在</span></span><br><span class="line"><span class="comment"># 逻辑：传入一个路径，返回 True（存在）或 False（不存在）</span></span><br><span class="line"><span class="comment"># 易错点：路径写错、大小写问题、权限问题都会返回 False</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 ]]></content>
-      <categories>
-        <category>python实战--台账</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>python实战</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python实战--台账6.感觉很虚，所以改变策略仿写之前的内容</title>
-    <url>/2026/04/28/python%E5%AE%9E%E6%88%98-%E5%8F%B0%E8%B4%A66-%E6%84%9F%E8%A7%89%E5%BE%88%E8%99%9A%EF%BC%8C%E6%89%80%E4%BB%A5%E6%94%B9%E5%8F%98%E7%AD%96%E7%95%A5%E4%BB%BF%E5%86%99%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E5%AE%B9/</url>
-    <content><![CDATA[<ul>
-<li>今天的主要内容是仿写之前内容，要求达到独自书写下来的效果</li>
-<li>已经对之前的内容进行查漏补缺</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="第一天是创建文件并判断是否存在内容"><a href="#第一天是创建文件并判断是否存在内容" class="headerlink" title="第一天是创建文件并判断是否存在内容"></a>第一天是创建文件并判断是否存在内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写不出来</span></span><br></pre></td></tr></table></figure>
-<h2 id="第二天是时间的创建与格式化"><a href="#第二天是时间的创建与格式化" class="headerlink" title="第二天是时间的创建与格式化"></a>第二天是时间的创建与格式化</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">today = datetime.date.today()</span><br><span class="line"><span class="comment"># 实时证明函数不记得，无法独自仿写出来</span></span><br></pre></td></tr></table></figure>
-<h2 id="第三天是创建一个以时间为文件名的文件路径"><a href="#第三天是创建一个以时间为文件名的文件路径" class="headerlink" title="第三天是创建一个以时间为文件名的文件路径"></a>第三天是创建一个以时间为文件名的文件路径</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="第四天是初始化Excel表格"><a href="#第四天是初始化Excel表格" class="headerlink" title="第四天是初始化Excel表格"></a>第四天是初始化Excel表格</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="第五天是给excel表格添加内容"><a href="#第五天是给excel表格添加内容" class="headerlink" title="第五天是给excel表格添加内容"></a>第五天是给excel表格添加内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"><a href="#今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起" class="headerlink" title="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"></a>今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起</h1>]]></content>
       <categories>
         <category>python实战--台账</category>
       </categories>
@@ -547,57 +523,27 @@
       </tags>
   </entry>
   <entry>
-    <title>一、全新的开始，实事求是</title>
-    <url>/2026/04/28/%E4%B8%80%E3%80%81%E5%85%A8%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B%EF%BC%8C%E5%AE%9E%E4%BA%8B%E6%B1%82%E6%98%AF/</url>
-    <content><![CDATA[<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="总原则"><a href="#总原则" class="headerlink" title="总原则"></a>总原则</h2><ul>
-<li>不背、不抄、不看长教程</li>
-<li>只做三件事：默写 -&gt; 仿写 -&gt; 改写</li>
-<li>写错随便，允许查，但全程必须自己敲下来<span id="more"></span></li>
+    <title>python实战--台账6.感觉很虚，所以改变策略仿写之前的内容</title>
+    <url>/2026/04/28/python%E5%AE%9E%E6%88%98-%E5%8F%B0%E8%B4%A66-%E6%84%9F%E8%A7%89%E5%BE%88%E8%99%9A%EF%BC%8C%E6%89%80%E4%BB%A5%E6%94%B9%E5%8F%98%E7%AD%96%E7%95%A5%E4%BB%BF%E5%86%99%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E5%AE%B9/</url>
+    <content><![CDATA[<ul>
+<li>今天的主要内容是仿写之前内容，要求达到独自书写下来的效果</li>
+<li>已经对之前的内容进行查漏补缺</li>
 </ul>
-<h2 id="任务一：默写两个函数（不看任何东西，硬着头皮写下来）"><a href="#任务一：默写两个函数（不看任何东西，硬着头皮写下来）" class="headerlink" title="任务一：默写两个函数（不看任何东西，硬着头皮写下来）"></a>任务一：默写两个函数（不看任何东西，硬着头皮写下来）</h2><ol>
-<li>写一个求和的函数</li>
-<li>写一个打招呼的函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 求和的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">    <span class="built_in">float</span> a, b, s</span><br><span class="line">    a.<span class="built_in">input</span>() = <span class="built_in">print</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>)</span><br><span class="line">    b.<span class="built_in">input</span>() = <span class="built_in">print</span>(<span class="string">&quot;请输入另一个数字b：&quot;</span>)</span><br><span class="line">    s = <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> + 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;a + b&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打招呼的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;你好呀！&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="任务二：对照改错，再默写1遍（没有错，就优化）"><a href="#任务二：对照改错，再默写1遍（没有错，就优化）" class="headerlink" title="任务二：对照改错，再默写1遍（没有错，就优化）"></a>任务二：对照改错，再默写1遍（没有错，就优化）</h2><ol>
-<li><code>float a, b, s</code>这行不需要写，python是动态语言，不用提前声明变量类型，直接使用即可</li>
-<li><code>a.input() = print()</code>写反了，<code>print()</code>是“输出”，<code>input()</code>是“输入”，正确写法是：<code>a = float(input(&quot;请输入一个数字a：&quot;))</code>  </li>
-<li><code>s = print()</code>不对，<code>print()</code>函数的作用只是在屏幕上显示文字，本身没有返回值或者返回None 所以<code>return</code>会没有东西返回</li>
-<li>函数写了但没有调用，等于白写<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 改错后</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">    a = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>))</span><br><span class="line">    b = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字b：&quot;</span>))</span><br><span class="line">    s = a + b</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> + 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;s&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;你好呀！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>  __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">sum</span>()</span><br><span class="line">    hello()</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="任务三：仿写1个新函数（比如：写个乘法的函数）"><a href="#任务三：仿写1个新函数（比如：写个乘法的函数）" class="headerlink" title="任务三：仿写1个新函数（比如：写个乘法的函数）"></a>任务三：仿写1个新函数（比如：写个乘法的函数）</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>():</span><br><span class="line">    a = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>))</span><br><span class="line">    b = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字b：&quot;</span>))</span><br><span class="line">    m = a * b</span><br><span class="line">    <span class="comment"># 改正，没有打印，运行看不到结果，需要加print()</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> * 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    multiply()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
-<h2 id="验收标准"><a href="#验收标准" class="headerlink" title="验收标准"></a>验收标准</h2><ol>
-<li>能独自写出大概结构</li>
-<li>写错再改，改完再写1遍</li>
-</ol>
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="总原则-1"><a href="#总原则-1" class="headerlink" title="总原则"></a>总原则</h2><ol>
-<li>这个命令是干什么用的？</li>
-<li>这个命令怎么写？</li>
-<li>这个命令我能用在哪里？</li>
-</ol>
-<h2 id="任务一：只练习5个命令，每个敲3遍"><a href="#任务一：只练习5个命令，每个敲3遍" class="headerlink" title="任务一：只练习5个命令，每个敲3遍"></a>任务一：只练习5个命令，每个敲3遍</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<h2 id="第一天是创建文件并判断是否存在内容"><a href="#第一天是创建文件并判断是否存在内容" class="headerlink" title="第一天是创建文件并判断是否存在内容"></a>第一天是创建文件并判断是否存在内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写不出来</span></span><br></pre></td></tr></table></figure>
+<h2 id="第二天是时间的创建与格式化"><a href="#第二天是时间的创建与格式化" class="headerlink" title="第二天是时间的创建与格式化"></a>第二天是时间的创建与格式化</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">today = datetime.date.today()</span><br><span class="line"><span class="comment"># 实时证明函数不记得，无法独自仿写出来</span></span><br></pre></td></tr></table></figure>
+<h2 id="第三天是创建一个以时间为文件名的文件路径"><a href="#第三天是创建一个以时间为文件名的文件路径" class="headerlink" title="第三天是创建一个以时间为文件名的文件路径"></a>第三天是创建一个以时间为文件名的文件路径</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第四天是初始化Excel表格"><a href="#第四天是初始化Excel表格" class="headerlink" title="第四天是初始化Excel表格"></a>第四天是初始化Excel表格</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第五天是给excel表格添加内容"><a href="#第五天是给excel表格添加内容" class="headerlink" title="第五天是给excel表格添加内容"></a>第五天是给excel表格添加内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
-<details>
-
-<summary>点击展开隐藏内容</summary>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前所在目录</span></span><br><span class="line"><span class="built_in">pwd</span> </span><br><span class="line"><span class="comment"># 查看当前目录内容</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="comment"># 移动到根目录</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="comment"># 创建目录test</span></span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 强制递归删除目录test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-</details>
-
-
-
-<p><img src="/%5Cimages%5CLinux%E7%BB%83%E4%B9%A01.png" alt="练习结果"></p>
-<h2 id="验收标准-1"><a href="#验收标准-1" class="headerlink" title="验收标准"></a>验收标准</h2><ol>
-<li>熟练敲5个Linux命令</li>
-<li>知道它们的作用</li>
-</ol>
-]]></content>
+<h1 id="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"><a href="#今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起" class="headerlink" title="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"></a>今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起</h1>]]></content>
       <categories>
-        <category>自学记录</category>
+        <category>python实战--台账</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>python</tag>
+        <tag>python实战</tag>
       </tags>
   </entry>
   <entry>
@@ -667,6 +613,60 @@
         <tag>Linux</tag>
         <tag>运维自学</tag>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一、全新的开始，实事求是</title>
+    <url>/2026/04/28/%E4%B8%80%E3%80%81%E5%85%A8%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B%EF%BC%8C%E5%AE%9E%E4%BA%8B%E6%B1%82%E6%98%AF/</url>
+    <content><![CDATA[<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="总原则"><a href="#总原则" class="headerlink" title="总原则"></a>总原则</h2><ul>
+<li>不背、不抄、不看长教程</li>
+<li>只做三件事：默写 -&gt; 仿写 -&gt; 改写</li>
+<li>写错随便，允许查，但全程必须自己敲下来<span id="more"></span></li>
+</ul>
+<h2 id="任务一：默写两个函数（不看任何东西，硬着头皮写下来）"><a href="#任务一：默写两个函数（不看任何东西，硬着头皮写下来）" class="headerlink" title="任务一：默写两个函数（不看任何东西，硬着头皮写下来）"></a>任务一：默写两个函数（不看任何东西，硬着头皮写下来）</h2><ol>
+<li>写一个求和的函数</li>
+<li>写一个打招呼的函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 求和的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">    <span class="built_in">float</span> a, b, s</span><br><span class="line">    a.<span class="built_in">input</span>() = <span class="built_in">print</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>)</span><br><span class="line">    b.<span class="built_in">input</span>() = <span class="built_in">print</span>(<span class="string">&quot;请输入另一个数字b：&quot;</span>)</span><br><span class="line">    s = <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> + 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;a + b&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打招呼的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;你好呀！&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="任务二：对照改错，再默写1遍（没有错，就优化）"><a href="#任务二：对照改错，再默写1遍（没有错，就优化）" class="headerlink" title="任务二：对照改错，再默写1遍（没有错，就优化）"></a>任务二：对照改错，再默写1遍（没有错，就优化）</h2><ol>
+<li><code>float a, b, s</code>这行不需要写，python是动态语言，不用提前声明变量类型，直接使用即可</li>
+<li><code>a.input() = print()</code>写反了，<code>print()</code>是“输出”，<code>input()</code>是“输入”，正确写法是：<code>a = float(input(&quot;请输入一个数字a：&quot;))</code>  </li>
+<li><code>s = print()</code>不对，<code>print()</code>函数的作用只是在屏幕上显示文字，本身没有返回值或者返回None 所以<code>return</code>会没有东西返回</li>
+<li>函数写了但没有调用，等于白写<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 改错后</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">    a = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>))</span><br><span class="line">    b = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字b：&quot;</span>))</span><br><span class="line">    s = a + b</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> + 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;s&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;你好呀！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>  __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">sum</span>()</span><br><span class="line">    hello()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="任务三：仿写1个新函数（比如：写个乘法的函数）"><a href="#任务三：仿写1个新函数（比如：写个乘法的函数）" class="headerlink" title="任务三：仿写1个新函数（比如：写个乘法的函数）"></a>任务三：仿写1个新函数（比如：写个乘法的函数）</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>():</span><br><span class="line">    a = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>))</span><br><span class="line">    b = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字b：&quot;</span>))</span><br><span class="line">    m = a * b</span><br><span class="line">    <span class="comment"># 改正，没有打印，运行看不到结果，需要加print()</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> * 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    multiply()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="验收标准"><a href="#验收标准" class="headerlink" title="验收标准"></a>验收标准</h2><ol>
+<li>能独自写出大概结构</li>
+<li>写错再改，改完再写1遍</li>
+</ol>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="总原则-1"><a href="#总原则-1" class="headerlink" title="总原则"></a>总原则</h2><ol>
+<li>这个命令是干什么用的？</li>
+<li>这个命令怎么写？</li>
+<li>这个命令我能用在哪里？</li>
+</ol>
+<h2 id="任务一：只练习5个命令，每个敲3遍"><a href="#任务一：只练习5个命令，每个敲3遍" class="headerlink" title="任务一：只练习5个命令，每个敲3遍"></a>任务一：只练习5个命令，每个敲3遍</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<details>
+
+<summary>点击展开隐藏内容</summary>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前所在目录</span></span><br><span class="line"><span class="built_in">pwd</span> </span><br><span class="line"><span class="comment"># 查看当前目录内容</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="comment"># 移动到根目录</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="comment"># 创建目录test</span></span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 强制递归删除目录test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+</details>
+
+
+
+<p><img src="/images/LinuxCode_result.png" alt="练习结果"></p>
+<h2 id="验收标准-1"><a href="#验收标准-1" class="headerlink" title="验收标准"></a>验收标准</h2><ol>
+<li>熟练敲5个Linux命令</li>
+<li>知道它们的作用</li>
+</ol>
+]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>python</tag>
       </tags>
   </entry>
 </search>
