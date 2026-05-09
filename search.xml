@@ -1,84 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Day03 Vim编辑器零基础学习</title>
-    <url>/2026/04/23/Day03-Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="Day03｜Vim-编辑器零基础"><a href="#Day03｜Vim-编辑器零基础" class="headerlink" title="Day03｜Vim 编辑器零基础"></a>Day03｜Vim 编辑器零基础</h1><p>今天是 180 天运维自学计划第 3 天，学习 Linux 必备工具：<strong>Vim 编辑器</strong>。<br>新手最容易卡在“进得去、出不来”，这篇只教最实用的，保证你学得会、用得顺。</p>
+    <title>Day04 Linux 网络基础与常见网络命令</title>
+    <url>/2026/04/23/Day04-Linux-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Day04｜Linux-网络基础与常用网络命令"><a href="#Day04｜Linux-网络基础与常用网络命令" class="headerlink" title="Day04｜Linux 网络基础与常用网络命令"></a>Day04｜Linux 网络基础与常用网络命令</h1><p>今天是 180 天运维自学计划第 4 天，我们学习 <strong>Linux 网络</strong>。<br>不管是搭环境、部署服务、排查问题，网络都是必须掌握的核心技能。</p>
 <span id="more"></span>
-<h2 id="一、Vim-三种模式（必懂）"><a href="#一、Vim-三种模式（必懂）" class="headerlink" title="一、Vim 三种模式（必懂）"></a>一、Vim 三种模式（必懂）</h2><ul>
-<li><strong>命令模式</strong>：刚打开文件时的状态，可移动光标、复制、删除</li>
-<li><strong>编辑模式</strong>：按 <code>i</code> 进入，可输入文字</li>
-<li><strong>末行模式</strong>：按 <code>:</code> 进入，可保存、退出</li>
-</ul>
-<h2 id="二、最核心-6-个操作（背会就能用）"><a href="#二、最核心-6-个操作（背会就能用）" class="headerlink" title="二、最核心 6 个操作（背会就能用）"></a>二、最核心 6 个操作（背会就能用）</h2><ol>
-<li>打开文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim test.txt</span><br></pre></td></tr></table></figure></li>
-<li>进入编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">i  <span class="comment"># 在光标前插入</span></span><br></pre></td></tr></table></figure></li>
-<li>保存并退出编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">：wq</span><br></pre></td></tr></table></figure></li>
-<li>不保存强制退出编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">：q!</span><br></pre></td></tr></table></figure></li>
-<li>放弃修改回到命令模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Esc</span><br></pre></td></tr></table></figure></li>
-<li>显示行号（运维常用）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">:<span class="built_in">set</span> number     <span class="comment"># 显示行号(简写nu)      </span></span><br><span class="line">:<span class="built_in">set</span> nonumber   <span class="comment"># 取消行号(简写nonu)      </span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="三、高频实用命令"><a href="#三、高频实用命令" class="headerlink" title="三、高频实用命令"></a>三、高频实用命令</h2><ul>
-<li>复制当前行：<code>yy</code></li>
-<li>删除当前行：<code>dd</code></li>
-<li>粘贴当前行：<code>p</code></li>
-<li>撤销：<code>u</code></li>
-<li>光标跳到文件首行：<code>gg</code></li>
-<li>光标跳到文件尾行：<code>G</code></li>
-</ul>
-<h2 id="四、新手实战"><a href="#四、新手实战" class="headerlink" title="四、新手实战"></a>四、新手实战</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 创建并打开文件</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="comment"># 2. 进入编辑模式按键 i 输入：</span></span><br><span class="line">Hello World</span><br><span class="line">Hello Vim</span><br><span class="line">12345</span><br><span class="line"><span class="comment"># 3. 按下 Esc 键回到命令模式</span></span><br><span class="line"><span class="comment"># 4. 输入命令 `:wq` 保存并退出</span></span><br><span class="line"><span class="comment"># 5.查看文件</span></span><br><span class="line"><span class="built_in">cat</span> test.txt</span><br><span class="line"><span class="comment"># 6. 输入命令 `:set number` 显示行号</span></span><br><span class="line"><span class="comment"># 7. 打开文件</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="comment"># 8. 随便乱按，然后Esc 输入命令 `:q!` 强制退出</span></span><br></pre></td></tr></table></figure>
+<h2 id="一、查看-IP-地址"><a href="#一、查看-IP-地址" class="headerlink" title="一、查看 IP 地址"></a>一、查看 IP 地址</h2><h3 id="1-查看网卡与IP信息"><a href="#1-查看网卡与IP信息" class="headerlink" title="1. 查看网卡与IP信息"></a>1. 查看网卡与IP信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 大部分输出的内容再Day01 中已经见过了，这里不再赘述</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 IP 地址</span></span><br><span class="line">hostname -i         <span class="comment"># 获取本机 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网关与路由</span></span><br><span class="line">ip route            <span class="comment"># 获取路由信息   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<h3 id="2-测试网络连通性"><a href="#2-测试网络连通性" class="headerlink" title="2. 测试网络连通性"></a>2. 测试网络连通性</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br><span class="line">ping -c 4 www.baidu.com            <span class="comment"># 测试 4 次</span></span><br><span class="line">ping -c 4 -w 2 www.baidu.com       <span class="comment"># 测试 4 次，每次等待 2 秒</span></span><br><span class="line">ping -c 4 -i 2 www.baidu.com       <span class="comment"># 测试 4 次，每次间隔 2 秒</span></span><br><span class="line">ping -s 1000 www.baidu.com         <span class="comment"># 测试 1000 字节</span></span><br><span class="line">&gt; -c ：指定测试次数  -w ：指定测试时间  -i ：指定测试间隔   -s ：指定测试数据包大小</span><br></pre></td></tr></table></figure>
 
-<h2 id="五、Day03-合格标准"><a href="#五、Day03-合格标准" class="headerlink" title="五、Day03 合格标准"></a>五、Day03 合格标准</h2><ol>
-<li>会用vim打开文件、输入文字、保存并退出</li>
-<li>会用vim复制、删除、粘贴、撤销、跳转到首行、跳转到尾行</li>
-<li>遇到卡死的情况，会用vim放弃修改回到命令模式强制退出</li>
-<li>掌握：i进入编辑esc退回命令模式<code>:wq</code>保存退出&#x2F;<code>:q!</code>强制退出</li>
-<li>能完成新手实战<strong>熟能生巧</strong></li>
-</ol>
-<h1 id="以上就是Vim编辑器的零基础，熟练使用即可。"><a href="#以上就是Vim编辑器的零基础，熟练使用即可。" class="headerlink" title="以上就是Vim编辑器的零基础，熟练使用即可。"></a>以上就是Vim编辑器的零基础，熟练使用即可。</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day06 Linux 进程管理(ps/top/kill)</title>
-    <url>/2026/04/23/Day06-Linux-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-ps-top-kill/</url>
-    <content><![CDATA[<h1 id="Day06｜Linux-进程管理（ps-top-kill-必学）"><a href="#Day06｜Linux-进程管理（ps-top-kill-必学）" class="headerlink" title="Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）"></a>Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）</h1><p>今天是 180 天运维自学计划第 6 天，学习 <strong>Linux 进程管理</strong>。<br>以后排查卡慢、杀服务、看负载，全靠这几个命令。</p>
-<h2 id="一、什么是进程？"><a href="#一、什么是进程？" class="headerlink" title="一、什么是进程？"></a>一、什么是进程？</h2><p>简单说：<br><strong>正在运行的程序 &#x3D; 进程</strong><br>每个进程都有一个唯一编号：<strong>PID</strong></p>
-<span id="more"></span>
-<h2 id="二、查看进程-ps（最常用）"><a href="#二、查看进程-ps（最常用）" class="headerlink" title="二、查看进程 ps（最常用）"></a>二、查看进程 ps（最常用）</h2><h3 id="1-查看当前用户进程"><a href="#1-查看当前用户进程" class="headerlink" title="1. 查看当前用户进程"></a>1. 查看当前用户进程</h3><p><code>ps</code></p>
-<h3 id="2-查看所有进程"><a href="#2-查看所有进程" class="headerlink" title="2. 查看所有进程"></a>2. 查看所有进程</h3><p><code>ps -ef</code></p>
-<h3 id="3-带详细资源显示"><a href="#3-带详细资源显示" class="headerlink" title="3. 带详细资源显示"></a>3. 带详细资源显示</h3><p><code>ps aux</code></p>
-<h3 id="4-过滤某个进程（实战常用）"><a href="#4-过滤某个进程（实战常用）" class="headerlink" title="4. 过滤某个进程（实战常用）"></a>4. 过滤某个进程（实战常用）</h3><p><code>ps -ef | grep mysql</code></p>
-<blockquote>
-<p>PID：进程 ID  UID：进程用户 ID  PPID：父进程 ID  CMD：进程名字</p>
-</blockquote>
-<h2 id="三、实时监控进程-top"><a href="#三、实时监控进程-top" class="headerlink" title="三、实时监控进程 top"></a>三、实时监控进程 top</h2><p><code>top</code>  退出按：<code>q</code></p>
-<blockquote>
-<p>PID 进程 ID  %CPU CPU 占用  %MEM 内存占用  COMMAND 命令  用来判断：谁把系统搞卡了。</p>
-</blockquote>
-<h2 id="四、结束进程-kill"><a href="#四、结束进程-kill" class="headerlink" title="四、结束进程 kill"></a>四、结束进程 kill</h2><ol>
-<li>正常杀死（推荐）<code>kill PID</code></li>
-<li>强制杀死（杀不死用这个）<code>kill -9 PID</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br><span class="line"><span class="built_in">kill</span> -9 12345</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="五、查看端口对应的进程"><a href="#五、查看端口对应的进程" class="headerlink" title="五、查看端口对应的进程"></a>五、查看端口对应的进程</h2><p><code>netstat -ntlp</code>&#x2F; <code>ss -ntlp</code></p>
-<blockquote>
-<p>端口号  进程ID  用 kill 干掉</p>
-</blockquote>
-<h2 id="六、查看后台程序-jobs"><a href="#六、查看后台程序-jobs" class="headerlink" title="六、查看后台程序 jobs"></a>六、查看后台程序 jobs</h2><p><code>jobs</code><br>把程序放到后台：命令后加<code>&amp;</code><br><code>sleep 100 &amp;</code></p>
-<h2 id="七、今日实战"><a href="#七、今日实战" class="headerlink" title="七、今日实战"></a>七、今日实战</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看所有进程</span></span><br><span class="line">ps -ef</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 实时监控</span></span><br><span class="line">top</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 找某个进程</span></span><br><span class="line">ps -ef | grep ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 测试杀进程</span></span><br><span class="line"><span class="built_in">sleep</span> 200 &amp;</span><br><span class="line">ps -ef | grep <span class="built_in">sleep</span></span><br><span class="line"><span class="built_in">kill</span> -9 进程号</span><br></pre></td></tr></table></figure>
+<h2 id="二、查看端口情况"><a href="#二、查看端口情况" class="headerlink" title="二、查看端口情况"></a>二、查看端口情况</h2><h3 id="1-查看连通情况"><a href="#1-查看连通情况" class="headerlink" title="1.查看连通情况"></a>1.查看连通情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet www.baidu.com 80         <span class="comment"># 测试端口是否连通</span></span><br><span class="line">curl www.baidu.com              <span class="comment"># 测试端口是否连通</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="八、Day06-合格标准"><a href="#八、Day06-合格标准" class="headerlink" title="八、Day06 合格标准"></a>八、Day06 合格标准</h2><ol>
-<li>会用 <code>ps -ef</code>查看进程</li>
-<li>会用 <code>grep</code> 过滤进程</li>
-<li>会用 <code>top</code> 看系统负载</li>
-<li>会用 <code>kill</code> 和 <code>kill -9</code></li>
-<li>知道 PID 是什么</li>
+<h3 id="2-查看端口占用情况"><a href="#2-查看端口占用情况" class="headerlink" title="2.查看端口占用情况"></a>2.查看端口占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 net-tools（没有就装一下）</span></span><br><span class="line">yum install -y net-tools</span><br><span class="line"><span class="comment"># 2. 查看所有端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line">&gt; -n: 以数字显示 IP 和端口  -t: 显示 TCP 端口  -l: 显示正在监听的端口  -p: 显示进程名</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、防火墙基础操作"><a href="#三、防火墙基础操作" class="headerlink" title="三、防火墙基础操作"></a>三、防火墙基础操作</h2><ol>
+<li>查看防火墙状态 <code>systemctl status firewalld</code></li>
+<li>临时关闭防火墙（测试环境用） <code>systemctl stop firewalld</code></li>
+<li>禁止开机自启 <code>systemctl disable firewalld</code></li>
 </ol>
-<h1 id="今天看进程、kill、端口，具备基础运维排查能力-后面部署服务、处理报错都会顺畅很多"><a href="#今天看进程、kill、端口，具备基础运维排查能力-后面部署服务、处理报错都会顺畅很多" class="headerlink" title="今天看进程、kill、端口，具备基础运维排查能力,后面部署服务、处理报错都会顺畅很多"></a>今天看进程、kill、端口，具备基础运维排查能力,后面部署服务、处理报错都会顺畅很多</h1>]]></content>
+<h2 id="实战训练"><a href="#实战训练" class="headerlink" title="实战训练"></a>实战训练</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看自己的IP</span></span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 测试网络</span></span><br><span class="line">ping -c 4 www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 查看网关</span></span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口占用</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 查看DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="Day04-合格标准"><a href="#Day04-合格标准" class="headerlink" title="Day04 合格标准"></a>Day04 合格标准</h2><ul>
+<li>会用 ip addr 查看自己的 IP</li>
+<li>会用 ping 测试网络</li>
+<li>会用 netstat -ntlp 查看端口</li>
+<li>知道如何关闭防火墙</li>
+<li>能判断自己的虚拟机是否能正常上网</li>
+</ul>
+<h1 id="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"><a href="#以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！" class="headerlink" title="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"></a>以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！</h1>]]></content>
       <categories>
         <category>自学记录</category>
       </categories>
@@ -145,6 +93,49 @@
 <li>会使用上面 5 条基础命令</li>
 </ol>
 <h1 id="满足以上就算-Day01-圆满完成！"><a href="#满足以上就算-Day01-圆满完成！" class="headerlink" title="满足以上就算 Day01 圆满完成！"></a>满足以上就算 Day01 圆满完成！</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Day03 Vim编辑器零基础学习</title>
+    <url>/2026/04/23/Day03-Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="Day03｜Vim-编辑器零基础"><a href="#Day03｜Vim-编辑器零基础" class="headerlink" title="Day03｜Vim 编辑器零基础"></a>Day03｜Vim 编辑器零基础</h1><p>今天是 180 天运维自学计划第 3 天，学习 Linux 必备工具：<strong>Vim 编辑器</strong>。<br>新手最容易卡在“进得去、出不来”，这篇只教最实用的，保证你学得会、用得顺。</p>
+<span id="more"></span>
+<h2 id="一、Vim-三种模式（必懂）"><a href="#一、Vim-三种模式（必懂）" class="headerlink" title="一、Vim 三种模式（必懂）"></a>一、Vim 三种模式（必懂）</h2><ul>
+<li><strong>命令模式</strong>：刚打开文件时的状态，可移动光标、复制、删除</li>
+<li><strong>编辑模式</strong>：按 <code>i</code> 进入，可输入文字</li>
+<li><strong>末行模式</strong>：按 <code>:</code> 进入，可保存、退出</li>
+</ul>
+<h2 id="二、最核心-6-个操作（背会就能用）"><a href="#二、最核心-6-个操作（背会就能用）" class="headerlink" title="二、最核心 6 个操作（背会就能用）"></a>二、最核心 6 个操作（背会就能用）</h2><ol>
+<li>打开文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim test.txt</span><br></pre></td></tr></table></figure></li>
+<li>进入编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">i  <span class="comment"># 在光标前插入</span></span><br></pre></td></tr></table></figure></li>
+<li>保存并退出编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">：wq</span><br></pre></td></tr></table></figure></li>
+<li>不保存强制退出编辑模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">：q!</span><br></pre></td></tr></table></figure></li>
+<li>放弃修改回到命令模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Esc</span><br></pre></td></tr></table></figure></li>
+<li>显示行号（运维常用）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">:<span class="built_in">set</span> number     <span class="comment"># 显示行号(简写nu)      </span></span><br><span class="line">:<span class="built_in">set</span> nonumber   <span class="comment"># 取消行号(简写nonu)      </span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="三、高频实用命令"><a href="#三、高频实用命令" class="headerlink" title="三、高频实用命令"></a>三、高频实用命令</h2><ul>
+<li>复制当前行：<code>yy</code></li>
+<li>删除当前行：<code>dd</code></li>
+<li>粘贴当前行：<code>p</code></li>
+<li>撤销：<code>u</code></li>
+<li>光标跳到文件首行：<code>gg</code></li>
+<li>光标跳到文件尾行：<code>G</code></li>
+</ul>
+<h2 id="四、新手实战"><a href="#四、新手实战" class="headerlink" title="四、新手实战"></a>四、新手实战</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 创建并打开文件</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="comment"># 2. 进入编辑模式按键 i 输入：</span></span><br><span class="line">Hello World</span><br><span class="line">Hello Vim</span><br><span class="line">12345</span><br><span class="line"><span class="comment"># 3. 按下 Esc 键回到命令模式</span></span><br><span class="line"><span class="comment"># 4. 输入命令 `:wq` 保存并退出</span></span><br><span class="line"><span class="comment"># 5.查看文件</span></span><br><span class="line"><span class="built_in">cat</span> test.txt</span><br><span class="line"><span class="comment"># 6. 输入命令 `:set number` 显示行号</span></span><br><span class="line"><span class="comment"># 7. 打开文件</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="comment"># 8. 随便乱按，然后Esc 输入命令 `:q!` 强制退出</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、Day03-合格标准"><a href="#五、Day03-合格标准" class="headerlink" title="五、Day03 合格标准"></a>五、Day03 合格标准</h2><ol>
+<li>会用vim打开文件、输入文字、保存并退出</li>
+<li>会用vim复制、删除、粘贴、撤销、跳转到首行、跳转到尾行</li>
+<li>遇到卡死的情况，会用vim放弃修改回到命令模式强制退出</li>
+<li>掌握：i进入编辑esc退回命令模式<code>:wq</code>保存退出&#x2F;<code>:q!</code>强制退出</li>
+<li>能完成新手实战<strong>熟能生巧</strong></li>
+</ol>
+<h1 id="以上就是Vim编辑器的零基础，熟练使用即可。"><a href="#以上就是Vim编辑器的零基础，熟练使用即可。" class="headerlink" title="以上就是Vim编辑器的零基础，熟练使用即可。"></a>以上就是Vim编辑器的零基础，熟练使用即可。</h1>]]></content>
       <categories>
         <category>自学记录</category>
       </categories>
@@ -239,6 +230,49 @@
       </tags>
   </entry>
   <entry>
+    <title>Day06 Linux 进程管理(ps/top/kill)</title>
+    <url>/2026/04/23/Day06-Linux-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-ps-top-kill/</url>
+    <content><![CDATA[<h1 id="Day06｜Linux-进程管理（ps-top-kill-必学）"><a href="#Day06｜Linux-进程管理（ps-top-kill-必学）" class="headerlink" title="Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）"></a>Day06｜Linux 进程管理（ps&#x2F;top&#x2F;kill 必学）</h1><p>今天是 180 天运维自学计划第 6 天，学习 <strong>Linux 进程管理</strong>。<br>以后排查卡慢、杀服务、看负载，全靠这几个命令。</p>
+<h2 id="一、什么是进程？"><a href="#一、什么是进程？" class="headerlink" title="一、什么是进程？"></a>一、什么是进程？</h2><p>简单说：<br><strong>正在运行的程序 &#x3D; 进程</strong><br>每个进程都有一个唯一编号：<strong>PID</strong></p>
+<span id="more"></span>
+<h2 id="二、查看进程-ps（最常用）"><a href="#二、查看进程-ps（最常用）" class="headerlink" title="二、查看进程 ps（最常用）"></a>二、查看进程 ps（最常用）</h2><h3 id="1-查看当前用户进程"><a href="#1-查看当前用户进程" class="headerlink" title="1. 查看当前用户进程"></a>1. 查看当前用户进程</h3><p><code>ps</code></p>
+<h3 id="2-查看所有进程"><a href="#2-查看所有进程" class="headerlink" title="2. 查看所有进程"></a>2. 查看所有进程</h3><p><code>ps -ef</code></p>
+<h3 id="3-带详细资源显示"><a href="#3-带详细资源显示" class="headerlink" title="3. 带详细资源显示"></a>3. 带详细资源显示</h3><p><code>ps aux</code></p>
+<h3 id="4-过滤某个进程（实战常用）"><a href="#4-过滤某个进程（实战常用）" class="headerlink" title="4. 过滤某个进程（实战常用）"></a>4. 过滤某个进程（实战常用）</h3><p><code>ps -ef | grep mysql</code></p>
+<blockquote>
+<p>PID：进程 ID  UID：进程用户 ID  PPID：父进程 ID  CMD：进程名字</p>
+</blockquote>
+<h2 id="三、实时监控进程-top"><a href="#三、实时监控进程-top" class="headerlink" title="三、实时监控进程 top"></a>三、实时监控进程 top</h2><p><code>top</code>  退出按：<code>q</code></p>
+<blockquote>
+<p>PID 进程 ID  %CPU CPU 占用  %MEM 内存占用  COMMAND 命令  用来判断：谁把系统搞卡了。</p>
+</blockquote>
+<h2 id="四、结束进程-kill"><a href="#四、结束进程-kill" class="headerlink" title="四、结束进程 kill"></a>四、结束进程 kill</h2><ol>
+<li>正常杀死（推荐）<code>kill PID</code></li>
+<li>强制杀死（杀不死用这个）<code>kill -9 PID</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br><span class="line"><span class="built_in">kill</span> -9 12345</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="五、查看端口对应的进程"><a href="#五、查看端口对应的进程" class="headerlink" title="五、查看端口对应的进程"></a>五、查看端口对应的进程</h2><p><code>netstat -ntlp</code>&#x2F; <code>ss -ntlp</code></p>
+<blockquote>
+<p>端口号  进程ID  用 kill 干掉</p>
+</blockquote>
+<h2 id="六、查看后台程序-jobs"><a href="#六、查看后台程序-jobs" class="headerlink" title="六、查看后台程序 jobs"></a>六、查看后台程序 jobs</h2><p><code>jobs</code><br>把程序放到后台：命令后加<code>&amp;</code><br><code>sleep 100 &amp;</code></p>
+<h2 id="七、今日实战"><a href="#七、今日实战" class="headerlink" title="七、今日实战"></a>七、今日实战</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看所有进程</span></span><br><span class="line">ps -ef</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 实时监控</span></span><br><span class="line">top</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 找某个进程</span></span><br><span class="line">ps -ef | grep ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 测试杀进程</span></span><br><span class="line"><span class="built_in">sleep</span> 200 &amp;</span><br><span class="line">ps -ef | grep <span class="built_in">sleep</span></span><br><span class="line"><span class="built_in">kill</span> -9 进程号</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、Day06-合格标准"><a href="#八、Day06-合格标准" class="headerlink" title="八、Day06 合格标准"></a>八、Day06 合格标准</h2><ol>
+<li>会用 <code>ps -ef</code>查看进程</li>
+<li>会用 <code>grep</code> 过滤进程</li>
+<li>会用 <code>top</code> 看系统负载</li>
+<li>会用 <code>kill</code> 和 <code>kill -9</code></li>
+<li>知道 PID 是什么</li>
+</ol>
+<h1 id="今天看进程、kill、端口，具备基础运维排查能力-后面部署服务、处理报错都会顺畅很多"><a href="#今天看进程、kill、端口，具备基础运维排查能力-后面部署服务、处理报错都会顺畅很多" class="headerlink" title="今天看进程、kill、端口，具备基础运维排查能力,后面部署服务、处理报错都会顺畅很多"></a>今天看进程、kill、端口，具备基础运维排查能力,后面部署服务、处理报错都会顺畅很多</h1>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Day05 Linux权限管理</title>
     <url>/2026/04/23/Day05-Linux%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="Day05｜Linux-用户、组与权限管理（核心必学）"><a href="#Day05｜Linux-用户、组与权限管理（核心必学）" class="headerlink" title="Day05｜Linux 用户、组与权限管理（核心必学）"></a>Day05｜Linux 用户、组与权限管理（核心必学）</h1><p>今天是 180 天运维自学计划第 5 天，学习 Linux <strong>安全核心：用户、组、权限</strong>。<br>这是面试高频、实操必用、必须吃透的知识点。</p>
@@ -309,34 +343,28 @@
       </tags>
   </entry>
   <entry>
-    <title>Day07 Linux一周总结</title>
-    <url>/2026/04/27/Day07-Linux%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93/</url>
+    <title>python实战：台账-1. 创建文件夹并判断是否存在</title>
+    <url>/2026/04/24/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-1.%20%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E5%B9%B6%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8/</url>
     <content><![CDATA[<ul>
-<li>今天是第7天，总结回顾一下学了什么，还记得多少</li>
-<li><span id="more"></span></li>
+<li>今天学习了python的os模块里创建文件夹和判断文件夹是否存在</li>
+<li>为什么要判断文件夹是否存在呢？因为重复创建文件夹会报错</li>
+<li>今天我用来<code>os.makedirs(&quot;dir1&quot;, exist_ok=True)</code>来创建文件夹保证程序不会报错</li>
+<li>不加<code>exist_ok=True</code>会报错<span id="more"></span></li>
 </ul>
-<h2 id="1-今日实操："><a href="#1-今日实操：" class="headerlink" title="1. 今日实操："></a>1. 今日实操：</h2><p>今天是第7天，关于Linux前六天的学习，今天的我所能记住的内容回顾：</p>
-<ol>
-<li>第一天初入Linux，下载了centos7_mini镜像，下载Finalshell，下载vmware，安装VMware虚拟机，配置安装centos7_mini镜像，使用<code>ip addir&#39;查看ip</code>，安装Finalshell，使用ssh连接centos7操作系统</li>
-<li>第二天, 使用Linux的命令，在Linux系统里操作，<code>pwd</code>查看当前所在目录，<code>ls</code>查看当前目录，<code>cd</code>移动到指定目录， <code>makdir</code>创建目录， <code>rmdir</code>删除目录 <code>chomd</code>修改文件权限,<code>chown</code> 修改文件所有者，<code>touch</code>创建文件， <code>cp</code>复制文件， <code>rm</code>删除文件， <code>mv</code>重命名&#x2F;移动文件， <code>stat</code>查看文件权限， <code>\</code>所有文件的根目录 ，<code>/root</code>root用户目录  </li>
-<li>第三天，Linux的网络配置记得不多，<code>ip addir</code>输出的内容可以看懂，然后就是一些权限的东西，读取权限为4，写入权限为2，执行权限为1，r可读，w可写，x可执行，u所有者，g用户组，- 取消权限，+ 添加权限，<code>ping</code> 测试连通</li>
-<li>第四天，vim编辑器大脑基本没什么记忆，就剩下命令模式有什么强制退出什么的</li>
-<li>第五天，忘了第五天学了什么</li>
-<li>第六天，只记得<code>kill</code>杀死进程，然后有个改进程权限，查找进程，<code>ps</code>是什么来着</li>
+<h2 id="原版代码"><a href="#原版代码" class="headerlink" title="原版代码"></a>原版代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.makedirs(<span class="string">&quot;dir1&quot;</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 功能：使用os模块里的makedirs方法创建文件夹</span></span><br><span class="line"><span class="comment"># 逻辑：如果文件夹不存在，则创建文件夹；如果存在，则不创建，不报错、跳过</span></span><br><span class="line"><span class="comment"># 易错点：</span></span><br><span class="line"><span class="comment"># 1. 不加`exist_ok=True`会直接崩溃报错</span></span><br><span class="line"><span class="comment"># 2. 创建文件夹时，如果文件夹名有特殊字符，会报错</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="优化代码"><a href="#优化代码" class="headerlink" title="优化代码"></a>优化代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义文件夹名字(统一管理, 方面修改)</span></span><br><span class="line">dir_name = <span class="string">&quot;dir1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断文件夹是否存在</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dir_name)</span><br><span class="line">    os.makedirs(dir_name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;成功创建文件夹: <span class="subst">&#123;dir_name&#125;</span>&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;已存在文件夹: <span class="subst">&#123;dir_name&#125;</span>, 请勿重复创建&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个优化在逻辑更加清晰,有提示信息知道程序在干什么</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="关键知识点"><a href="#关键知识点" class="headerlink" title="关键知识点"></a>关键知识点</h2><ol>
+<li><code>os.makedirs()</code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python官方文档：</span></span><br><span class="line">os.makedirs(path, mode=<span class="number">0o777</span>, exist_ok=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 递归目录创建函数,会自动创建到达最后一级目录所需要的中间目录</span></span><br><span class="line">&gt; path：创建的目录</span><br><span class="line">&gt; mode：创建目录的权限 默认<span class="number">777</span>(谁都可读, 可写, 可执行) </span><br><span class="line">&gt; <span class="number">0o777</span> 中的0o表示八进制,因为python规定:权限必须用八进制表示</span><br><span class="line">    这个参数<span class="number">99</span>% 的情况不用管，系统会自动给，不用改</span><br><span class="line">&gt; exist_ok=<span class="literal">False</span> 表示如果目录已经存在，则报错; Ture表示如果目录已经存在，则不报错，不创建</span><br><span class="line">&gt; 所有一般写成 os.makedirs(path, exist_ok=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure></li>
+<li><code>os.path.exists()</code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python官方文档：</span></span><br><span class="line">os.path.exists(path)</span><br><span class="line"><span class="comment"># exists 中文意思是 存在</span></span><br><span class="line"><span class="comment"># 功能：检查指定路径的文件/文件夹是否存在</span></span><br><span class="line"><span class="comment"># 逻辑：传入一个路径，返回 True（存在）或 False（不存在）</span></span><br><span class="line"><span class="comment"># 易错点：路径写错、大小写问题、权限问题都会返回 False</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="2-我理解："><a href="#2-我理解：" class="headerlink" title="2. 我理解："></a>2. 我理解：</h2><p>linux是一个文件系统，基本上都需要命令来操作，而本人六天的学习记忆的不多，但自我认为基础的应该还是可以的</p>
-<h2 id="3-踩坑："><a href="#3-踩坑：" class="headerlink" title="3. 踩坑："></a>3. 踩坑：</h2><p>应该就是注意<code>rm -rf</code>强制删除的使用，加个<code>-i</code>提示一下</p>
-<h2 id="4-总结："><a href="#4-总结：" class="headerlink" title="4. 总结："></a>4. 总结：</h2><ul>
-<li>革命尚未成功，同志仍需努力</li>
-<li>还是记忆的不多，需要多进行实际操作，加深印象</li>
-<li>博客的书写还是磨磨唧唧的，流失大量时间</li>
-</ul>
 ]]></content>
       <categories>
-        <category>自学记录</category>
+        <category>python实战--台账</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -356,63 +384,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python实战：台账-6. 感觉很虚，所以改变策略仿写之前的内容</title>
-    <url>/2026/04/28/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-6.%E6%84%9F%E8%A7%89%E5%BE%88%E8%99%9A%EF%BC%8C%E6%89%80%E4%BB%A5%E6%94%B9%E5%8F%98%E7%AD%96%E7%95%A5%E4%BB%BF%E5%86%99%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E5%AE%B9/</url>
-    <content><![CDATA[<ul>
-<li>今天的主要内容是仿写之前内容，要求达到独自书写下来的效果</li>
-<li>已经对之前的内容进行查漏补缺</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="第一天是创建文件并判断是否存在内容"><a href="#第一天是创建文件并判断是否存在内容" class="headerlink" title="第一天是创建文件并判断是否存在内容"></a>第一天是创建文件并判断是否存在内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写不出来</span></span><br></pre></td></tr></table></figure>
-<h2 id="第二天是时间的创建与格式化"><a href="#第二天是时间的创建与格式化" class="headerlink" title="第二天是时间的创建与格式化"></a>第二天是时间的创建与格式化</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">today = datetime.date.today()</span><br><span class="line"><span class="comment"># 实时证明函数不记得，无法独自仿写出来</span></span><br></pre></td></tr></table></figure>
-<h2 id="第三天是创建一个以时间为文件名的文件路径"><a href="#第三天是创建一个以时间为文件名的文件路径" class="headerlink" title="第三天是创建一个以时间为文件名的文件路径"></a>第三天是创建一个以时间为文件名的文件路径</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="第四天是初始化Excel表格"><a href="#第四天是初始化Excel表格" class="headerlink" title="第四天是初始化Excel表格"></a>第四天是初始化Excel表格</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="第五天是给excel表格添加内容"><a href="#第五天是给excel表格添加内容" class="headerlink" title="第五天是给excel表格添加内容"></a>第五天是给excel表格添加内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"><a href="#今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起" class="headerlink" title="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"></a>今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起</h1>]]></content>
-      <categories>
-        <category>python实战--台账</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Day04 Linux 网络基础与常见网络命令</title>
-    <url>/2026/04/23/Day04-Linux-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Day04｜Linux-网络基础与常用网络命令"><a href="#Day04｜Linux-网络基础与常用网络命令" class="headerlink" title="Day04｜Linux 网络基础与常用网络命令"></a>Day04｜Linux 网络基础与常用网络命令</h1><p>今天是 180 天运维自学计划第 4 天，我们学习 <strong>Linux 网络</strong>。<br>不管是搭环境、部署服务、排查问题，网络都是必须掌握的核心技能。</p>
-<span id="more"></span>
-<h2 id="一、查看-IP-地址"><a href="#一、查看-IP-地址" class="headerlink" title="一、查看 IP 地址"></a>一、查看 IP 地址</h2><h3 id="1-查看网卡与IP信息"><a href="#1-查看网卡与IP信息" class="headerlink" title="1. 查看网卡与IP信息"></a>1. 查看网卡与IP信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip addr</span><br><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 大部分输出的内容再Day01 中已经见过了，这里不再赘述</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 IP 地址</span></span><br><span class="line">hostname -i         <span class="comment"># 获取本机 IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网关与路由</span></span><br><span class="line">ip route            <span class="comment"># 获取路由信息   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-<h3 id="2-测试网络连通性"><a href="#2-测试网络连通性" class="headerlink" title="2. 测试网络连通性"></a>2. 测试网络连通性</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br><span class="line">ping -c 4 www.baidu.com            <span class="comment"># 测试 4 次</span></span><br><span class="line">ping -c 4 -w 2 www.baidu.com       <span class="comment"># 测试 4 次，每次等待 2 秒</span></span><br><span class="line">ping -c 4 -i 2 www.baidu.com       <span class="comment"># 测试 4 次，每次间隔 2 秒</span></span><br><span class="line">ping -s 1000 www.baidu.com         <span class="comment"># 测试 1000 字节</span></span><br><span class="line">&gt; -c ：指定测试次数  -w ：指定测试时间  -i ：指定测试间隔   -s ：指定测试数据包大小</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、查看端口情况"><a href="#二、查看端口情况" class="headerlink" title="二、查看端口情况"></a>二、查看端口情况</h2><h3 id="1-查看连通情况"><a href="#1-查看连通情况" class="headerlink" title="1.查看连通情况"></a>1.查看连通情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">telnet www.baidu.com 80         <span class="comment"># 测试端口是否连通</span></span><br><span class="line">curl www.baidu.com              <span class="comment"># 测试端口是否连通</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-查看端口占用情况"><a href="#2-查看端口占用情况" class="headerlink" title="2.查看端口占用情况"></a>2.查看端口占用情况</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 net-tools（没有就装一下）</span></span><br><span class="line">yum install -y net-tools</span><br><span class="line"><span class="comment"># 2. 查看所有端口</span></span><br><span class="line">netstat -ntlp</span><br><span class="line">&gt; -n: 以数字显示 IP 和端口  -t: 显示 TCP 端口  -l: 显示正在监听的端口  -p: 显示进程名</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、防火墙基础操作"><a href="#三、防火墙基础操作" class="headerlink" title="三、防火墙基础操作"></a>三、防火墙基础操作</h2><ol>
-<li>查看防火墙状态 <code>systemctl status firewalld</code></li>
-<li>临时关闭防火墙（测试环境用） <code>systemctl stop firewalld</code></li>
-<li>禁止开机自启 <code>systemctl disable firewalld</code></li>
-</ol>
-<h2 id="实战训练"><a href="#实战训练" class="headerlink" title="实战训练"></a>实战训练</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 查看自己的IP</span></span><br><span class="line">ip addr</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 测试网络</span></span><br><span class="line">ping -c 4 www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 查看网关</span></span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 查看端口占用</span></span><br><span class="line">netstat -ntlp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 查看DNS</span></span><br><span class="line"><span class="built_in">cat</span> /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-
-<h2 id="Day04-合格标准"><a href="#Day04-合格标准" class="headerlink" title="Day04 合格标准"></a>Day04 合格标准</h2><ul>
-<li>会用 ip addr 查看自己的 IP</li>
-<li>会用 ping 测试网络</li>
-<li>会用 netstat -ntlp 查看端口</li>
-<li>知道如何关闭防火墙</li>
-<li>能判断自己的虚拟机是否能正常上网</li>
-</ul>
-<h1 id="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"><a href="#以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！" class="headerlink" title="以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！"></a>以上就是今天关于Linux网络的一些基础，几分钟的事情，洒洒水啦！</h1>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -452,28 +423,34 @@
       </tags>
   </entry>
   <entry>
-    <title>python实战：台账-1. 创建文件夹并判断是否存在</title>
-    <url>/2026/04/24/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-1.%20%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E5%B9%B6%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8/</url>
+    <title>Day07 Linux一周总结</title>
+    <url>/2026/04/27/Day07-Linux%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<ul>
-<li>今天学习了python的os模块里创建文件夹和判断文件夹是否存在</li>
-<li>为什么要判断文件夹是否存在呢？因为重复创建文件夹会报错</li>
-<li>今天我用来<code>os.makedirs(&quot;dir1&quot;, exist_ok=True)</code>来创建文件夹保证程序不会报错</li>
-<li>不加<code>exist_ok=True</code>会报错<span id="more"></span></li>
+<li>今天是第7天，总结回顾一下学了什么，还记得多少</li>
+<li><span id="more"></span></li>
 </ul>
-<h2 id="原版代码"><a href="#原版代码" class="headerlink" title="原版代码"></a>原版代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.makedirs(<span class="string">&quot;dir1&quot;</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 功能：使用os模块里的makedirs方法创建文件夹</span></span><br><span class="line"><span class="comment"># 逻辑：如果文件夹不存在，则创建文件夹；如果存在，则不创建，不报错、跳过</span></span><br><span class="line"><span class="comment"># 易错点：</span></span><br><span class="line"><span class="comment"># 1. 不加`exist_ok=True`会直接崩溃报错</span></span><br><span class="line"><span class="comment"># 2. 创建文件夹时，如果文件夹名有特殊字符，会报错</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="优化代码"><a href="#优化代码" class="headerlink" title="优化代码"></a>优化代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义文件夹名字(统一管理, 方面修改)</span></span><br><span class="line">dir_name = <span class="string">&quot;dir1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断文件夹是否存在</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dir_name)</span><br><span class="line">    os.makedirs(dir_name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;成功创建文件夹: <span class="subst">&#123;dir_name&#125;</span>&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;已存在文件夹: <span class="subst">&#123;dir_name&#125;</span>, 请勿重复创建&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个优化在逻辑更加清晰,有提示信息知道程序在干什么</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="关键知识点"><a href="#关键知识点" class="headerlink" title="关键知识点"></a>关键知识点</h2><ol>
-<li><code>os.makedirs()</code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python官方文档：</span></span><br><span class="line">os.makedirs(path, mode=<span class="number">0o777</span>, exist_ok=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 递归目录创建函数,会自动创建到达最后一级目录所需要的中间目录</span></span><br><span class="line">&gt; path：创建的目录</span><br><span class="line">&gt; mode：创建目录的权限 默认<span class="number">777</span>(谁都可读, 可写, 可执行) </span><br><span class="line">&gt; <span class="number">0o777</span> 中的0o表示八进制,因为python规定:权限必须用八进制表示</span><br><span class="line">    这个参数<span class="number">99</span>% 的情况不用管，系统会自动给，不用改</span><br><span class="line">&gt; exist_ok=<span class="literal">False</span> 表示如果目录已经存在，则报错; Ture表示如果目录已经存在，则不报错，不创建</span><br><span class="line">&gt; 所有一般写成 os.makedirs(path, exist_ok=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure></li>
-<li><code>os.path.exists()</code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python官方文档：</span></span><br><span class="line">os.path.exists(path)</span><br><span class="line"><span class="comment"># exists 中文意思是 存在</span></span><br><span class="line"><span class="comment"># 功能：检查指定路径的文件/文件夹是否存在</span></span><br><span class="line"><span class="comment"># 逻辑：传入一个路径，返回 True（存在）或 False（不存在）</span></span><br><span class="line"><span class="comment"># 易错点：路径写错、大小写问题、权限问题都会返回 False</span></span><br></pre></td></tr></table></figure></li>
+<h2 id="1-今日实操："><a href="#1-今日实操：" class="headerlink" title="1. 今日实操："></a>1. 今日实操：</h2><p>今天是第7天，关于Linux前六天的学习，今天的我所能记住的内容回顾：</p>
+<ol>
+<li>第一天初入Linux，下载了centos7_mini镜像，下载Finalshell，下载vmware，安装VMware虚拟机，配置安装centos7_mini镜像，使用<code>ip addir&#39;查看ip</code>，安装Finalshell，使用ssh连接centos7操作系统</li>
+<li>第二天, 使用Linux的命令，在Linux系统里操作，<code>pwd</code>查看当前所在目录，<code>ls</code>查看当前目录，<code>cd</code>移动到指定目录， <code>makdir</code>创建目录， <code>rmdir</code>删除目录 <code>chomd</code>修改文件权限,<code>chown</code> 修改文件所有者，<code>touch</code>创建文件， <code>cp</code>复制文件， <code>rm</code>删除文件， <code>mv</code>重命名&#x2F;移动文件， <code>stat</code>查看文件权限， <code>\</code>所有文件的根目录 ，<code>/root</code>root用户目录  </li>
+<li>第三天，Linux的网络配置记得不多，<code>ip addir</code>输出的内容可以看懂，然后就是一些权限的东西，读取权限为4，写入权限为2，执行权限为1，r可读，w可写，x可执行，u所有者，g用户组，- 取消权限，+ 添加权限，<code>ping</code> 测试连通</li>
+<li>第四天，vim编辑器大脑基本没什么记忆，就剩下命令模式有什么强制退出什么的</li>
+<li>第五天，忘了第五天学了什么</li>
+<li>第六天，只记得<code>kill</code>杀死进程，然后有个改进程权限，查找进程，<code>ps</code>是什么来着</li>
 </ol>
+<h2 id="2-我理解："><a href="#2-我理解：" class="headerlink" title="2. 我理解："></a>2. 我理解：</h2><p>linux是一个文件系统，基本上都需要命令来操作，而本人六天的学习记忆的不多，但自我认为基础的应该还是可以的</p>
+<h2 id="3-踩坑："><a href="#3-踩坑：" class="headerlink" title="3. 踩坑："></a>3. 踩坑：</h2><p>应该就是注意<code>rm -rf</code>强制删除的使用，加个<code>-i</code>提示一下</p>
+<h2 id="4-总结："><a href="#4-总结：" class="headerlink" title="4. 总结："></a>4. 总结：</h2><ul>
+<li>革命尚未成功，同志仍需努力</li>
+<li>还是记忆的不多，需要多进行实际操作，加深印象</li>
+<li>博客的书写还是磨磨唧唧的，流失大量时间</li>
+</ul>
 ]]></content>
       <categories>
-        <category>python实战--台账</category>
+        <category>自学记录</category>
       </categories>
       <tags>
-        <tag>Python</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -516,61 +493,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>step1-lightweightFastAPI</title>
-    <url>/2026/05/07/step1-lightweightFastAPI/</url>
-    <content><![CDATA[<h1 id="🚀-Step-1：创建后端代码，启动-FastAPI"><a href="#🚀-Step-1：创建后端代码，启动-FastAPI" class="headerlink" title="🚀 Step 1：创建后端代码，启动 FastAPI"></a>🚀 Step 1：创建后端代码，启动 FastAPI</h1><span id="more"></span>
-
-<h2 id="第一步：创建项目子文件夹与必要文件"><a href="#第一步：创建项目子文件夹与必要文件" class="headerlink" title="第一步：创建项目子文件夹与必要文件"></a>第一步：创建项目子文件夹与必要文件</h2><p>用 VS Code 打开项目文件夹： <code>ai-chatflow</code>文件夹<br>在 <code>ai-chat-flow</code> 根目录下，新建文件夹 <code>backend</code>，然后在 <code>backend</code> 里再新建文件夹 <code>app</code>，在 <code>app</code> 里再新建文件夹 <code>core</code><br><strong>目录结构：</strong>         </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ai-chat-flow/</span><br><span class="line">├── backend/                      --&gt; Python FastAPI 后端，相当于<span class="string">&quot;房子的地基和骨架&quot;</span></span><br><span class="line">│   └── app/                      --&gt; 核心代码，相当于<span class="string">&quot;骨架内部&quot;</span></span><br><span class="line">│       └── core/                 --&gt; 配置相关，相当于<span class="string">&quot;电表箱&quot;</span></span><br><span class="line">├── docker-compose.yml</span><br><span class="line">└── ...</span><br></pre></td></tr></table></figure>
-<h2 id="第二步：创建配置文件和环境变量"><a href="#第二步：创建配置文件和环境变量" class="headerlink" title="第二步：创建配置文件和环境变量"></a>第二步：创建配置文件和环境变量</h2><ol>
-<li><p>在 <code>backend</code> 文件夹中，新建文件 <code>requirements.txt</code>,内容：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># requirements必要条件 包版本管理文件</span></span><br><span class="line"><span class="comment"># pip install -r requirements.txt</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># FastAPI框架 写接口的</span></span><br><span class="line">fastapi==0.115.6</span><br><span class="line"><span class="comment"># 启动项目的服务器 启动接口 主包[附加功能组]==版本 uvicorn[standard]：满血完整版、带加速、带全套配件</span></span><br><span class="line"><span class="comment"># uvicorn main:app</span></span><br><span class="line">uvicorn[standard]==0.34.0  <span class="comment"># standard 标准的</span></span><br><span class="line"><span class="comment"># 操作数据库的工具包</span></span><br><span class="line">sqlmodel==0.0.22</span><br><span class="line"><span class="comment"># Python 连接 PostgreSQL 数据库的驱动</span></span><br><span class="line"><span class="comment"># binary是二进制编译包（已经提前编译好，拿来就能用）</span></span><br><span class="line"><span class="comment"># 意思是：开箱即用、不报错、现成编译好的驱动</span></span><br><span class="line">psycopg2-binary==2.9.10</span><br><span class="line"><span class="comment"># ** 生成登录令牌（Token）** 的工具（做登录功能、用户验证）相当于给登录用户发一张 “临时通行证”</span></span><br><span class="line">python-jose[cryptography]==3.3.0  <span class="comment"># cryptography 密码术 密码</span></span><br><span class="line"><span class="comment"># 密码加密工具包</span></span><br><span class="line">passlib==1.7.4</span><br><span class="line">bcrypt==4.0.1</span><br><span class="line"><span class="comment"># 读取配置文件的工具 （比如数据库密码、端口、密钥这些敏感信息，存在 .env 文件里，靠它读取。让项目更安全、更规范）</span></span><br><span class="line">python-dotenv==1.0.1</span><br><span class="line">pydantic-settings==2.7.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>backend</code> 文件夹中，新建文件 <code>.env</code>,内容：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#  .env 配置文件，作用就是：把敏感信息、账号密码、配置参数，单独放这里，不写在代码里。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库(database)连接信息  postgresql:// → 用的数据库是 PostgreSQL</span></span><br><span class="line"><span class="comment"># chatflow_user → 数据库用户名   chatflow_password → 数据库密码 </span></span><br><span class="line"><span class="comment"># localhost → 数据库在你本机   5432 → 数据库端口号   chatflow → 数据库名</span></span><br><span class="line">DATABASE_URL=postgresql://chatflow_user:chatflow_password@localhost:5432/chatflow</span><br><span class="line"><span class="comment"># 密钥（secret秘密 key）（change-me-to-a-random-string-in-production意思是：开发时先用这个，正式上线必须换掉！）</span></span><br><span class="line">SECRET_KEY=change-me-to-a-random-string-in-production</span><br><span class="line"><span class="comment"># 登录令牌加密算法（algorithm算法）HS256（HmacSHA256）</span></span><br><span class="line">ALGORITHM=HS256</span><br><span class="line"><span class="comment"># 访问令牌有效期时间（access_token_expire_minutes）30分钟</span></span><br><span class="line">ACCESS_TOKEN_EXPIRE_MINUTES=30</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>backend/app/core</code> 文件夹中，新建文件 <code>config.py</code>,内容：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">专门用来读取 .env 配置文件里的数据库、密钥、过期时间等信息，统一管理项目配置。</span></span><br><span class="line"><span class="string">以后你要改数据库、改登录时效，只改 .env 文件，不用动代码！</span></span><br><span class="line"><span class="string">想拿数据库地址：settings.database_url</span></span><br><span class="line"><span class="string">想拿密钥：settings.secret_key</span></span><br><span class="line"><span class="string">想拿登录时效：settings.access_token_expire_minutes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入一个专门读取配置文件的工具。作用：帮你自动读 .env 文件，自动校验格式</span></span><br><span class="line"><span class="keyword">from</span> pydantic_settings <span class="keyword">import</span> BaseSettings</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个配置类，把所有项目配置（数据库、密钥等）放这里统一管理</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Settings</span>(<span class="title class_ inherited__">BaseSettings</span>):</span><br><span class="line">    <span class="comment"># 定义一个配置项：数据库连接地址; 如果 .env 里有，就用 .env 的,如果没有，就用这里的默认值</span></span><br><span class="line">    database_url: <span class="built_in">str</span> = <span class="string">&quot;postgresql://chatflow_user:chatflow_password@localhost:5432/chatflow&quot;</span></span><br><span class="line">    <span class="comment"># 密钥</span></span><br><span class="line">    secret_key: <span class="built_in">str</span> = <span class="string">&quot;change-me-to-a-random-string-in-production&quot;</span></span><br><span class="line">    <span class="comment"># 加密算法</span></span><br><span class="line">    algorithm: <span class="built_in">str</span> = <span class="string">&quot;HS256&quot;</span></span><br><span class="line">    <span class="comment"># 登录时效</span></span><br><span class="line">    access_token_expire_minutes: <span class="built_in">int</span> = <span class="number">30</span></span><br><span class="line">    <span class="comment"># 去读取项目里的 .env 文件，用里面的配置覆盖这里的默认值。</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Config</span>:</span><br><span class="line">        env_file = <span class="string">&quot;.env&quot;</span></span><br><span class="line"><span class="comment"># 创建一个配置实例 </span></span><br><span class="line">settings = Settings()</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第三步：创建主应用文件"><a href="#第三步：创建主应用文件" class="headerlink" title="第三步：创建主应用文件"></a>第三步：创建主应用文件</h2><p>在 <code>backend/app</code> 文件夹中，新建文件 <code>main.py</code>,内容：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># FastAPI 简单项目的入口文件（main.py） = 启动后端服务、配置跨域、写接口</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="comment"># 引入跨域中间件(middleware) 作用：允许前端（Vue / 网页）调用你的后端接口</span></span><br><span class="line"><span class="keyword">from</span> fastapi.middleware.cors <span class="keyword">import</span> CORSMiddleware</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 FastAPI 实例</span></span><br><span class="line">app = FastAPI(title=<span class="string">&quot;AI ChatFlow API&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许前端跨域请求（开发阶段宽松配置）</span></span><br><span class="line"><span class="comment"># 给后端服务添加一个功能插件(CORSMiddleware,指定插件类型：跨域处理)</span></span><br><span class="line">app.add_middleware(</span><br><span class="line">    CORSMiddleware,</span><br><span class="line">    <span class="comment"># 只允许这个地址访问后端（origin起源）</span></span><br><span class="line">    allow_origins=[<span class="string">&quot;http://localhost:5173&quot;</span>],  <span class="comment"># Vue 开发服务器地址 5173 是 Vue 默认端口</span></span><br><span class="line">    <span class="comment"># 允许带登录凭证（cookie/token）做登录必须开（credentials资格证书）</span></span><br><span class="line">    allow_credentials=<span class="literal">True</span>,</span><br><span class="line">    <span class="comment"># 允许的请求方法（允许所有请求方式GET / POST / PUT / DELETE 全都允许）(method方法)</span></span><br><span class="line">    allow_methods=[<span class="string">&quot;*&quot;</span>],</span><br><span class="line">    <span class="comment"># 允许的请求头（允许所有请求头,前端传什么参数都放行）（header数据头）</span></span><br><span class="line">    allow_headers=[<span class="string">&quot;*&quot;</span>],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口 （接口名称：read_root）</span></span><br><span class="line"><span class="comment"># 访问方式：http://localhost:8000/</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_root</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello from AI ChatFlow API&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口 （接口名称：health_check）</span></span><br><span class="line"><span class="comment"># 访问方式：http://localhost:8000/health</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/health&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">health_check</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;ok&quot;</span>&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="第四步：创建-Python-虚拟环境并安装依赖"><a href="#第四步：创建-Python-虚拟环境并安装依赖" class="headerlink" title="第四步：创建 Python 虚拟环境并安装依赖"></a>第四步：创建 Python 虚拟环境并安装依赖</h2><ol>
-<li>创建虚拟环境：</li>
-<li>进入项目文件夹<code>ai-chatflow/backend</code>，打开终端<code>cmd / powershell</code>，输入：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv .venv  <span class="comment"># 第二个venv 是虚拟环境文件夹名，可自定义但一般为.venv</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>激活虚拟环境（Windows） –&gt; 终端会显示(.venv)<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果提示权限问题，先执行</span></span><br><span class="line">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</span><br><span class="line"></span><br><span class="line">.venv\Scripts\Activate.ps1</span><br><span class="line"><span class="comment"># Windows PowerShell   脚本文件：Activate.ps1	</span></span><br><span class="line"><span class="comment"># Windows Cmd          脚本文件：activate.bat</span></span><br><span class="line"><span class="comment"># Mac / Linux          脚本文件：activate</span></span><br><span class="line"><span class="comment"># 退出虚拟环境  </span></span><br><span class="line">deactivate</span><br></pre></td></tr></table></figure></li>
-<li>安装依赖：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第五步：启动-FastAPI-并验收"><a href="#第五步：启动-FastAPI-并验收" class="headerlink" title="第五步：启动 FastAPI 并验收"></a>第五步：启动 FastAPI 并验收</h2><p><code>uvicorn app.main:app --reload --port 8000</code><br>启动成功后，<br>访问 <code>http://localhost:8000</code> → 如果能看到 <code>{&quot;message&quot;:&quot;Hello from AI ChatFlow API&quot;}</code>，说明项目启动成功。<br>访问<code>http://localhost:8000/health</code> ，如果返回 <code>{&quot;status&quot;: &quot;ok&quot;}</code>，说明项目启动成功。<br>访问 <code>http://localhost:8000/docs</code> → 能看到自动生成的 Swagger 文档界面</p>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><h2 id="创建此-Python-项目-不包括前端-的步骤："><a href="#创建此-Python-项目-不包括前端-的步骤：" class="headerlink" title="创建此 Python 项目(不包括前端)的步骤："></a>创建此 Python 项目(不包括前端)的步骤：</h2><ol>
-<li>创建项目文件夹</li>
-<li>创建前后端分离文件夹<code>backend</code>和<code>frontend</code></li>
-<li>创建<code>.gitignore</code>文件(git管理代码，忽略一些不必要文件)</li>
-<li>创建<code>docker-compose.yml</code>文件(因为要使用docker容器，所以需要配置docker-compose.yml文件)</li>
-<li>在后端文件夹<code>backend</code>下创建requirements.txt文件(安装依赖)</li>
-<li>创建虚拟环境–&gt; 在后端文件夹<code>backend</code>下创建虚拟环境 <code>python -m venv .venv</code></li>
-<li>激活虚拟环境 –&gt; 终端会显示(.venv)</li>
-<li>安装依赖 <code>pip install -r requirements.txt</code></li>
-<li>写文件<code>backend/.env</code> 配置密钥等敏感信息</li>
-<li>创建文件<code>backend/app/core/config.py</code> 读取配置文件</li>
-<li>创建文件<code>backend/app/main.py</code> 创建主应用文件</li>
-<li>启动 FastAPI 并验收</li>
-</ol>
-<p><strong>注意：提前设置编译格式为UTF-8</strong></p>
-<h2 id="🎉-恭喜！最难缠的环境搭建关已经过了，现在你的电脑上已经完整拥有："><a href="#🎉-恭喜！最难缠的环境搭建关已经过了，现在你的电脑上已经完整拥有：" class="headerlink" title="🎉 恭喜！最难缠的环境搭建关已经过了，现在你的电脑上已经完整拥有："></a>🎉 恭喜！最难缠的环境搭建关已经过了，现在你的电脑上已经完整拥有：</h2><pre><code> ✅ Docker + PostgreSQL 数据库
-
- ✅ Python 虚拟环境里的 FastAPI 项目骨架
-
- ✅ 可运行的 API 端点
-</code></pre>
-]]></content>
-      <categories>
-        <category>ai-chatflow</category>
-      </categories>
-      <tags>
-        <tag>Python Project</tag>
       </tags>
   </entry>
   <entry>
@@ -660,108 +582,6 @@
       </tags>
   </entry>
   <entry>
-    <title>step4-AI_Auto-Reply_Integration</title>
-    <url>/2026/05/09/step4-AI-Auto-Reply-Integration/</url>
-    <content><![CDATA[<h1 id="🚀-Step-4：AI-自动回复集成"><a href="#🚀-Step-4：AI-自动回复集成" class="headerlink" title="🚀 Step 4：AI 自动回复集成"></a>🚀 Step 4：AI 自动回复集成</h1><ul>
-<li>对话和消息的增删改查已经全部跑通。现在我们要让它“活”起来——当用户发送一条消息后，系统能自动生成 AI 回复并存储。</li>
-<li>如果你还没有 API Key，我会先用一个聪明的模拟方案（假回复），但把真实接口的位置留好。将来你拿到 Key，只需要改一行代码就能切换成真正的 AI。</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="第一步：创建-AI-服务模块"><a href="#第一步：创建-AI-服务模块" class="headerlink" title="第一步：创建 AI 服务模块"></a>第一步：创建 AI 服务模块</h2><p>新建文件 <code>backend/app/utils/ai_service.py</code>,内容：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">作用：生成 AI 回复。目前用模拟回复，将来替换成真实 LLM 调用。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">被谁引用：routers/conversations.py 中的 send_message 接口</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_ai_reply</span>(<span class="params">user_message: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    根据用户消息 生成(generate) AI 回复。</span></span><br><span class="line"><span class="string">    当前是模拟版本，返回固定的占位回复。</span></span><br><span class="line"><span class="string">    未来只需替换此函数体，即可接入真正的 LLM。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># ---- 模拟回复 ----</span></span><br><span class="line">    time.sleep(<span class="number">0.5</span>)  <span class="comment"># 模拟 API 延迟，让体验更真实</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;🤖 你说：“<span class="subst">&#123;user_message&#125;</span>”。我是 AI ChatFlow,目前由模拟引擎驱动。等你接入 OpenAI 兼容的 API Key,我就能真正回答啦!&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">💡 将来如何切换成真实 AI?(提前说明)</span></span><br><span class="line"><span class="string">当你拿到 API Key(比如 DeepSeek 的)后，只需要把 generate_ai_reply 改成类似这样(我会在之后的步骤帮你写，但现在你可以看一下思路):</span></span><br><span class="line"><span class="string">import openai</span></span><br><span class="line"><span class="string">def generate_ai_reply(user_message: str) -&gt; str:</span></span><br><span class="line"><span class="string">    client = openai.OpenAI(api_key=&quot;你的key&quot;, base_url=&quot;https://api.deepseek.com/v1&quot;)</span></span><br><span class="line"><span class="string">    response = client.chat.completions.create(</span></span><br><span class="line"><span class="string">        model=&quot;deepseek-chat&quot;,</span></span><br><span class="line"><span class="string">        messages=[&#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: user_message&#125;]</span></span><br><span class="line"><span class="string">    )</span></span><br><span class="line"><span class="string">    return response.choices[0].message.content</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="第二步：修改发送消息接口，实现自动回复"><a href="#第二步：修改发送消息接口，实现自动回复" class="headerlink" title="第二步：修改发送消息接口，实现自动回复"></a>第二步：修改发送消息接口，实现自动回复</h2><ol>
-<li>打开 <code>backend/app/routers/conversations.py</code>,在文件顶部导入新的 AI 服务：<br> <code>from app.utils.ai_service import generate_ai_reply</code></li>
-<li>修改 <code>send_message</code> 接口：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@router.post(<span class="params"><span class="string">&quot;/&#123;conversation_id&#125;/messages&quot;</span>, response_model=Message</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_message</span>(<span class="params">conversation_id: <span class="built_in">int</span>, message: Message, session: Session = Depends(<span class="params">get_session</span>)</span>):</span><br><span class="line"><span class="comment"># 1. 检查对话是否存在</span></span><br><span class="line">conv = session.get(Conversation, conversation_id)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> conv:</span><br><span class="line">    <span class="keyword">raise</span> HTTPException(status_code=<span class="number">404</span>, detail=<span class="string">&quot;Conversation not found&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 保存用户的真实消息</span></span><br><span class="line">message.conversation_id = conversation_id</span><br><span class="line">session.add(message)</span><br><span class="line">session.commit()</span><br><span class="line">session.refresh(message)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 生成 AI 回复并保存</span></span><br><span class="line">ai_reply_content = generate_ai_reply(message.content)</span><br><span class="line">ai_message = Message(</span><br><span class="line">    conversation_id=conversation_id,</span><br><span class="line">    role=<span class="string">&quot;assistant&quot;</span>,</span><br><span class="line">    content=ai_reply_content</span><br><span class="line">)</span><br><span class="line">session.add(ai_message)</span><br><span class="line">session.commit()</span><br><span class="line">session.refresh(ai_message)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 只返回用户消息，还是都返回？我们返回 AI 消息也可以，但为了前端方便，</span></span><br><span class="line"><span class="comment">#    这里直接返回 AI 消息，前端就知道对话有新内容了。</span></span><br><span class="line"><span class="keyword">return</span> ai_message</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第三步：测试自动回复"><a href="#第三步：测试自动回复" class="headerlink" title="第三步：测试自动回复"></a>第三步：测试自动回复</h2><ol>
-<li>虚拟环境(.venv)启动后端：<code>uvicorn app.main:app --reload --port 8000</code></li>
-<li>确保服务器在运行，打开 <code>http://localhost:8000/docs</code></li>
-<li>创建对话（如果还没有）：用 <code>POST /conversations/</code> 创建一个新对话,获取它的 id</li>
-<li>发送一条用户消息：用 <code>POST /conversations/{conversation_id}/messages</code><ul>
-<li><code>conversation_id</code> 填你创建的那个对话 ID。 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">    <span class="string">&quot;content&quot;</span>: <span class="string">&quot;你好，你是谁？&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>点击 <code>Execute</code>，稍等片刻，应该返回 200，响应体是 AI 的回复，并且 <code>role</code> 为 “assistant”,content 是模拟的那段话。</li>
-<li>查看对话消息：再调用 <code>GET /conversations/{conversation_id}/messages</code>,你会看到两条消息：<ul>
-<li>第一条：<code>role: &quot;user&quot;</code>, content: “你好，你是谁？”</li>
-<li>第二条：<code>role: &quot;assistant&quot;</code>, content: 🤖 你说：“{user_message}”。我是 AI ChatFlow,目前由模拟引擎驱动。等你接入 OpenAI 兼容的 API Key,我就能真正回答啦!</li>
-</ul>
-</li>
-</ol>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>恭喜你，你成功实现了自动回复功能。过程也很简单在<code>backend/app/utils</code>里增加一个工具<code>ai_service.py</code>,修改路由&#x2F;接口<br>✅ Step 4 验收标准</p>
-<ul>
-<li><p>调用 send_message 后，接口不再只返回自己刚发的消息，而是返回一条 AI 回复。</p>
-</li>
-<li><p>GET 查询该对话的消息，能看到连续的 user 和 assistant 消息。</p>
-</li>
-<li><p>整个过程无报错，状态码 200。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>ai-chatflow</category>
-      </categories>
-      <tags>
-        <tag>Python Project</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一、全新的开始，实事求是</title>
-    <url>/2026/04/28/%E4%B8%80%E3%80%81%E5%85%A8%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B%EF%BC%8C%E5%AE%9E%E4%BA%8B%E6%B1%82%E6%98%AF/</url>
-    <content><![CDATA[<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="总原则"><a href="#总原则" class="headerlink" title="总原则"></a>总原则</h2><ul>
-<li>不背、不抄、不看长教程</li>
-<li>只做三件事：默写 -&gt; 仿写 -&gt; 改写</li>
-<li>写错随便，允许查，但全程必须自己敲下来<span id="more"></span></li>
-</ul>
-<h2 id="任务一：默写两个函数（不看任何东西，硬着头皮写下来）"><a href="#任务一：默写两个函数（不看任何东西，硬着头皮写下来）" class="headerlink" title="任务一：默写两个函数（不看任何东西，硬着头皮写下来）"></a>任务一：默写两个函数（不看任何东西，硬着头皮写下来）</h2><ol>
-<li>写一个求和的函数</li>
-<li>写一个打招呼的函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 求和的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">    <span class="built_in">float</span> a, b, s</span><br><span class="line">    a.<span class="built_in">input</span>() = <span class="built_in">print</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>)</span><br><span class="line">    b.<span class="built_in">input</span>() = <span class="built_in">print</span>(<span class="string">&quot;请输入另一个数字b：&quot;</span>)</span><br><span class="line">    s = <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> + 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;a + b&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打招呼的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;你好呀！&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="任务二：对照改错，再默写1遍（没有错，就优化）"><a href="#任务二：对照改错，再默写1遍（没有错，就优化）" class="headerlink" title="任务二：对照改错，再默写1遍（没有错，就优化）"></a>任务二：对照改错，再默写1遍（没有错，就优化）</h2><ol>
-<li><code>float a, b, s</code>这行不需要写，python是动态语言，不用提前声明变量类型，直接使用即可</li>
-<li><code>a.input() = print()</code>写反了，<code>print()</code>是“输出”，<code>input()</code>是“输入”，正确写法是：<code>a = float(input(&quot;请输入一个数字a：&quot;))</code>  </li>
-<li><code>s = print()</code>不对，<code>print()</code>函数的作用只是在屏幕上显示文字，本身没有返回值或者返回None 所以<code>return</code>会没有东西返回</li>
-<li>函数写了但没有调用，等于白写<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 改错后</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">    a = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>))</span><br><span class="line">    b = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字b：&quot;</span>))</span><br><span class="line">    s = a + b</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> + 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;s&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;你好呀！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>  __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">sum</span>()</span><br><span class="line">    hello()</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="任务三：仿写1个新函数（比如：写个乘法的函数）"><a href="#任务三：仿写1个新函数（比如：写个乘法的函数）" class="headerlink" title="任务三：仿写1个新函数（比如：写个乘法的函数）"></a>任务三：仿写1个新函数（比如：写个乘法的函数）</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>():</span><br><span class="line">    a = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>))</span><br><span class="line">    b = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字b：&quot;</span>))</span><br><span class="line">    m = a * b</span><br><span class="line">    <span class="comment"># 改正，没有打印，运行看不到结果，需要加print()</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> * 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    multiply()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="验收标准"><a href="#验收标准" class="headerlink" title="验收标准"></a>验收标准</h2><ol>
-<li>能独自写出大概结构</li>
-<li>写错再改，改完再写1遍</li>
-</ol>
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="总原则-1"><a href="#总原则-1" class="headerlink" title="总原则"></a>总原则</h2><ol>
-<li>这个命令是干什么用的？</li>
-<li>这个命令怎么写？</li>
-<li>这个命令我能用在哪里？</li>
-</ol>
-<h2 id="任务一：只练习5个命令，每个敲3遍"><a href="#任务一：只练习5个命令，每个敲3遍" class="headerlink" title="任务一：只练习5个命令，每个敲3遍"></a>任务一：只练习5个命令，每个敲3遍</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<details>
-
-<summary>点击展开隐藏内容</summary>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前所在目录</span></span><br><span class="line"><span class="built_in">pwd</span> </span><br><span class="line"><span class="comment"># 查看当前目录内容</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="comment"># 移动到根目录</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="comment"># 创建目录test</span></span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 强制递归删除目录test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-</details>
-
-
-
-<p><img src="/images/LinuxCode_result.png" alt="练习结果"></p>
-<h2 id="验收标准-1"><a href="#验收标准-1" class="headerlink" title="验收标准"></a>验收标准</h2><ol>
-<li>熟练敲5个Linux命令</li>
-<li>知道它们的作用</li>
-</ol>
-]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>step2-login&amp;registration</title>
     <url>/2026/05/08/step2-login&amp;registration/</url>
     <content><![CDATA[<h1 id="🚀-Step-2：用户认证模块（注册-登录）"><a href="#🚀-Step-2：用户认证模块（注册-登录）" class="headerlink" title="🚀 Step 2：用户认证模块（注册 &amp; 登录）"></a>🚀 Step 2：用户认证模块（注册 &amp; 登录）</h1><p>这一阶段你将产出：</p>
@@ -841,6 +661,84 @@
       </categories>
       <tags>
         <tag>Python Project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>step1-lightweightFastAPI</title>
+    <url>/2026/05/07/step1-lightweightFastAPI/</url>
+    <content><![CDATA[<h1 id="🚀-Step-1：创建后端代码，启动-FastAPI"><a href="#🚀-Step-1：创建后端代码，启动-FastAPI" class="headerlink" title="🚀 Step 1：创建后端代码，启动 FastAPI"></a>🚀 Step 1：创建后端代码，启动 FastAPI</h1><span id="more"></span>
+
+<h2 id="第一步：创建项目子文件夹与必要文件"><a href="#第一步：创建项目子文件夹与必要文件" class="headerlink" title="第一步：创建项目子文件夹与必要文件"></a>第一步：创建项目子文件夹与必要文件</h2><p>用 VS Code 打开项目文件夹： <code>ai-chatflow</code>文件夹<br>在 <code>ai-chat-flow</code> 根目录下，新建文件夹 <code>backend</code>，然后在 <code>backend</code> 里再新建文件夹 <code>app</code>，在 <code>app</code> 里再新建文件夹 <code>core</code><br><strong>目录结构：</strong>         </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ai-chat-flow/</span><br><span class="line">├── backend/                      --&gt; Python FastAPI 后端，相当于<span class="string">&quot;房子的地基和骨架&quot;</span></span><br><span class="line">│   └── app/                      --&gt; 核心代码，相当于<span class="string">&quot;骨架内部&quot;</span></span><br><span class="line">│       └── core/                 --&gt; 配置相关，相当于<span class="string">&quot;电表箱&quot;</span></span><br><span class="line">├── docker-compose.yml</span><br><span class="line">└── ...</span><br></pre></td></tr></table></figure>
+<h2 id="第二步：创建配置文件和环境变量"><a href="#第二步：创建配置文件和环境变量" class="headerlink" title="第二步：创建配置文件和环境变量"></a>第二步：创建配置文件和环境变量</h2><ol>
+<li><p>在 <code>backend</code> 文件夹中，新建文件 <code>requirements.txt</code>,内容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># requirements必要条件 包版本管理文件</span></span><br><span class="line"><span class="comment"># pip install -r requirements.txt</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># FastAPI框架 写接口的</span></span><br><span class="line">fastapi==0.115.6</span><br><span class="line"><span class="comment"># 启动项目的服务器 启动接口 主包[附加功能组]==版本 uvicorn[standard]：满血完整版、带加速、带全套配件</span></span><br><span class="line"><span class="comment"># uvicorn main:app</span></span><br><span class="line">uvicorn[standard]==0.34.0  <span class="comment"># standard 标准的</span></span><br><span class="line"><span class="comment"># 操作数据库的工具包</span></span><br><span class="line">sqlmodel==0.0.22</span><br><span class="line"><span class="comment"># Python 连接 PostgreSQL 数据库的驱动</span></span><br><span class="line"><span class="comment"># binary是二进制编译包（已经提前编译好，拿来就能用）</span></span><br><span class="line"><span class="comment"># 意思是：开箱即用、不报错、现成编译好的驱动</span></span><br><span class="line">psycopg2-binary==2.9.10</span><br><span class="line"><span class="comment"># ** 生成登录令牌（Token）** 的工具（做登录功能、用户验证）相当于给登录用户发一张 “临时通行证”</span></span><br><span class="line">python-jose[cryptography]==3.3.0  <span class="comment"># cryptography 密码术 密码</span></span><br><span class="line"><span class="comment"># 密码加密工具包</span></span><br><span class="line">passlib==1.7.4</span><br><span class="line">bcrypt==4.0.1</span><br><span class="line"><span class="comment"># 读取配置文件的工具 （比如数据库密码、端口、密钥这些敏感信息，存在 .env 文件里，靠它读取。让项目更安全、更规范）</span></span><br><span class="line">python-dotenv==1.0.1</span><br><span class="line">pydantic-settings==2.7.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>backend</code> 文件夹中，新建文件 <code>.env</code>,内容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#  .env 配置文件，作用就是：把敏感信息、账号密码、配置参数，单独放这里，不写在代码里。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库(database)连接信息  postgresql:// → 用的数据库是 PostgreSQL</span></span><br><span class="line"><span class="comment"># chatflow_user → 数据库用户名   chatflow_password → 数据库密码 </span></span><br><span class="line"><span class="comment"># localhost → 数据库在你本机   5432 → 数据库端口号   chatflow → 数据库名</span></span><br><span class="line">DATABASE_URL=postgresql://chatflow_user:chatflow_password@localhost:5432/chatflow</span><br><span class="line"><span class="comment"># 密钥（secret秘密 key）（change-me-to-a-random-string-in-production意思是：开发时先用这个，正式上线必须换掉！）</span></span><br><span class="line">SECRET_KEY=change-me-to-a-random-string-in-production</span><br><span class="line"><span class="comment"># 登录令牌加密算法（algorithm算法）HS256（HmacSHA256）</span></span><br><span class="line">ALGORITHM=HS256</span><br><span class="line"><span class="comment"># 访问令牌有效期时间（access_token_expire_minutes）30分钟</span></span><br><span class="line">ACCESS_TOKEN_EXPIRE_MINUTES=30</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>backend/app/core</code> 文件夹中，新建文件 <code>config.py</code>,内容：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">专门用来读取 .env 配置文件里的数据库、密钥、过期时间等信息，统一管理项目配置。</span></span><br><span class="line"><span class="string">以后你要改数据库、改登录时效，只改 .env 文件，不用动代码！</span></span><br><span class="line"><span class="string">想拿数据库地址：settings.database_url</span></span><br><span class="line"><span class="string">想拿密钥：settings.secret_key</span></span><br><span class="line"><span class="string">想拿登录时效：settings.access_token_expire_minutes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入一个专门读取配置文件的工具。作用：帮你自动读 .env 文件，自动校验格式</span></span><br><span class="line"><span class="keyword">from</span> pydantic_settings <span class="keyword">import</span> BaseSettings</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个配置类，把所有项目配置（数据库、密钥等）放这里统一管理</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Settings</span>(<span class="title class_ inherited__">BaseSettings</span>):</span><br><span class="line">    <span class="comment"># 定义一个配置项：数据库连接地址; 如果 .env 里有，就用 .env 的,如果没有，就用这里的默认值</span></span><br><span class="line">    database_url: <span class="built_in">str</span> = <span class="string">&quot;postgresql://chatflow_user:chatflow_password@localhost:5432/chatflow&quot;</span></span><br><span class="line">    <span class="comment"># 密钥</span></span><br><span class="line">    secret_key: <span class="built_in">str</span> = <span class="string">&quot;change-me-to-a-random-string-in-production&quot;</span></span><br><span class="line">    <span class="comment"># 加密算法</span></span><br><span class="line">    algorithm: <span class="built_in">str</span> = <span class="string">&quot;HS256&quot;</span></span><br><span class="line">    <span class="comment"># 登录时效</span></span><br><span class="line">    access_token_expire_minutes: <span class="built_in">int</span> = <span class="number">30</span></span><br><span class="line">    <span class="comment"># 去读取项目里的 .env 文件，用里面的配置覆盖这里的默认值。</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Config</span>:</span><br><span class="line">        env_file = <span class="string">&quot;.env&quot;</span></span><br><span class="line"><span class="comment"># 创建一个配置实例 </span></span><br><span class="line">settings = Settings()</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第三步：创建主应用文件"><a href="#第三步：创建主应用文件" class="headerlink" title="第三步：创建主应用文件"></a>第三步：创建主应用文件</h2><p>在 <code>backend/app</code> 文件夹中，新建文件 <code>main.py</code>,内容：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># FastAPI 简单项目的入口文件（main.py） = 启动后端服务、配置跨域、写接口</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="comment"># 引入跨域中间件(middleware) 作用：允许前端（Vue / 网页）调用你的后端接口</span></span><br><span class="line"><span class="keyword">from</span> fastapi.middleware.cors <span class="keyword">import</span> CORSMiddleware</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 FastAPI 实例</span></span><br><span class="line">app = FastAPI(title=<span class="string">&quot;AI ChatFlow API&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许前端跨域请求（开发阶段宽松配置）</span></span><br><span class="line"><span class="comment"># 给后端服务添加一个功能插件(CORSMiddleware,指定插件类型：跨域处理)</span></span><br><span class="line">app.add_middleware(</span><br><span class="line">    CORSMiddleware,</span><br><span class="line">    <span class="comment"># 只允许这个地址访问后端（origin起源）</span></span><br><span class="line">    allow_origins=[<span class="string">&quot;http://localhost:5173&quot;</span>],  <span class="comment"># Vue 开发服务器地址 5173 是 Vue 默认端口</span></span><br><span class="line">    <span class="comment"># 允许带登录凭证（cookie/token）做登录必须开（credentials资格证书）</span></span><br><span class="line">    allow_credentials=<span class="literal">True</span>,</span><br><span class="line">    <span class="comment"># 允许的请求方法（允许所有请求方式GET / POST / PUT / DELETE 全都允许）(method方法)</span></span><br><span class="line">    allow_methods=[<span class="string">&quot;*&quot;</span>],</span><br><span class="line">    <span class="comment"># 允许的请求头（允许所有请求头,前端传什么参数都放行）（header数据头）</span></span><br><span class="line">    allow_headers=[<span class="string">&quot;*&quot;</span>],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口 （接口名称：read_root）</span></span><br><span class="line"><span class="comment"># 访问方式：http://localhost:8000/</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_root</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello from AI ChatFlow API&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口 （接口名称：health_check）</span></span><br><span class="line"><span class="comment"># 访问方式：http://localhost:8000/health</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/health&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">health_check</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;ok&quot;</span>&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第四步：创建-Python-虚拟环境并安装依赖"><a href="#第四步：创建-Python-虚拟环境并安装依赖" class="headerlink" title="第四步：创建 Python 虚拟环境并安装依赖"></a>第四步：创建 Python 虚拟环境并安装依赖</h2><ol>
+<li>创建虚拟环境：</li>
+<li>进入项目文件夹<code>ai-chatflow/backend</code>，打开终端<code>cmd / powershell</code>，输入：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv .venv  <span class="comment"># 第二个venv 是虚拟环境文件夹名，可自定义但一般为.venv</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>激活虚拟环境（Windows） –&gt; 终端会显示(.venv)<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果提示权限问题，先执行</span></span><br><span class="line">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</span><br><span class="line"></span><br><span class="line">.venv\Scripts\Activate.ps1</span><br><span class="line"><span class="comment"># Windows PowerShell   脚本文件：Activate.ps1	</span></span><br><span class="line"><span class="comment"># Windows Cmd          脚本文件：activate.bat</span></span><br><span class="line"><span class="comment"># Mac / Linux          脚本文件：activate</span></span><br><span class="line"><span class="comment"># 退出虚拟环境  </span></span><br><span class="line">deactivate</span><br></pre></td></tr></table></figure></li>
+<li>安装依赖：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第五步：启动-FastAPI-并验收"><a href="#第五步：启动-FastAPI-并验收" class="headerlink" title="第五步：启动 FastAPI 并验收"></a>第五步：启动 FastAPI 并验收</h2><p><code>uvicorn app.main:app --reload --port 8000</code><br>启动成功后，<br>访问 <code>http://localhost:8000</code> → 如果能看到 <code>{&quot;message&quot;:&quot;Hello from AI ChatFlow API&quot;}</code>，说明项目启动成功。<br>访问<code>http://localhost:8000/health</code> ，如果返回 <code>{&quot;status&quot;: &quot;ok&quot;}</code>，说明项目启动成功。<br>访问 <code>http://localhost:8000/docs</code> → 能看到自动生成的 Swagger 文档界面</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><h2 id="创建此-Python-项目-不包括前端-的步骤："><a href="#创建此-Python-项目-不包括前端-的步骤：" class="headerlink" title="创建此 Python 项目(不包括前端)的步骤："></a>创建此 Python 项目(不包括前端)的步骤：</h2><ol>
+<li>创建项目文件夹</li>
+<li>创建前后端分离文件夹<code>backend</code>和<code>frontend</code></li>
+<li>创建<code>.gitignore</code>文件(git管理代码，忽略一些不必要文件)</li>
+<li>创建<code>docker-compose.yml</code>文件(因为要使用docker容器，所以需要配置docker-compose.yml文件)</li>
+<li>在后端文件夹<code>backend</code>下创建requirements.txt文件(安装依赖)</li>
+<li>创建虚拟环境–&gt; 在后端文件夹<code>backend</code>下创建虚拟环境 <code>python -m venv .venv</code></li>
+<li>激活虚拟环境 –&gt; 终端会显示(.venv)</li>
+<li>安装依赖 <code>pip install -r requirements.txt</code></li>
+<li>写文件<code>backend/.env</code> 配置密钥等敏感信息</li>
+<li>创建文件<code>backend/app/core/config.py</code> 读取配置文件</li>
+<li>创建文件<code>backend/app/main.py</code> 创建主应用文件</li>
+<li>启动 FastAPI 并验收</li>
+</ol>
+<p><strong>注意：提前设置编译格式为UTF-8</strong></p>
+<h2 id="🎉-恭喜！最难缠的环境搭建关已经过了，现在你的电脑上已经完整拥有："><a href="#🎉-恭喜！最难缠的环境搭建关已经过了，现在你的电脑上已经完整拥有：" class="headerlink" title="🎉 恭喜！最难缠的环境搭建关已经过了，现在你的电脑上已经完整拥有："></a>🎉 恭喜！最难缠的环境搭建关已经过了，现在你的电脑上已经完整拥有：</h2><pre><code> ✅ Docker + PostgreSQL 数据库
+
+ ✅ Python 虚拟环境里的 FastAPI 项目骨架
+
+ ✅ 可运行的 API 端点
+</code></pre>
+]]></content>
+      <categories>
+        <category>ai-chatflow</category>
+      </categories>
+      <tags>
+        <tag>Python Project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python实战：台账-6. 感觉很虚，所以改变策略仿写之前的内容</title>
+    <url>/2026/04/28/python%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8F%B0%E8%B4%A6-6.%E6%84%9F%E8%A7%89%E5%BE%88%E8%99%9A%EF%BC%8C%E6%89%80%E4%BB%A5%E6%94%B9%E5%8F%98%E7%AD%96%E7%95%A5%E4%BB%BF%E5%86%99%E4%B9%8B%E5%89%8D%E7%9A%84%E5%86%85%E5%AE%B9/</url>
+    <content><![CDATA[<ul>
+<li>今天的主要内容是仿写之前内容，要求达到独自书写下来的效果</li>
+<li>已经对之前的内容进行查漏补缺</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="第一天是创建文件并判断是否存在内容"><a href="#第一天是创建文件并判断是否存在内容" class="headerlink" title="第一天是创建文件并判断是否存在内容"></a>第一天是创建文件并判断是否存在内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写不出来</span></span><br></pre></td></tr></table></figure>
+<h2 id="第二天是时间的创建与格式化"><a href="#第二天是时间的创建与格式化" class="headerlink" title="第二天是时间的创建与格式化"></a>第二天是时间的创建与格式化</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">today = datetime.date.today()</span><br><span class="line"><span class="comment"># 实时证明函数不记得，无法独自仿写出来</span></span><br></pre></td></tr></table></figure>
+<h2 id="第三天是创建一个以时间为文件名的文件路径"><a href="#第三天是创建一个以时间为文件名的文件路径" class="headerlink" title="第三天是创建一个以时间为文件名的文件路径"></a>第三天是创建一个以时间为文件名的文件路径</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第四天是初始化Excel表格"><a href="#第四天是初始化Excel表格" class="headerlink" title="第四天是初始化Excel表格"></a>第四天是初始化Excel表格</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="第五天是给excel表格添加内容"><a href="#第五天是给excel表格添加内容" class="headerlink" title="第五天是给excel表格添加内容"></a>第五天是给excel表格添加内容</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"><a href="#今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起" class="headerlink" title="今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起"></a>今天的检测结果很明显，只输入了没有输出，只是单纯的看懂了无法独自写出来，事实明了从零学起</h1>]]></content>
+      <categories>
+        <category>python实战--台账</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -927,6 +825,54 @@
       </tags>
   </entry>
   <entry>
+    <title>step4-AI_Auto-Reply_Integration</title>
+    <url>/2026/05/09/step4-AI-Auto-Reply-Integration/</url>
+    <content><![CDATA[<h1 id="🚀-Step-4：AI-自动回复集成"><a href="#🚀-Step-4：AI-自动回复集成" class="headerlink" title="🚀 Step 4：AI 自动回复集成"></a>🚀 Step 4：AI 自动回复集成</h1><ul>
+<li>对话和消息的增删改查已经全部跑通。现在我们要让它“活”起来——当用户发送一条消息后，系统能自动生成 AI 回复并存储。</li>
+<li>如果你还没有 API Key，我会先用一个聪明的模拟方案（假回复），但把真实接口的位置留好。将来你拿到 Key，只需要改一行代码就能切换成真正的 AI。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="第一步：创建-AI-服务模块"><a href="#第一步：创建-AI-服务模块" class="headerlink" title="第一步：创建 AI 服务模块"></a>第一步：创建 AI 服务模块</h2><p>新建文件 <code>backend/app/utils/ai_service.py</code>,内容：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">作用：生成 AI 回复。目前用模拟回复，将来替换成真实 LLM 调用。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">被谁引用：routers/conversations.py 中的 send_message 接口</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_ai_reply</span>(<span class="params">user_message: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    根据用户消息 生成(generate) AI 回复。</span></span><br><span class="line"><span class="string">    当前是模拟版本，返回固定的占位回复。</span></span><br><span class="line"><span class="string">    未来只需替换此函数体，即可接入真正的 LLM。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># ---- 模拟回复 ----</span></span><br><span class="line">    time.sleep(<span class="number">0.5</span>)  <span class="comment"># 模拟 API 延迟，让体验更真实</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;🤖 你说：“<span class="subst">&#123;user_message&#125;</span>”。我是 AI ChatFlow,目前由模拟引擎驱动。等你接入 OpenAI 兼容的 API Key,我就能真正回答啦!&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">💡 将来如何切换成真实 AI?(提前说明)</span></span><br><span class="line"><span class="string">当你拿到 API Key(比如 DeepSeek 的)后，只需要把 generate_ai_reply 改成类似这样(我会在之后的步骤帮你写，但现在你可以看一下思路):</span></span><br><span class="line"><span class="string">import openai</span></span><br><span class="line"><span class="string">def generate_ai_reply(user_message: str) -&gt; str:</span></span><br><span class="line"><span class="string">    client = openai.OpenAI(api_key=&quot;你的key&quot;, base_url=&quot;https://api.deepseek.com/v1&quot;)</span></span><br><span class="line"><span class="string">    response = client.chat.completions.create(</span></span><br><span class="line"><span class="string">        model=&quot;deepseek-chat&quot;,</span></span><br><span class="line"><span class="string">        messages=[&#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: user_message&#125;]</span></span><br><span class="line"><span class="string">    )</span></span><br><span class="line"><span class="string">    return response.choices[0].message.content</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="第二步：修改发送消息接口，实现自动回复"><a href="#第二步：修改发送消息接口，实现自动回复" class="headerlink" title="第二步：修改发送消息接口，实现自动回复"></a>第二步：修改发送消息接口，实现自动回复</h2><ol>
+<li>打开 <code>backend/app/routers/conversations.py</code>,在文件顶部导入新的 AI 服务：<br> <code>from app.utils.ai_service import generate_ai_reply</code></li>
+<li>修改 <code>send_message</code> 接口：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@router.post(<span class="params"><span class="string">&quot;/&#123;conversation_id&#125;/messages&quot;</span>, response_model=Message</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_message</span>(<span class="params">conversation_id: <span class="built_in">int</span>, message: Message, session: Session = Depends(<span class="params">get_session</span>)</span>):</span><br><span class="line"><span class="comment"># 1. 检查对话是否存在</span></span><br><span class="line">conv = session.get(Conversation, conversation_id)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> conv:</span><br><span class="line">    <span class="keyword">raise</span> HTTPException(status_code=<span class="number">404</span>, detail=<span class="string">&quot;Conversation not found&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 保存用户的真实消息</span></span><br><span class="line">message.conversation_id = conversation_id</span><br><span class="line">session.add(message)</span><br><span class="line">session.commit()</span><br><span class="line">session.refresh(message)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 生成 AI 回复并保存</span></span><br><span class="line">ai_reply_content = generate_ai_reply(message.content)</span><br><span class="line">ai_message = Message(</span><br><span class="line">    conversation_id=conversation_id,</span><br><span class="line">    role=<span class="string">&quot;assistant&quot;</span>,</span><br><span class="line">    content=ai_reply_content</span><br><span class="line">)</span><br><span class="line">session.add(ai_message)</span><br><span class="line">session.commit()</span><br><span class="line">session.refresh(ai_message)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 只返回用户消息，还是都返回？我们返回 AI 消息也可以，但为了前端方便，</span></span><br><span class="line"><span class="comment">#    这里直接返回 AI 消息，前端就知道对话有新内容了。</span></span><br><span class="line"><span class="keyword">return</span> ai_message</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第三步：测试自动回复"><a href="#第三步：测试自动回复" class="headerlink" title="第三步：测试自动回复"></a>第三步：测试自动回复</h2><ol>
+<li>虚拟环境(.venv)启动后端：<code>uvicorn app.main:app --reload --port 8000</code></li>
+<li>确保服务器在运行，打开 <code>http://localhost:8000/docs</code></li>
+<li>创建对话（如果还没有）：用 <code>POST /conversations/</code> 创建一个新对话,获取它的 id</li>
+<li>发送一条用户消息：用 <code>POST /conversations/{conversation_id}/messages</code><ul>
+<li><code>conversation_id</code> 填你创建的那个对话 ID。 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">    <span class="string">&quot;content&quot;</span>: <span class="string">&quot;你好，你是谁？&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>点击 <code>Execute</code>，稍等片刻，应该返回 200，响应体是 AI 的回复，并且 <code>role</code> 为 “assistant”,content 是模拟的那段话。</li>
+<li>查看对话消息：再调用 <code>GET /conversations/{conversation_id}/messages</code>,你会看到两条消息：<ul>
+<li>第一条：<code>role: &quot;user&quot;</code>, content: “你好，你是谁？”</li>
+<li>第二条：<code>role: &quot;assistant&quot;</code>, content: 🤖 你说：“{user_message}”。我是 AI ChatFlow,目前由模拟引擎驱动。等你接入 OpenAI 兼容的 API Key,我就能真正回答啦!</li>
+</ul>
+</li>
+</ol>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>恭喜你，你成功实现了自动回复功能。过程也很简单在<code>backend/app/utils</code>里增加一个工具<code>ai_service.py</code>,修改路由&#x2F;接口<br>✅ Step 4 验收标准</p>
+<ul>
+<li><p>调用 send_message 后，接口不再只返回自己刚发的消息，而是返回一条 AI 回复。</p>
+</li>
+<li><p>GET 查询该对话的消息，能看到连续的 user 和 assistant 消息。</p>
+</li>
+<li><p>整个过程无报错，状态码 200。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>ai-chatflow</category>
+      </categories>
+      <tags>
+        <tag>Python Project</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>二、今天还是补之前学习看懂却写不出来的债务</title>
     <url>/2026/04/29/%E4%BA%8C%E3%80%81%E4%BB%8A%E5%A4%A9%E8%BF%98%E6%98%AF%E8%A1%A5%E4%B9%8B%E5%89%8D%E5%AD%A6%E4%B9%A0%E7%9C%8B%E6%87%82%E5%8D%B4%E5%86%99%E4%B8%8D%E5%87%BA%E6%9D%A5%E7%9A%84%E5%80%BA%E5%8A%A1/</url>
     <content><![CDATA[<ul>
@@ -963,42 +909,6 @@
       <tags>
         <tag>Linux</tag>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>四、python&amp;Linux_learning</title>
-    <url>/2026/04/30/%E5%9B%9B%E3%80%81python-Linux-learning/</url>
-    <content><![CDATA[<ul>
-<li>今天继续学习python，默写出上一篇的计算器代码或者熟悉整个框架，for循环练习</li>
-<li>Linux还是复习练习这些命令：<code>touch、 echo、 cat、 cp、 mv、 rm、 mkdir、 rmdir、 ls、 pwd、 ip addr、 ping、 cd </code><span id="more"></span></li>
-</ul>
-<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">1. 复盘巩固: 把昨天食堂计算器核心逻辑过一遍</span></span><br><span class="line"><span class="string">- try-except 作用</span></span><br><span class="line"><span class="string">- lower() 转小写</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 食堂计算器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cateen_calculator</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;欢迎来到食堂计算器！&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;请输入需要计算的两个数字和运算符：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;按&#x27;q&#x27;退出食堂计算器&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 先判断是否需要按&#x27;q&#x27;退出</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;是否使用食堂计算机？按&#x27;q&#x27;退出，回车继续使用&quot;</span>)</span><br><span class="line">        cleck = <span class="built_in">input</span>()</span><br><span class="line">        <span class="keyword">if</span> cleck.lower() == <span class="string">&#x27;q&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;欢迎下次再来！&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 获取两个数字和运算符</span></span><br><span class="line">            num1 = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入第一个数字：&quot;</span>))</span><br><span class="line">            num2 = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入第二个数字：&quot;</span>))</span><br><span class="line">            op = <span class="built_in">input</span>(<span class="string">&quot;请输入运算符(加: + 减: - 乘: * 除: / )：&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 判断运算符是否输入正确</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> op <span class="keyword">in</span> [<span class="string">&#x27;+&#x27;</span>, <span class="string">&#x27;-&#x27;</span>, <span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;/&#x27;</span>]:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;\n请输入正确的运算符(加: + 减: - 乘: * 除: / )\n&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行判断是否计算这个计算公式</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;是否计算 <span class="subst">&#123;num1&#125;</span> <span class="subst">&#123;op&#125;</span> <span class="subst">&#123;num2&#125;</span> =  ？ (Y/N)&quot;</span>)</span><br><span class="line">            check = <span class="built_in">input</span>()</span><br><span class="line">            <span class="keyword">if</span> check.lower() == <span class="string">&#x27;n&#x27;</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;已取消计算！&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行计算</span></span><br><span class="line">            <span class="keyword">if</span> op == <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">                result = num1 + num2</span><br><span class="line">            <span class="keyword">elif</span> op == <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">                result = num1 - num2</span><br><span class="line">            <span class="keyword">elif</span> op == <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">                result = num1 * num2</span><br><span class="line">            <span class="keyword">elif</span> op == <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">                <span class="comment"># if num2 == 0:</span></span><br><span class="line">                <span class="comment">#     print(&quot;除数不能为0！&quot;)</span></span><br><span class="line">                <span class="comment">#     continue</span></span><br><span class="line">                result = num1 / num2</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;计算机结果为：<span class="subst">&#123;num1&#125;</span> <span class="subst">&#123;op&#125;</span> <span class="subst">&#123;num2&#125;</span> = <span class="subst">&#123;result&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;错误：请输入有效的数字！&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;错误：除数不能为0！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行程序</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    cateen_calculator()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">2. 练习for循环：</span></span><br><span class="line"><span class="string">- 创建一个列表，并使用for循环遍历列表中的元素</span></span><br><span class="line"><span class="string">- 创建一个字典，并使用for循环遍历字典中的元素</span></span><br><span class="line"><span class="string">- 创建一个元组，并使用for循环遍历元组中的元素</span></span><br><span class="line"><span class="string">- 创建一个字符串，并使用for循环遍历字符串中的元素</span></span><br><span class="line"><span class="string">- 创建一个列表，并使用for循环遍历列表中的元素，并打印出索引和元素</span></span><br><span class="line"><span class="string">- 创建一个字典，并使用for循环遍历字典中的元素，并打印出键和值</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">for_group_test</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个列表，并使用for循环遍历列表中的元素&quot;</span>)</span><br><span class="line">    list1 = [<span class="number">1</span>, <span class="string">&quot;A&quot;</span>, <span class="number">3</span>, <span class="literal">True</span>, <span class="number">5.0</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">len</span>(list1))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> list1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;列表中的元素为：<span class="subst">&#123;i&#125;</span> 其类型是 <span class="subst">&#123;<span class="built_in">type</span>(i)&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个字典，并使用for循环遍历字典中的元素&quot;</span>)</span><br><span class="line">    dict1 = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&quot;你好&quot;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">4.5</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">6</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dict1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;字典的键是：<span class="subst">&#123;i&#125;</span> 值是：<span class="subst">&#123;dict1[i]&#125;</span>&quot;</span>)</span><br><span class="line">     </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个元组，并使用for循环遍历元组中的元素&quot;</span>)</span><br><span class="line">    tuple1 = (<span class="number">1</span>, <span class="string">&quot;A&quot;</span>, <span class="number">3</span>, <span class="literal">True</span>, <span class="number">5.0</span>, <span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tuple1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;元组中的元素为：<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个字符串，并使用for循环遍历字符串中的元素&quot;</span>)</span><br><span class="line">    string1 = <span class="string">&quot;hello world&quot;</span> </span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">len</span>(string1))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> string1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;字符串中的元素为：<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">       </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个列表，并使用for循环遍历列表中的元素，并打印出索引和元素&quot;</span>)</span><br><span class="line">    list1 = [<span class="number">1</span>, <span class="string">&quot;A&quot;</span>, <span class="number">3</span>, <span class="literal">True</span>, <span class="number">5.0</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(list1)):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;列表中的元素为：<span class="subst">&#123;list1[i]&#125;</span> 索引为：<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个字典，并使用for循环遍历字典中的元素，并打印出键和值&quot;</span>) </span><br><span class="line">    dict1 = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&quot;你好&quot;</span>: <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">4.5</span>, <span class="string">&#x27;d&#x27;</span>: <span class="literal">True</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dict1.keys():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;字典的键是：<span class="subst">&#123;i&#125;</span> 值是：<span class="subst">&#123;dict1[i]&#125;</span>&quot;</span>)</span><br><span class="line">   </span><br><span class="line">        </span><br><span class="line"><span class="comment"># 运行程序</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    for_group_test()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="踩坑与解决"><a href="#踩坑与解决" class="headerlink" title="踩坑与解决"></a>踩坑与解决</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">1.</span> 关于列表打印索引和元素</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(list1)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;列表中的元素为：<span class="subst">&#123;list1[i]&#125;</span> 索引为：<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">- <span class="keyword">for</span> i <span class="keyword">in</span> list1 -&gt; 只能获取元素，不能获取索引</span><br><span class="line">- 所以先<span class="built_in">len</span>(list1) -&gt; 获取列表长度</span><br><span class="line">- 再<span class="built_in">range</span>() -&gt; 生成<span class="number">0</span>到列表长度的数字即索引</span><br><span class="line">- 最后 i 就是索引 列表中的元素就是 list1[i]</span><br><span class="line">- 推荐写法：</span><br><span class="line">    <span class="keyword">for</span> index, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(list1):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;索引：<span class="subst">&#123;index&#125;</span>，元素：<span class="subst">&#123;value&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 关于字典打印键和值</span><br><span class="line">- 写法<span class="number">1</span>（你第一次写的）：</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dict1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;键：<span class="subst">&#123;i&#125;</span> 值：<span class="subst">&#123;dict1[i]&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">- 写法<span class="number">2</span>（你最后写的）：</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dict1.keys():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;键：<span class="subst">&#123;i&#125;</span> 值：<span class="subst">&#123;dict1[i]&#125;</span>&quot;</span>)</span><br><span class="line">- 总结：两个方法的运行结果完全相同, 但写法<span class="number">1</span>是直接遍历字典的所有，</span><br><span class="line">    写法<span class="number">2</span>明确表明遍历字典的键</span><br><span class="line"></span><br><span class="line">- 推荐使用写法<span class="number">3</span>：</span><br><span class="line">- 直接同时拿 键+值，不用 dict1[i]</span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> dict1.items():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;键：<span class="subst">&#123;key&#125;</span>，值：<span class="subst">&#123;value&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 字典的键、值，支持 数字 / 字符串 / 布尔 / 浮点数 任意类型，混着写完全不报错！</span><br><span class="line">dict1 = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&quot;你好&quot;</span>: <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">4.5</span>, <span class="string">&#x27;d&#x27;</span>: <span class="literal">True</span>&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="复习Linux命令"><a href="#复习Linux命令" class="headerlink" title="复习Linux命令"></a>复习Linux命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 查看目录</span></span><br><span class="line"><span class="built_in">ls</span> </span><br><span class="line"><span class="built_in">ls</span> -l  <span class="comment"># 显示详细信息</span></span><br><span class="line"><span class="built_in">ls</span> -lh <span class="comment">#显示详细信息并显示大小</span></span><br><span class="line"><span class="built_in">ls</span> -R  <span class="comment"># 递归查看</span></span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> <span class="built_in">test</span></span><br><span class="line"><span class="built_in">cd</span> .. <span class="comment"># 返回上一级目录</span></span><br><span class="line"><span class="built_in">cd</span> ~  <span class="comment"># 返回根目录</span></span><br><span class="line"><span class="comment"># 删除目录</span></span><br><span class="line"><span class="built_in">rmdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span> <span class="comment"># 强制递归删除 -i会提示确认</span></span><br><span class="line"><span class="comment"># 创建文件</span></span><br><span class="line"><span class="built_in">touch</span> test.txt</span><br><span class="line"><span class="comment"># 写入内容</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world&quot;</span> &gt; test.txt</span><br><span class="line"><span class="comment"># 追加在内容的末尾</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world2&quot;</span> &gt;&gt; test.txt</span><br><span class="line"><span class="comment"># 查看文件</span></span><br><span class="line"><span class="built_in">cat</span> test.txt</span><br><span class="line"><span class="comment"># 删除文件</span></span><br><span class="line"><span class="built_in">rm</span> test.txt</span><br><span class="line"><span class="built_in">rm</span> -rf test.txt <span class="comment">#强制递归删除 </span></span><br><span class="line"><span class="comment"># 重命名/移动文件</span></span><br><span class="line"><span class="built_in">mv</span> old_name.txt new_name.txt <span class="comment"># 重命名（相同类型就是重命名即都是文件、都是目录）</span></span><br><span class="line"><span class="built_in">mv</span> old_name.txt dir1 <span class="comment"># 移动</span></span><br><span class="line"><span class="built_in">mv</span> old_name.txt dir1/new_name.txt <span class="comment"># 移动并重命名</span></span><br><span class="line"><span class="comment"># 复制文件</span></span><br><span class="line"><span class="built_in">cp</span> old_name.txt new_name.txt</span><br><span class="line"><span class="built_in">cp</span> old_name.txt dir1</span><br></pre></td></tr></table></figure>
-
-<h2 id="上传文件到Linux服务器"><a href="#上传文件到Linux服务器" class="headerlink" title="上传文件到Linux服务器"></a>上传文件到Linux服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp 本地文件路径 Linux用户@LinuxIP地址:/Linux目标目录</span><br><span class="line">scp /Users/Desktop/test.py root@192.168.1.1:/root/test</span><br><span class="line"><span class="built_in">ls</span>  <span class="comment"># 查看结果 -R 递归查看所有目录及文件</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>自学记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客：为什么叫侘寂(wabi-sabi)</title>
-    <url>/2026/04/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AB%E4%BE%98%E5%AF%82/</url>
-    <content><![CDATA[<h1 id="你好，世界，这里是侘寂的小站"><a href="#你好，世界，这里是侘寂的小站" class="headerlink" title="你好，世界，这里是侘寂的小站"></a>你好，世界，这里是侘寂的小站</h1><p>我是wabi-sabi-c，一个喜欢慢下来记录生活和技术的人。</p>
-<p>之所以叫侘寂(wabi-sabi)，是因为喜欢那种不完美、朴素又安静的感觉。这个博客，就是我用来存放这些碎片的地方。</p>
-]]></content>
-      <categories>
-        <category>日常</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -1068,6 +978,250 @@
       <tags>
         <tag>Linux</tag>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>step5-Vue3_FrontendChatInterface</title>
+    <url>/2026/05/09/step5-Vue3-FrontendChatInterface/</url>
+    <content><![CDATA[<h1 id="🎯-Step-5：Vue-3-前端聊天界面"><a href="#🎯-Step-5：Vue-3-前端聊天界面" class="headerlink" title="🎯 Step 5：Vue 3 前端聊天界面"></a>🎯 Step 5：Vue 3 前端聊天界面</h1><p>在核心后端已经具备“智能回复”能力，接下来将把网页聊天界面搭建起来，让你可以在浏览器里直接进行对话。</p>
+<ol>
+<li>创建一个 <code>Vue 3 + Vite</code> 的前端项目（脚手架）</li>
+<li>安装必要的库：HTTP 请求工具（axios）、页面路由（vue-router）</li>
+<li>构建两个核心页面：<ul>
+<li><code>ConversationList</code>：左侧对话列表</li>
+<li><code>ChatWindow</code>：右侧聊天区域</li>
+</ul>
+</li>
+<li>与后端 API 联调：发送消息、获取历史、自动显示 AI 回复</li>
+<li>验证效果：在浏览器 <code>http://localhost:5173</code> 看到完整的聊天应用</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="📦-第一步：创建前端的工程骨架"><a href="#📦-第一步：创建前端的工程骨架" class="headerlink" title="📦 第一步：创建前端的工程骨架"></a>📦 第一步：创建前端的工程骨架</h2><p><strong>提示：当然如果提前创建了 <code>frontend</code> 文件夹可以直接删除这个空文件夹再执行命令</strong><br><strong>建议以管理员身份打开 PowerShell</strong>，在项目根目录下执行（确保你的终端路径最后是 <code>ai-chatflow</code>，而不是 <code>backend</code>）:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm create vite@latest frontend -- --template vue</span><br></pre></td></tr></table></figure>
+
+<p>运行成功后，会在当前目录下生成一个 <code>frontend</code> 文件夹，里面是 Vue 3 的基础模板。</p>
+<p>然后进入前端目录<code>frontend</code>, 安装所有依赖和需要的库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> frontend</span><br><span class="line">npm install</span><br><span class="line">npm install vue-router@4 axios</span><br></pre></td></tr></table></figure>
+<p><code>vue-router</code> 用于页面间的导航，<code>axios</code> 用于调用后端 API <code>vue-router@4</code> -&gt; 指定使用的 Vue Router 版本为 4.x 版本</p>
+<h2 id="✏️-第二步：删除脚手架默认文件，准备写我们自己的代码"><a href="#✏️-第二步：删除脚手架默认文件，准备写我们自己的代码" class="headerlink" title="✏️ 第二步：删除脚手架默认文件，准备写我们自己的代码"></a>✏️ 第二步：删除脚手架默认文件，准备写我们自己的代码</h2><p>Vite 会生成一些示例文件，我们全部清空，从头写。</p>
+<ol>
+<li><p>在 VS Code 中打开 frontend&#x2F;src 文件夹。</p>
+</li>
+<li><p><strong>删除</strong> <code>src/components/HelloWorld.vue</code></p>
+</li>
+<li><p><strong>删除</strong> <code>src/assets/vue.svg</code></p>
+</li>
+<li><p><strong>清空</strong> <code>src/App.vue</code> 的内容（保留空文件）</p>
+</li>
+<li><p><strong>清空</strong> <code>src/style.css</code> 的内容</p>
+</li>
+</ol>
+<h2 id="🧱-第三步：创建核心聊天组件"><a href="#🧱-第三步：创建核心聊天组件" class="headerlink" title="🧱 第三步：创建核心聊天组件"></a>🧱 第三步：创建核心聊天组件</h2><p>我们需要建立这样的文件结构：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frontend/src/</span><br><span class="line">├── views/</span><br><span class="line">│   └── ChatView.vue        ← 主聊天页面（左列表 + 右窗口）</span><br><span class="line">├── components/</span><br><span class="line">│   ├── ConversationList.vue</span><br><span class="line">│   └── ChatWindow.vue</span><br><span class="line">├── api/</span><br><span class="line">│   └── index.js            ← 封装 axios 请求</span><br><span class="line">├── router/</span><br><span class="line">│   └── index.js            ← 路由配置</span><br><span class="line">├── App.vue                 ← 根组件</span><br><span class="line">└── main.js                 ← 入口文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-配置-API-请求封装"><a href="#1-配置-API-请求封装" class="headerlink" title="1. 配置 API 请求封装"></a>1. 配置 API 请求封装</h3><p>新建 <code>frontend/src/api/index.js</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件位置：frontend/src/api/index.js</span></span><br><span class="line"><span class="comment">// 作用：统一封装后端请求，方便全局管理</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入axios(发送请求的工具)</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建axios实例(以后所有请求都会自动拼上前缀：http://localhost:8000)</span></span><br><span class="line"><span class="keyword">const</span> apiClient = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="string">&quot;http://localhost:8000&quot;</span>, <span class="comment">// 后端地址</span></span><br><span class="line">  <span class="attr">timeout</span>: <span class="number">10000</span>, <span class="comment">// 请求超时时间10秒</span></span><br><span class="line">  <span class="attr">headers</span>: &#123; <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span> &#125;, <span class="comment">// 请求头 数据格式为json</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面就都是接口方法export default &#123;&#125;可以将这些接口暴露出去，vue组件中import &#123; &#125; from &quot;@/api&quot;就可以使用这些接口了</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">// 创建一个新对话</span></span><br><span class="line">  <span class="title function_">createConversation</span>(<span class="params">conversation</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> apiClient.<span class="title function_">post</span>(<span class="string">&quot;/conversations/&quot;</span>, conversation);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 获取某个用户的所有对话列表</span></span><br><span class="line">  <span class="comment">// 访问地址：/conversations/?user_id=xxx  params 是 axios 固定写法，用来生成？后面的参数</span></span><br><span class="line">  <span class="title function_">getConversations</span>(<span class="params">userId</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> apiClient.<span class="title function_">get</span>(<span class="string">&quot;/conversations/&quot;</span>, &#123; <span class="attr">params</span>: &#123; <span class="attr">user_id</span>: userId &#125; &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 删除一个对话  $&#123;id&#125; = 把变量插进网址</span></span><br><span class="line">  <span class="title function_">deleteConversation</span>(<span class="params">id</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> apiClient.<span class="title function_">delete</span>(<span class="string">`/conversations/<span class="subst">$&#123;id&#125;</span>`</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 获取某个对话里的所有消息</span></span><br><span class="line">  <span class="title function_">getMessages</span>(<span class="params">conversationId</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> apiClient.<span class="title function_">get</span>(<span class="string">`/conversations/<span class="subst">$&#123;conversationId&#125;</span>/messages`</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 发送消息 → 就是调用你最开始写的那个后端接口</span></span><br><span class="line">  <span class="title function_">sendMessage</span>(<span class="params">conversationId, message</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> apiClient.<span class="title function_">post</span>(<span class="string">`/conversations/<span class="subst">$&#123;conversationId&#125;</span>/messages`</span>, message);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-配置路由"><a href="#2-配置路由" class="headerlink" title="2. 配置路由"></a>2. 配置路由</h3><p>新建 <code>frontend/src/router/index.js</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 用户访问网址 / → 显示 ChatView.vue 这个聊天页面</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">- import：导入 </span></span><br><span class="line"><span class="comment">- createRouter：创建路由（导航器）</span></span><br><span class="line"><span class="comment">- createWebHistory：使用正常网址模式（不带 #）</span></span><br><span class="line"><span class="comment">- </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> &#123; createRouter, createWebHistory &#125; <span class="keyword">from</span> <span class="string">&quot;vue-router&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ChatView</span> <span class="keyword">from</span> <span class="string">&quot;../views/ChatView.vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路由规则   path：网址  name：路由名称  component：组件</span></span><br><span class="line"><span class="comment">// 用户访问 http://localhost:5173/ → 显示聊天页面ChatView.vue</span></span><br><span class="line"><span class="keyword">const</span> routes = [&#123; <span class="attr">path</span>: <span class="string">&quot;/&quot;</span>, <span class="attr">name</span>: <span class="string">&quot;Chat&quot;</span>, <span class="attr">component</span>: <span class="title class_">ChatView</span> &#125;];</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">创建路由实例</span></span><br><span class="line"><span class="comment">history: createWebHistory()</span></span><br><span class="line"><span class="comment">用正常网址，比如 http://xxx/</span></span><br><span class="line"><span class="comment">不是老式的 http://xxx/#/</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">routes</span></span><br><span class="line"><span class="comment">把上面写的规则放进去</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(&#123;</span><br><span class="line">  <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(),</span><br><span class="line">  routes,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-修改程序入口"><a href="#3-修改程序入口" class="headerlink" title="3. 修改程序入口"></a>3. 修改程序入口</h3><p>打开 <code>frontend/src/main.js</code>, 完全替换为以下内容：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">这是 Vue 项目的入口文件（相当于整个项目的总开关）</span></span><br><span class="line"><span class="comment">创建 Vue 项目 → 安装路由 → 把项目挂载到页面上运行起来</span></span><br><span class="line"><span class="comment">1. import &#123; createApp &#125; from &quot;vue&quot;;</span></span><br><span class="line"><span class="comment">    - 从 Vue 本身，导入创建应用的方法</span></span><br><span class="line"><span class="comment">    - createApp = 造一个 Vue 项目</span></span><br><span class="line"><span class="comment">2. import App from &quot;./App.vue&quot;;</span></span><br><span class="line"><span class="comment">    - 导入根组件</span></span><br><span class="line"><span class="comment">    - App.vue = 整个项目的大总管页面</span></span><br><span class="line"><span class="comment">    - 所有页面都放在它里面</span></span><br><span class="line"><span class="comment">3. import router from &quot;./router&quot;;</span></span><br><span class="line"><span class="comment">    - 导入路由</span></span><br><span class="line"><span class="comment">    - 让 Vue 知道：网址切换要显示哪个页面</span></span><br><span class="line"><span class="comment">4. const app = createApp(App);</span></span><br><span class="line"><span class="comment">    - 创建 Vue 应用实例</span></span><br><span class="line"><span class="comment">    - 相当于：项目启动了</span></span><br><span class="line"><span class="comment">5. app.use(router);</span></span><br><span class="line"><span class="comment">    - 给 Vue 安装路由插件</span></span><br><span class="line"><span class="comment">    - 告诉项目：我要用路由跳转页面！</span></span><br><span class="line"><span class="comment">    - **这一步必须写**，否则路由不生效</span></span><br><span class="line"><span class="comment">6. app.mount(&quot;#app&quot;);</span></span><br><span class="line"><span class="comment">    - 把 Vue 项目挂载到网页上</span></span><br><span class="line"><span class="comment">    - 找到网页里 id=&quot;app&quot; 的标签</span></span><br><span class="line"><span class="comment">    - 把整个项目渲染进去</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">1. 用生活比喻（秒懂）</span></span><br><span class="line"><span class="comment">    - createApp = 买一套房子</span></span><br><span class="line"><span class="comment">    - App.vue = 房子主体结构</span></span><br><span class="line"><span class="comment">    - router = 房子里的房间导航</span></span><br><span class="line"><span class="comment">    - app.use(router) = 把导航装到房子里</span></span><br><span class="line"><span class="comment">    - app.mount(&quot;#app&quot;) = 把房子放到地基上，开始住人</span></span><br><span class="line"><span class="comment">2. 这 5 行代码的执行流程（超级清晰）</span></span><br><span class="line"><span class="comment">    - 造一个 Vue 项目</span></span><br><span class="line"><span class="comment">    - 把根页面 App.vue 装进去</span></span><br><span class="line"><span class="comment">    - 把路由（导航）装进去</span></span><br><span class="line"><span class="comment">    - 把整个项目渲染到网页上</span></span><br><span class="line"><span class="comment">    - 项目成功跑起来！</span></span><br><span class="line"><span class="comment">3. 所有插件（路由、组件库等）都必须用 app.use () 安装</span></span><br><span class="line"><span class="comment">   最后必须 mount，否则页面一片空白</span></span><br><span class="line"><span class="comment">4. 启动项目 + 启用路由 + 渲染页面</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&quot;./router&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>);</span><br><span class="line">app.<span class="title function_">use</span>(router);</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&quot;#app&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-修改根组件-App-vue"><a href="#4-修改根组件-App-vue" class="headerlink" title="4. 修改根组件 App.vue"></a>4. 修改根组件 App.vue</h3><p><strong>清空原有内容</strong>, 粘贴：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;!--这是网页结构--&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;!-- 这是整个项目的最外层盒子所有内容都放这里面 --&gt;</span><br><span class="line">    &lt;router-view /&gt;</span><br><span class="line">    &lt;!-- 核心中的核心！这就是路由的 “显示窗口”! 你之前配置的:path: &#x27;/&#x27;, component: ChatView --&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">body &#123;</span><br><span class="line">  margin: 0;</span><br><span class="line">  /* 去掉网页默认边距 */</span><br><span class="line">  font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana, sans-serif;</span><br><span class="line">  /* 统一字体 */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#app &#123;</span><br><span class="line">  height: 100vh;</span><br><span class="line">  /* 高度占满整个屏幕 */</span><br><span class="line">  display: flex;</span><br><span class="line">  /* 弹性布局（方便聊天界面排版） */</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="5-整个项目结构就是-main-js-项目启动入口-→-router-index-js-配置路由-导航地图-→-App-vue-总外壳-屏幕-→-ChatView-vue-真正的聊天页面-→-api-index-js-发请求给后端"><a href="#5-整个项目结构就是-main-js-项目启动入口-→-router-index-js-配置路由-导航地图-→-App-vue-总外壳-屏幕-→-ChatView-vue-真正的聊天页面-→-api-index-js-发请求给后端" class="headerlink" title="5.整个项目结构就是 main.js 项目启动入口 → router&#x2F;index.js 配置路由(导航地图) → App.vue 总外壳 + 屏幕 → ChatView.vue 真正的聊天页面 → api&#x2F;index.js 发请求给后端"></a>5.整个项目结构就是 main.js 项目启动入口 → router&#x2F;index.js 配置路由(导航地图) → App.vue 总外壳 + 屏幕 → ChatView.vue 真正的聊天页面 → api&#x2F;index.js 发请求给后端</h3><h2 id="💬-第四步：编写聊天界面组件"><a href="#💬-第四步：编写聊天界面组件" class="headerlink" title="💬 第四步：编写聊天界面组件"></a>💬 第四步：编写聊天界面组件</h2><h3 id="1-对话列表组件-ConversationList-vue"><a href="#1-对话列表组件-ConversationList-vue" class="headerlink" title="1. 对话列表组件 ConversationList.vue"></a>1. 对话列表组件 <code>ConversationList.vue</code></h3><p>新建 <code>frontend/src/components/ConversationList.vue</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;conversation-list&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;header&quot;&gt;</span><br><span class="line">      &lt;h3&gt;对话列表&lt;/h3&gt;</span><br><span class="line">      &lt;button @click=&quot;$emit(&#x27;new&#x27;)&quot;&gt;+ 新建&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;!-- 循环显示对话列表 循环数组 conversations Vue 循环必须加 key，用对话 id 就行 </span><br><span class="line">       如果当前对话 id = 选中的 id  自动加上 active 样式（变灰、加粗） --&gt;</span><br><span class="line">      &lt;li v-for=&quot;conv in conversations&quot; :key=&quot;conv.id&quot; :class=&quot;&#123; active: conv.id === activeId &#125;&quot;</span><br><span class="line">        @click=&quot;$emit(&#x27;select&#x27;, conv.id)&quot;&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123; conv.title &#125;&#125;&lt;/span&gt;</span><br><span class="line">        &lt;!-- @click.stop = 阻止事件往上跳（避免点删除时触发切换对话） --&gt;</span><br><span class="line">        &lt;button class=&quot;del-btn&quot; @click.stop=&quot;$emit(&#x27;delete&#x27;, conv.id)&quot;&gt;</span><br><span class="line">          🗑️</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">      &lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">defineProps(&#123;</span><br><span class="line">  conversations: Array,</span><br><span class="line">  activeId: Number,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">defineEmits([&quot;new&quot;, &quot;select&quot;, &quot;delete&quot;]);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.conversation-list &#123;</span><br><span class="line">  width: 260px;</span><br><span class="line">  background: #f5f5f5;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  height: 100vh;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header &#123;</span><br><span class="line">  padding: 1rem;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: space-between;</span><br><span class="line">  align-items: center;</span><br><span class="line">  border-bottom: 1px solid #ddd;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ul &#123;</span><br><span class="line">  list-style: none;</span><br><span class="line">  padding: 0;</span><br><span class="line">  overflow-y: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li &#123;</span><br><span class="line">  padding: 0.8rem 1rem;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: space-between;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">li.active &#123;</span><br><span class="line">  background: #e0e0e0;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.del-btn &#123;</span><br><span class="line">  background: none;</span><br><span class="line">  border: none;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">  font-size: 0.9rem;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-聊天窗口组件-ChatWindow-vue"><a href="#2-聊天窗口组件-ChatWindow-vue" class="headerlink" title="2. 聊天窗口组件 ChatWindow.vue"></a>2. 聊天窗口组件 <code>ChatWindow.vue</code></h3><p>新建 <code>frontend/src/components/ChatWindow.vue</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;chat-window&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;messages&quot; ref=&quot;msgContainer&quot;&gt;</span><br><span class="line">            &lt;div v-for=&quot;msg in messages&quot; :key=&quot;msg.id&quot; :class=&quot;[&#x27;message&#x27;, msg.role]&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;content&quot;&gt;&#123;&#123; msg.content &#125;&#125;&lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;input-area&quot;&gt;</span><br><span class="line">            &lt;input v-model=&quot;inputText&quot; @keyup.enter=&quot;send&quot; placeholder=&quot;输入消息，按回车发送...&quot; :disabled=&quot;sending&quot; /&gt;</span><br><span class="line">            &lt;button @click=&quot;send&quot; :disabled=&quot;sending&quot;&gt;发送&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, watch, nextTick &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const props = defineProps(&#123;</span><br><span class="line">    messages: Array,</span><br><span class="line">    conversationId: Number</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const emit = defineEmits([&#x27;send&#x27;])</span><br><span class="line"></span><br><span class="line">const inputText = ref(&#x27;&#x27;)</span><br><span class="line">const sending = ref(false)</span><br><span class="line">const msgContainer = ref(null)</span><br><span class="line"></span><br><span class="line">async function send() &#123;</span><br><span class="line">    const text = inputText.value.trim()</span><br><span class="line">    if (!text || sending.value) return</span><br><span class="line">    sending.value = true</span><br><span class="line">    emit(&#x27;send&#x27;, text)</span><br><span class="line">    // 等父组件发出后清空</span><br><span class="line">    inputText.value = &#x27;&#x27;</span><br><span class="line">    // 发送结束由父组件控制，这里简单延迟取消（或者通过 watch props 来判断，简单做法就是固定延迟后恢复）</span><br><span class="line">    setTimeout(() =&gt; &#123; sending.value = false &#125;, 500)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 自动滚到底部</span><br><span class="line">watch(() =&gt; props.messages.length, async () =&gt; &#123;</span><br><span class="line">    await nextTick()</span><br><span class="line">    if (msgContainer.value) &#123;</span><br><span class="line">        msgContainer.value.scrollTop = msgContainer.value.scrollHeight</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.chat-window &#123;</span><br><span class="line">    flex: 1;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    height: 100vh;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.messages &#123;</span><br><span class="line">    flex: 1;</span><br><span class="line">    overflow-y: auto;</span><br><span class="line">    padding: 1rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.message &#123;</span><br><span class="line">    margin-bottom: 0.8rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.message.user .content &#123;</span><br><span class="line">    background: #dcf8c6;</span><br><span class="line">    align-self: flex-end;</span><br><span class="line">    padding: 0.6rem 1rem;</span><br><span class="line">    border-radius: 12px 12px 0 12px;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    max-width: 70%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.message.assistant .content &#123;</span><br><span class="line">    background: #ffffff;</span><br><span class="line">    border: 1px solid #ddd;</span><br><span class="line">    padding: 0.6rem 1rem;</span><br><span class="line">    border-radius: 12px 12px 12px 0;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    max-width: 70%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.input-area &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    padding: 0.8rem;</span><br><span class="line">    border-top: 1px solid #ddd;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.input-area input &#123;</span><br><span class="line">    flex: 1;</span><br><span class="line">    padding: 0.5rem;</span><br><span class="line">    border: 1px solid #ccc;</span><br><span class="line">    border-radius: 6px;</span><br><span class="line">    margin-right: 0.5rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.input-area button &#123;</span><br><span class="line">    padding: 0.5rem 1rem;</span><br><span class="line">    background: #42b983;</span><br><span class="line">    color: white;</span><br><span class="line">    border: none;</span><br><span class="line">    border-radius: 6px;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-主聊天视图-ChatView-vue"><a href="#3-主聊天视图-ChatView-vue" class="headerlink" title="3. 主聊天视图 ChatView.vue"></a>3. 主聊天视图 <code>ChatView.vue</code></h3><p>新建 <code>frontend/src/views/ChatView.vue</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;chat-layout&quot;&gt;</span><br><span class="line">        &lt;ConversationList :conversations=&quot;conversations&quot; :activeId=&quot;activeConvId&quot; @new=&quot;createConversation&quot;</span><br><span class="line">            @select=&quot;selectConversation&quot; @delete=&quot;handleDelete&quot; /&gt;</span><br><span class="line">        &lt;ChatWindow v-if=&quot;activeConvId&quot; :messages=&quot;currentMessages&quot; :conversationId=&quot;activeConvId&quot;</span><br><span class="line">            @send=&quot;sendMessage&quot; /&gt;</span><br><span class="line">        &lt;div v-else class=&quot;no-chat&quot;&gt;</span><br><span class="line">            请选择或创建一个对话</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--这是 Vue3 的语法，表示这里写逻辑代码 </span><br><span class="line">1. 从 Vue 官方库里导入 3 个工具：</span><br><span class="line">- ref：创建响应式变量 **数据一变，页面自动更新**</span><br><span class="line">- computed：创建计算属性 **依赖变，我就自动重新算**</span><br><span class="line">- onMounted：挂载完成生命周期 **组件刚显示出来，立刻做某事**</span><br><span class="line">--&gt;</span><br><span class="line">&lt;script setup&gt;  </span><br><span class="line">import &#123; ref, computed, onMounted &#125; from &#x27;vue&#x27;</span><br><span class="line">import ConversationList from &#x27;../components/ConversationList.vue&#x27;</span><br><span class="line">import ChatWindow from &#x27;../components/ChatWindow.vue&#x27;</span><br><span class="line">import api from &#x27;../api/index.js&#x27;</span><br><span class="line"></span><br><span class="line">const userId = 1  // 因为还未做登录，先硬编码为注册的用户 ID</span><br><span class="line"></span><br><span class="line">const conversations = ref([])</span><br><span class="line">const activeConvId = ref(null)</span><br><span class="line">const messagesMap = ref(&#123;&#125;)  // &#123; convId: [msg, ...] &#125;</span><br><span class="line"></span><br><span class="line">const currentMessages = computed(() =&gt; &#123;</span><br><span class="line">    return messagesMap.value[activeConvId.value] || []</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 初始化：加载用户对话列表</span><br><span class="line">onMounted(async () =&gt; &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        const res = await api.getConversations(userId)</span><br><span class="line">        conversations.value = res.data</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        console.error(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 创建新对话</span><br><span class="line">async function createConversation() &#123;</span><br><span class="line">    const title = prompt(&#x27;请输入对话标题：&#x27;)</span><br><span class="line">    if (!title) return</span><br><span class="line">    try &#123;</span><br><span class="line">        const res = await api.createConversation(&#123; title, user_id: userId &#125;)</span><br><span class="line">        conversations.value.unshift(res.data)</span><br><span class="line">        activeConvId.value = res.data.id</span><br><span class="line">        messagesMap.value[res.data.id] = []</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        console.error(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 选择对话，加载消息</span><br><span class="line">async function selectConversation(id) &#123;</span><br><span class="line">    activeConvId.value = id</span><br><span class="line">    if (!messagesMap.value[id]) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            const res = await api.getMessages(id)</span><br><span class="line">            messagesMap.value[id] = res.data</span><br><span class="line">        &#125; catch (e) &#123;</span><br><span class="line">            console.error(e)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 发送消息</span><br><span class="line">async function sendMessage(text) &#123;</span><br><span class="line">    if (!activeConvId.value) return</span><br><span class="line">    try &#123;</span><br><span class="line">        // 1. 先乐观更新用户消息到界面</span><br><span class="line">        const tempUserMsg = &#123; id: Date.now(), role: &#x27;user&#x27;, content: text, conversation_id: activeConvId.value &#125;</span><br><span class="line">        if (!messagesMap.value[activeConvId.value]) &#123;</span><br><span class="line">            messagesMap.value[activeConvId.value] = []</span><br><span class="line">        &#125;</span><br><span class="line">        messagesMap.value[activeConvId.value].push(tempUserMsg)</span><br><span class="line"></span><br><span class="line">        // 2. 发送到后端，等待 AI 回复</span><br><span class="line">        const res = await api.sendMessage(activeConvId.value, &#123; role: &#x27;user&#x27;, content: text &#125;)</span><br><span class="line">        // 后端返回的是 AI 回复的消息对象</span><br><span class="line">        const aiMsg = res.data</span><br><span class="line">        // 用后端返回的真实消息替换掉本地的临时用户消息</span><br><span class="line">        // 简单做法：删除临时消息，把后端返回的用户消息（如果有）和 AI 消息都加进去</span><br><span class="line">        // 但后端 send_message 只返回 AI 消息，所以我们需要再拉取一次完整消息列表以确保同步</span><br><span class="line">        // 为了简单，我们拉取最新全部消息</span><br><span class="line">        const updatedRes = await api.getMessages(activeConvId.value)</span><br><span class="line">        messagesMap.value[activeConvId.value] = updatedRes.data</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        console.error(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 删除对话</span><br><span class="line">async function handleDelete(id) &#123;</span><br><span class="line">    if (!confirm(&#x27;确定删除这个对话吗？&#x27;)) return</span><br><span class="line">    try &#123;</span><br><span class="line">        await api.deleteConversation(id)</span><br><span class="line">        conversations.value = conversations.value.filter(c =&gt; c.id !== id)</span><br><span class="line">        delete messagesMap.value[id]</span><br><span class="line">        if (activeConvId.value === id) activeConvId.value = null</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        console.error(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.chat-layout &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    height: 100vh;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.no-chat &#123;</span><br><span class="line">    flex: 1;</span><br><span class="line">    display: flex;</span><br><span class="line">    align-items: center;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    color: #999;</span><br><span class="line">    font-size: 1.2rem;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<details>
+
+<summary> 关于ChatView.vue的template部分逐行解释,AI生成：</summary>
+
+<p>这是一个Vue 单文件组件（.vue），用来做聊天页面：左边是会话列表，右边是聊天窗口，没选会话就显示提示文字。</p>
+<pre><code>&lt;ConversationList 
+    :conversations=&quot;conversations&quot; 
+    :activeId=&quot;activeConvId&quot; 
+    @new=&quot;createConversation&quot;
+    @select=&quot;selectConversation&quot; 
+    @delete=&quot;handleDelete&quot; 
+/&gt;
+</code></pre>
+<p>这一行是核心业务组件，我拆成 6 小段讲：</p>
+<ol>
+<li>&lt; ConversationList</li>
+</ol>
+<ul>
+<li>大白话：调用一个封装好的左侧会话列表组件，就像用一个现成的 UI 零件。</li>
+<li>原理：Vue 是组件化开发，把页面拆成小零件（会话列表、聊天窗口），复用 + 好维护。</li>
+<li>官方格式：组件名用大驼峰（PascalCase），这是 Vue 官方推荐写法。</li>
+</ul>
+<ol>
+<li>:conversations&#x3D;”conversations”</li>
+</ol>
+<ul>
+<li>大白话：把父组件的对话列表数据，传给子组件。</li>
+<li>左边列表要显示哪些对话，全靠这个数据。</li>
+<li>原理：: 是 v-bind 缩写 → 父传子 数据绑定。</li>
+<li>官方格式：属性名用小驼峰，值用双引号包变量。</li>
+</ul>
+<ol>
+<li>:activeId&#x3D;”activeConvId”</li>
+</ol>
+<ul>
+<li>大白话：告诉子组件当前哪个对话是选中状态，高亮显示。</li>
+<li>原理：还是父传子，把选中的对话 ID 传给列表组件。</li>
+</ul>
+<ol>
+<li>@new&#x3D;”createConversation”</li>
+</ol>
+<ul>
+<li>大白话：子组件触发 <strong>“新建对话”</strong> 时，父组件执行 createConversation 方法。</li>
+<li>原理：@ 是 v-on 缩写 → 子传父 事件通信。</li>
+<li>官方格式：事件名用短横线 &#x2F; 小驼峰都行，方法名小驼峰。</li>
+</ul>
+<ol>
+<li>@select&#x3D;”selectConversation”</li>
+</ol>
+<ul>
+<li>大白话：点击列表里的对话，触发选中，父组件切换聊天内容。</li>
+</ul>
+<ol>
+<li>@delete&#x3D;”handleDelete”</li>
+</ol>
+<ul>
+<li>大白话：删除对话时，子组件通知父组件执行删除逻辑。</li>
+</ul>
+<ol>
+<li>&#x2F;&gt;</li>
+</ol>
+<ul>
+<li>大白话：自闭和标签，组件没有子内容就这么写，简洁。</li>
+</ul>
+</details>
+
+<h2 id="🚀-第五步：启动前端并验收"><a href="#🚀-第五步：启动前端并验收" class="headerlink" title="🚀 第五步：启动前端并验收"></a>🚀 第五步：启动前端并验收</h2><ol>
+<li><p>确保后端在运行<code>http://localhost:8000</code></p>
+</li>
+<li><p>在 <code>frontend</code> 目录下启动前端开发服务器：<br><code>npm run dev</code></p>
+</li>
+<li><p>浏览器打开 <code>http://localhost:5173</code>, 应该看到一个空的聊天页面</p>
+</li>
+</ol>
+<h2 id="🎉-验收："><a href="#🎉-验收：" class="headerlink" title="🎉 验收："></a>🎉 验收：</h2><p>✅ 验收清单</p>
+<ul>
+<li><p>左侧出现对话列表，点击“+ 新建”可以创建一个对话</p>
+</li>
+<li><p>点击对话可以进入聊天界面，输入文字并回车发送</p>
+</li>
+<li><p>发送后能够收到一条 AI 回复（模拟内容）</p>
+</li>
+<li><p>删除对话功能正常</p>
+</li>
+<li><p>刷新页面后对话列表依然存在（数据在后端持久化）</p>
+</li>
+</ul>
+<h1 id="最后的最后我深刻反思Vue那部分代码太烦人了，一点儿都不想看，注释又不好直接注释，template里要用注释-script里要用-内容-注释-真的烦人。说这么多是想告诉你们，自己研究vue部分的代码吧，我这里就不多写，不解释了。"><a href="#最后的最后我深刻反思Vue那部分代码太烦人了，一点儿都不想看，注释又不好直接注释，template里要用注释-script里要用-内容-注释-真的烦人。说这么多是想告诉你们，自己研究vue部分的代码吧，我这里就不多写，不解释了。" class="headerlink" title="最后的最后我深刻反思Vue那部分代码太烦人了，一点儿都不想看，注释又不好直接注释，template里要用&lt;!--内容--&gt;注释,script里要用/*内容*/注释,真的烦人。说这么多是想告诉你们，自己研究vue部分的代码吧，我这里就不多写，不解释了。"></a>最后的最后我深刻反思Vue那部分代码太烦人了，一点儿都不想看，注释又不好直接注释，template里要用<code>&lt;!--内容--&gt;</code>注释,script里要用<code>/*内容*/</code>注释,真的烦人。说这么多是想告诉你们，自己研究vue部分的代码吧，我这里就不多写，不解释了。</h1>]]></content>
+      <categories>
+        <category>ai-chatflow</category>
+      </categories>
+      <tags>
+        <tag>Python Project</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一、全新的开始，实事求是</title>
+    <url>/2026/04/28/%E4%B8%80%E3%80%81%E5%85%A8%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B%EF%BC%8C%E5%AE%9E%E4%BA%8B%E6%B1%82%E6%98%AF/</url>
+    <content><![CDATA[<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="总原则"><a href="#总原则" class="headerlink" title="总原则"></a>总原则</h2><ul>
+<li>不背、不抄、不看长教程</li>
+<li>只做三件事：默写 -&gt; 仿写 -&gt; 改写</li>
+<li>写错随便，允许查，但全程必须自己敲下来<span id="more"></span></li>
+</ul>
+<h2 id="任务一：默写两个函数（不看任何东西，硬着头皮写下来）"><a href="#任务一：默写两个函数（不看任何东西，硬着头皮写下来）" class="headerlink" title="任务一：默写两个函数（不看任何东西，硬着头皮写下来）"></a>任务一：默写两个函数（不看任何东西，硬着头皮写下来）</h2><ol>
+<li>写一个求和的函数</li>
+<li>写一个打招呼的函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 求和的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">    <span class="built_in">float</span> a, b, s</span><br><span class="line">    a.<span class="built_in">input</span>() = <span class="built_in">print</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>)</span><br><span class="line">    b.<span class="built_in">input</span>() = <span class="built_in">print</span>(<span class="string">&quot;请输入另一个数字b：&quot;</span>)</span><br><span class="line">    s = <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> + 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;a + b&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打招呼的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;你好呀！&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="任务二：对照改错，再默写1遍（没有错，就优化）"><a href="#任务二：对照改错，再默写1遍（没有错，就优化）" class="headerlink" title="任务二：对照改错，再默写1遍（没有错，就优化）"></a>任务二：对照改错，再默写1遍（没有错，就优化）</h2><ol>
+<li><code>float a, b, s</code>这行不需要写，python是动态语言，不用提前声明变量类型，直接使用即可</li>
+<li><code>a.input() = print()</code>写反了，<code>print()</code>是“输出”，<code>input()</code>是“输入”，正确写法是：<code>a = float(input(&quot;请输入一个数字a：&quot;))</code>  </li>
+<li><code>s = print()</code>不对，<code>print()</code>函数的作用只是在屏幕上显示文字，本身没有返回值或者返回None 所以<code>return</code>会没有东西返回</li>
+<li>函数写了但没有调用，等于白写<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 改错后</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">    a = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>))</span><br><span class="line">    b = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字b：&quot;</span>))</span><br><span class="line">    s = a + b</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> + 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;s&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;你好呀！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>  __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">sum</span>()</span><br><span class="line">    hello()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="任务三：仿写1个新函数（比如：写个乘法的函数）"><a href="#任务三：仿写1个新函数（比如：写个乘法的函数）" class="headerlink" title="任务三：仿写1个新函数（比如：写个乘法的函数）"></a>任务三：仿写1个新函数（比如：写个乘法的函数）</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>():</span><br><span class="line">    a = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字a：&quot;</span>))</span><br><span class="line">    b = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字b：&quot;</span>))</span><br><span class="line">    m = a * b</span><br><span class="line">    <span class="comment"># 改正，没有打印，运行看不到结果，需要加print()</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;数字a：<span class="subst">&#123;a&#125;</span> * 数字b：<span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    multiply()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="验收标准"><a href="#验收标准" class="headerlink" title="验收标准"></a>验收标准</h2><ol>
+<li>能独自写出大概结构</li>
+<li>写错再改，改完再写1遍</li>
+</ol>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="总原则-1"><a href="#总原则-1" class="headerlink" title="总原则"></a>总原则</h2><ol>
+<li>这个命令是干什么用的？</li>
+<li>这个命令怎么写？</li>
+<li>这个命令我能用在哪里？</li>
+</ol>
+<h2 id="任务一：只练习5个命令，每个敲3遍"><a href="#任务一：只练习5个命令，每个敲3遍" class="headerlink" title="任务一：只练习5个命令，每个敲3遍"></a>任务一：只练习5个命令，每个敲3遍</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<details>
+
+<summary>点击展开隐藏内容</summary>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前所在目录</span></span><br><span class="line"><span class="built_in">pwd</span> </span><br><span class="line"><span class="comment"># 查看当前目录内容</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="comment"># 移动到根目录</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="comment"># 创建目录test</span></span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 强制递归删除目录test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+</details>
+
+
+
+<p><img src="/images/LinuxCode_result.png" alt="练习结果"></p>
+<h2 id="验收标准-1"><a href="#验收标准-1" class="headerlink" title="验收标准"></a>验收标准</h2><ol>
+<li>熟练敲5个Linux命令</li>
+<li>知道它们的作用</li>
+</ol>
+]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>四、python&amp;Linux_learning</title>
+    <url>/2026/04/30/%E5%9B%9B%E3%80%81python-Linux-learning/</url>
+    <content><![CDATA[<ul>
+<li>今天继续学习python，默写出上一篇的计算器代码或者熟悉整个框架，for循环练习</li>
+<li>Linux还是复习练习这些命令：<code>touch、 echo、 cat、 cp、 mv、 rm、 mkdir、 rmdir、 ls、 pwd、 ip addr、 ping、 cd </code><span id="more"></span></li>
+</ul>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">1. 复盘巩固: 把昨天食堂计算器核心逻辑过一遍</span></span><br><span class="line"><span class="string">- try-except 作用</span></span><br><span class="line"><span class="string">- lower() 转小写</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 食堂计算器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cateen_calculator</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;欢迎来到食堂计算器！&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;请输入需要计算的两个数字和运算符：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;按&#x27;q&#x27;退出食堂计算器&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 先判断是否需要按&#x27;q&#x27;退出</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;是否使用食堂计算机？按&#x27;q&#x27;退出，回车继续使用&quot;</span>)</span><br><span class="line">        cleck = <span class="built_in">input</span>()</span><br><span class="line">        <span class="keyword">if</span> cleck.lower() == <span class="string">&#x27;q&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;欢迎下次再来！&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 获取两个数字和运算符</span></span><br><span class="line">            num1 = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入第一个数字：&quot;</span>))</span><br><span class="line">            num2 = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入第二个数字：&quot;</span>))</span><br><span class="line">            op = <span class="built_in">input</span>(<span class="string">&quot;请输入运算符(加: + 减: - 乘: * 除: / )：&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 判断运算符是否输入正确</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> op <span class="keyword">in</span> [<span class="string">&#x27;+&#x27;</span>, <span class="string">&#x27;-&#x27;</span>, <span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;/&#x27;</span>]:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;\n请输入正确的运算符(加: + 减: - 乘: * 除: / )\n&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行判断是否计算这个计算公式</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;是否计算 <span class="subst">&#123;num1&#125;</span> <span class="subst">&#123;op&#125;</span> <span class="subst">&#123;num2&#125;</span> =  ？ (Y/N)&quot;</span>)</span><br><span class="line">            check = <span class="built_in">input</span>()</span><br><span class="line">            <span class="keyword">if</span> check.lower() == <span class="string">&#x27;n&#x27;</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;已取消计算！&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进行计算</span></span><br><span class="line">            <span class="keyword">if</span> op == <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">                result = num1 + num2</span><br><span class="line">            <span class="keyword">elif</span> op == <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">                result = num1 - num2</span><br><span class="line">            <span class="keyword">elif</span> op == <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">                result = num1 * num2</span><br><span class="line">            <span class="keyword">elif</span> op == <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">                <span class="comment"># if num2 == 0:</span></span><br><span class="line">                <span class="comment">#     print(&quot;除数不能为0！&quot;)</span></span><br><span class="line">                <span class="comment">#     continue</span></span><br><span class="line">                result = num1 / num2</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;计算机结果为：<span class="subst">&#123;num1&#125;</span> <span class="subst">&#123;op&#125;</span> <span class="subst">&#123;num2&#125;</span> = <span class="subst">&#123;result&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;错误：请输入有效的数字！&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;错误：除数不能为0！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行程序</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    cateen_calculator()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">2. 练习for循环：</span></span><br><span class="line"><span class="string">- 创建一个列表，并使用for循环遍历列表中的元素</span></span><br><span class="line"><span class="string">- 创建一个字典，并使用for循环遍历字典中的元素</span></span><br><span class="line"><span class="string">- 创建一个元组，并使用for循环遍历元组中的元素</span></span><br><span class="line"><span class="string">- 创建一个字符串，并使用for循环遍历字符串中的元素</span></span><br><span class="line"><span class="string">- 创建一个列表，并使用for循环遍历列表中的元素，并打印出索引和元素</span></span><br><span class="line"><span class="string">- 创建一个字典，并使用for循环遍历字典中的元素，并打印出键和值</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">for_group_test</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个列表，并使用for循环遍历列表中的元素&quot;</span>)</span><br><span class="line">    list1 = [<span class="number">1</span>, <span class="string">&quot;A&quot;</span>, <span class="number">3</span>, <span class="literal">True</span>, <span class="number">5.0</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">len</span>(list1))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> list1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;列表中的元素为：<span class="subst">&#123;i&#125;</span> 其类型是 <span class="subst">&#123;<span class="built_in">type</span>(i)&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个字典，并使用for循环遍历字典中的元素&quot;</span>)</span><br><span class="line">    dict1 = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&quot;你好&quot;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">4.5</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">6</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dict1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;字典的键是：<span class="subst">&#123;i&#125;</span> 值是：<span class="subst">&#123;dict1[i]&#125;</span>&quot;</span>)</span><br><span class="line">     </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个元组，并使用for循环遍历元组中的元素&quot;</span>)</span><br><span class="line">    tuple1 = (<span class="number">1</span>, <span class="string">&quot;A&quot;</span>, <span class="number">3</span>, <span class="literal">True</span>, <span class="number">5.0</span>, <span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tuple1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;元组中的元素为：<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个字符串，并使用for循环遍历字符串中的元素&quot;</span>)</span><br><span class="line">    string1 = <span class="string">&quot;hello world&quot;</span> </span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">len</span>(string1))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> string1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;字符串中的元素为：<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">       </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个列表，并使用for循环遍历列表中的元素，并打印出索引和元素&quot;</span>)</span><br><span class="line">    list1 = [<span class="number">1</span>, <span class="string">&quot;A&quot;</span>, <span class="number">3</span>, <span class="literal">True</span>, <span class="number">5.0</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(list1)):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;列表中的元素为：<span class="subst">&#123;list1[i]&#125;</span> 索引为：<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建一个字典，并使用for循环遍历字典中的元素，并打印出键和值&quot;</span>) </span><br><span class="line">    dict1 = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&quot;你好&quot;</span>: <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">4.5</span>, <span class="string">&#x27;d&#x27;</span>: <span class="literal">True</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dict1.keys():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;字典的键是：<span class="subst">&#123;i&#125;</span> 值是：<span class="subst">&#123;dict1[i]&#125;</span>&quot;</span>)</span><br><span class="line">   </span><br><span class="line">        </span><br><span class="line"><span class="comment"># 运行程序</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    for_group_test()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="踩坑与解决"><a href="#踩坑与解决" class="headerlink" title="踩坑与解决"></a>踩坑与解决</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">1.</span> 关于列表打印索引和元素</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(list1)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;列表中的元素为：<span class="subst">&#123;list1[i]&#125;</span> 索引为：<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">- <span class="keyword">for</span> i <span class="keyword">in</span> list1 -&gt; 只能获取元素，不能获取索引</span><br><span class="line">- 所以先<span class="built_in">len</span>(list1) -&gt; 获取列表长度</span><br><span class="line">- 再<span class="built_in">range</span>() -&gt; 生成<span class="number">0</span>到列表长度的数字即索引</span><br><span class="line">- 最后 i 就是索引 列表中的元素就是 list1[i]</span><br><span class="line">- 推荐写法：</span><br><span class="line">    <span class="keyword">for</span> index, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(list1):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;索引：<span class="subst">&#123;index&#125;</span>，元素：<span class="subst">&#123;value&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 关于字典打印键和值</span><br><span class="line">- 写法<span class="number">1</span>（你第一次写的）：</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dict1:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;键：<span class="subst">&#123;i&#125;</span> 值：<span class="subst">&#123;dict1[i]&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">- 写法<span class="number">2</span>（你最后写的）：</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dict1.keys():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;键：<span class="subst">&#123;i&#125;</span> 值：<span class="subst">&#123;dict1[i]&#125;</span>&quot;</span>)</span><br><span class="line">- 总结：两个方法的运行结果完全相同, 但写法<span class="number">1</span>是直接遍历字典的所有，</span><br><span class="line">    写法<span class="number">2</span>明确表明遍历字典的键</span><br><span class="line"></span><br><span class="line">- 推荐使用写法<span class="number">3</span>：</span><br><span class="line">- 直接同时拿 键+值，不用 dict1[i]</span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> dict1.items():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;键：<span class="subst">&#123;key&#125;</span>，值：<span class="subst">&#123;value&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 字典的键、值，支持 数字 / 字符串 / 布尔 / 浮点数 任意类型，混着写完全不报错！</span><br><span class="line">dict1 = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&quot;你好&quot;</span>: <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">4.5</span>, <span class="string">&#x27;d&#x27;</span>: <span class="literal">True</span>&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="复习Linux命令"><a href="#复习Linux命令" class="headerlink" title="复习Linux命令"></a>复习Linux命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 查看目录</span></span><br><span class="line"><span class="built_in">ls</span> </span><br><span class="line"><span class="built_in">ls</span> -l  <span class="comment"># 显示详细信息</span></span><br><span class="line"><span class="built_in">ls</span> -lh <span class="comment">#显示详细信息并显示大小</span></span><br><span class="line"><span class="built_in">ls</span> -R  <span class="comment"># 递归查看</span></span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> <span class="built_in">test</span></span><br><span class="line"><span class="built_in">cd</span> .. <span class="comment"># 返回上一级目录</span></span><br><span class="line"><span class="built_in">cd</span> ~  <span class="comment"># 返回根目录</span></span><br><span class="line"><span class="comment"># 删除目录</span></span><br><span class="line"><span class="built_in">rmdir</span> <span class="built_in">test</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span> <span class="comment"># 强制递归删除 -i会提示确认</span></span><br><span class="line"><span class="comment"># 创建文件</span></span><br><span class="line"><span class="built_in">touch</span> test.txt</span><br><span class="line"><span class="comment"># 写入内容</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world&quot;</span> &gt; test.txt</span><br><span class="line"><span class="comment"># 追加在内容的末尾</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world2&quot;</span> &gt;&gt; test.txt</span><br><span class="line"><span class="comment"># 查看文件</span></span><br><span class="line"><span class="built_in">cat</span> test.txt</span><br><span class="line"><span class="comment"># 删除文件</span></span><br><span class="line"><span class="built_in">rm</span> test.txt</span><br><span class="line"><span class="built_in">rm</span> -rf test.txt <span class="comment">#强制递归删除 </span></span><br><span class="line"><span class="comment"># 重命名/移动文件</span></span><br><span class="line"><span class="built_in">mv</span> old_name.txt new_name.txt <span class="comment"># 重命名（相同类型就是重命名即都是文件、都是目录）</span></span><br><span class="line"><span class="built_in">mv</span> old_name.txt dir1 <span class="comment"># 移动</span></span><br><span class="line"><span class="built_in">mv</span> old_name.txt dir1/new_name.txt <span class="comment"># 移动并重命名</span></span><br><span class="line"><span class="comment"># 复制文件</span></span><br><span class="line"><span class="built_in">cp</span> old_name.txt new_name.txt</span><br><span class="line"><span class="built_in">cp</span> old_name.txt dir1</span><br></pre></td></tr></table></figure>
+
+<h2 id="上传文件到Linux服务器"><a href="#上传文件到Linux服务器" class="headerlink" title="上传文件到Linux服务器"></a>上传文件到Linux服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp 本地文件路径 Linux用户@LinuxIP地址:/Linux目标目录</span><br><span class="line">scp /Users/Desktop/test.py root@192.168.1.1:/root/test</span><br><span class="line"><span class="built_in">ls</span>  <span class="comment"># 查看结果 -R 递归查看所有目录及文件</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>自学记录</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客：为什么叫侘寂(wabi-sabi)</title>
+    <url>/2026/04/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AB%E4%BE%98%E5%AF%82/</url>
+    <content><![CDATA[<h1 id="你好，世界，这里是侘寂的小站"><a href="#你好，世界，这里是侘寂的小站" class="headerlink" title="你好，世界，这里是侘寂的小站"></a>你好，世界，这里是侘寂的小站</h1><p>我是wabi-sabi-c，一个喜欢慢下来记录生活和技术的人。</p>
+<p>之所以叫侘寂(wabi-sabi)，是因为喜欢那种不完美、朴素又安静的感觉。这个博客，就是我用来存放这些碎片的地方。</p>
+]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
